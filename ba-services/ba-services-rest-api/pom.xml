@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>name.marmac.bankanalizer</groupId>
+        <version>1.0.0.BUILD-SNAPSHOT</version>
+        <artifactId>ba-services</artifactId>
+    </parent>
+
+    <artifactId>ba-services-rest-impl-jaxrs</artifactId>
+    <packaging>jar</packaging>
+
+    <name>BA :: BANK ANALYZER HE :: SERVICES :: REST API</name>
+    <description></description>
+    <url>http://marcomaccio.github.io/bankanalizer-he/ba-services/ba-services-rest-api</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+
+    <reporting>
+          <outputDirectory>${basedir}/target/site</outputDirectory>
+    </reporting>
+
+</project>

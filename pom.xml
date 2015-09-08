@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>name.marmac.bankanalizer</groupId>
+    <artifactId>bankanalyzer-he</artifactId>
+    <version>1.0.0.BUILD-SNAPSHOT</version>
+    
+    <packaging>pom</packaging>
+
+    <name>BA :: BANK ANALYZER HE - ROOT Project</name>
+    <description>An Head End application to manage Bank Accounts data and make analysis out of it</description>
+    <url>http://marcomaccio.github.io/bankanalizer-he</url>
+
+    <scm>
+        <connection>scm:git:git@github.com:marcomaccio/bankanalyzer-he.git</connection>
+        <developerConnection>scm:git:git@github.com:marcomaccio/bankanalyzer-he.git</developerConnection>
+        <url>https://github.com/marcomaccio/bankanalizer-he</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>marmac-m2-rms</id>
+            <name>MARMAC Maven 2 Repository Snapshot</name>
+            <url>http://rms.maccio-ch.homelinux.net/nexus/content/repositories/mm-m2-snapshots</url>
+            <uniqueVersion>false</uniqueVersion>
+            <layout>default</layout>
+        </snapshotRepository>
+        <repository>
+            <id>marmac-m2-rms</id>
+            <name>MARMAC Maven 2 Repository Release</name>
+            <url>http://rms.maccio-ch.homelinux.net/nexus/content/repositories/mm-m2-releases</url>
+            <uniqueVersion>false</uniqueVersion>
+            <layout>default</layout>
+        </repository>
+        <site>
+            <id>marmac-github-docs-website</id>
+            <url>https://github.com/marcomaccio/cxfatwork/tree/gh-pages</url>
+        </site>
+    </distributionManagement>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/marcomaccio/bankanalyzer/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>jenkins</system>
+        <url>http://cis.maccio-ch.homelinux.net/jenkins/job/PROJECT-BankAnalyzer-1a-Build/</url>
+        <notifiers>
+          <notifier>
+            <type>mail</type>
+            <sendOnError>true</sendOnError>
+            <sendOnFailure>true</sendOnFailure>
+            <sendOnSuccess>true</sendOnSuccess>
+            <sendOnWarning>false</sendOnWarning>
+            <configuration>
+              <address>marco.maccio@marmac.name</address>
+            </configuration>
+          </notifier>
+        </notifiers>
+    </ciManagement>
+
+    <modules>
+        <!-- COMMONS LAYER MODULES: -->
+        <module>ba-commons</module>
+        <!-- DAL LAYER MODULES: -->
+        <module>ba-dal</module>
+
+        <!-- BUSINESS LOGIC LAYER MODULES:
+        <module>ba-bl</module> -->
+
+        <!-- SERVICE LAYER MODULES: -->
+        <module>ba-services</module>
+        
+        <!-- ADAPTER LAYER MODULES: 
+        <module>ba-adapters</module> -->
+    </modules>
+
+
+    <properties>
+        <source.java.compliancy.version>1.7</source.java.compliancy.version>
+        <target.java.compliancy.version>1.7</target.java.compliancy.version>
+
+        <!-- MAVEN PLUGINS VERSIONS -->
+        <wagon-webdav-jackrabbit.version>2.4</wagon-webdav-jackrabbit.version>
+
+        <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
+        <maven-clean-plugin.version>2.6</maven-clean-plugin.version>
+        <maven-install-plugin.version>2.5</maven-install-plugin.version>
+        <maven-deploy-plugin.version>2.8</maven-deploy-plugin.version>
+        <maven-release-plugin.version>2.4.1</maven-release-plugin.version>
+        <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+        <maven-dependency-plugin.version>2.7</maven-dependency-plugin.version>
+        <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
+        <maven-site-plugin.version>3.4</maven-site-plugin.version>
+        <maven-source-plugin.version>2.4</maven-source-plugin.version>
+        <maven-scm-plugin.version>1.9.2</maven-scm-plugin.version>
+        <maven-scm-providers-jgit.version>1.9.2</maven-scm-providers-jgit.version>
+        <maven-scm-publish-plugin.version>1.1</maven-scm-publish-plugin.version>
+        <maven-graph-plugin.version>1.10</maven-graph-plugin.version>
+        <maven-dependency-plugin.version>2.7</maven-dependency-plugin.version>
+
+
+        <maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
+        <maven-project-info-reports-plugin.version>2.7</maven-project-info-reports-plugin.version>
+        <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
+        <maven-surefire-report-plugin.version>2.16</maven-surefire-report-plugin.version>
+        <maven-failsafe-plugin.version>2.15</maven-failsafe-plugin.version>
+
+        <maven-jaxb2-plugin.version>0.8.3</maven-jaxb2-plugin.version>
+        <maven-bundle-plugin.version>2.4.0</maven-bundle-plugin.version>
+        <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
+        <maven-war-plugin.version>2.4</maven-war-plugin.version>
+
+        <maven-changes-plugin.version>2.9</maven-changes-plugin.version>
+        <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
+        <maven-pmd-plugin.version>3.2</maven-pmd-plugin.version>
+        <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
+        <site-maven-plugin.version>0.12</site-maven-plugin.version>
+        <license-maven-plugin.version>1.7</license-maven-plugin.version>
+
+        <umlgraph.version>5.6.6</umlgraph.version>
+
+        <buildnumber-maven-plugin.version>1.3</buildnumber-maven-plugin.version>
+        <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
+        <features-maven-plugin.version>2.3.3</features-maven-plugin.version>
+        <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
+        <jdepend-maven-plugin.version>2.0-beta-2</jdepend-maven-plugin.version>
+        <findbugs-maven-plugin.version>2.5.2</findbugs-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.7.2.201409121644</jacoco-maven-plugin.version>
+        <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
+
+        <javax-persistence.version>2.1.0</javax-persistence.version>
+
+        <geronimo-j2ee-connector_1.5_spec.version>2.0.0</geronimo-j2ee-connector_1.5_spec.version>
+        <geronimo-transaction.version>2.2.2</geronimo-transaction.version>
+        <geronimo-connector.version>2.2.2</geronimo-connector.version>
+
+        <cxf.version>2.7.15</cxf.version>
+        <cxf-xjc-dv.version>2.2.12</cxf-xjc-dv.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
+
+        <guava.version>14.0.1</guava.version>
+        <xbean-blueprint.version>3.12</xbean-blueprint.version>
+
+        <jaxb2-basics.version>0.6.5</jaxb2-basics.version>
+        <jaxb2-basics-annotate.version>0.6.5</jaxb2-basics-annotate.version>
+        
+        <codehaus-jackson.version>1.9.13</codehaus-jackson.version>
+        <fasterxml-jackson.version>2.4.1</fasterxml-jackson.version>
+        
+        <scala-library.version>2.10.2</scala-library.version>
+
+        <javaee-web-api.version>7.0</javaee-web-api.version>
+        <swagger-jaxrs.version>1.3.4</swagger-jaxrs.version>
+
+        <slf4j.version>1.7.0</slf4j.version>
+        <slf4j-log4j12.version>1.7.6</slf4j-log4j12.version>
+        <log4j.version>1.2.17</log4j.version>
+        <logback.version>1.0.13</logback.version>
+        <junit.version>4.11</junit.version>
+
+        <build.profile.id>dev</build.profile.id>
+        <jacoco.it.execution.data.file>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.it.execution.data.file>
+        <jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.ut.execution.data.file>
+        <skip.integration.tests>true</skip.integration.tests>
+        <skip.unit.tests>false</skip.unit.tests>
+
+        
+        <sonar-maven-plugin.version>2.6</sonar-maven-plugin.version>
+
+        <mysql-connector-java.version>5.1.18</mysql-connector-java.version>
+        <hsqldb.version>2.3.2</hsqldb.version>
+
+        <!--
+            OLDER V. 7.4.5.v20110725
+            7.6.14.v20131031
+            NEWER V. 8.1.14.v20131031
+            NEWER V. 9.2.3.v20140905
+        -->
+        <jetty-maven-plugin.version>7.4.5.v20110725</jetty-maven-plugin.version>
+        <jetty.version>8.1.10.v20130312</jetty.version>
+
+        <site.url>file://${env.HOME}/sitedocs/${project.artifactId}</site.url>
+        <!-- GitHub Changelog Parameters -->
+        <changelog.github.fileUri>${project.scm.url}/tree/master/%FILE%</changelog.github.fileUri>
+        <changelog.revision.github.fileUri>${project.scm.url}/commit</changelog.revision.github.fileUri>
+        <!-- @OVERRIDE ENFORCER will fail if these are not defined -->
+        <changelog.fileUri />
+        <changelog.revision.fileUri />
+
+        <scmPublish.checkoutDirectory>${project.build.directory}/scmpublish</scmPublish.checkoutDirectory>
+        <scm-publish.scmBranch>gh-pages</scm-publish.scmBranch>
+        <scm-publish.pubScmUrl>scm:git:git@github.com:marcomaccio/cxfatwork.git</scm-publish.pubScmUrl>
+
+        <!-- Location of where "site" documentation is output; This is for  -->
+        <scm-publish.siteDocOuputDirectory>${project.build.directory}/site</scm-publish.siteDocOuputDirectory>
+
+        <!-- Overwrite from Parent Pom  -->
+        <changelog.fileUri>${changelog.github.fileUri}</changelog.fileUri>
+        <changelog.revision.fileUri>${changelog.revision.github.fileUri}</changelog.revision.fileUri>
+    </properties>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <defaultGoal>install</defaultGoal>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>${wagon-webdav-jackrabbit.version}</version>
+            </extension>
+        </extensions>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>versions-maven-plugin</artifactId>
+                  <version>${versions-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${source.java.compliancy.version}</source>
+                    <target>${target.java.compliancy.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven-site-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>stage-for-scm-publish</id>
+                        <phase>post-site</phase>
+                        <goals>
+                            <goal>stage</goal>
+                        </goals>
+                        <configuration>
+                            <!-- MSITE-652: configuration won't be necessary with m-site-p 3.2 -->
+                            <skipDeploy>true</skipDeploy>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>${maven-scm-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-publish-plugin</artifactId>
+                <version>${maven-scm-publish-plugin.version}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <checkoutDirectory>${scmPublish.checkoutDirectory}</checkoutDirectory>
+                    <checkinComment>Publishing Site Docs for ${project.artifactId}:${project.version}</checkinComment>
+                    <!-- Plugins defaults to "target/staging" and since the distributionManagement section is a pain in the ass for site docs, this is easier -->
+                    <content>${scm-publish.siteDocOuputDirectory}</content>
+                    <skipDeletedFiles>true</skipDeletedFiles>
+                    <pubScmUrl>${scm-publish.pubScmUrl}</pubScmUrl>
+                    <scmBranch>${scm-publish.scmBranch}</scmBranch>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <!--
+                        Prepares the property pointing to the JaCoCo runtime agent which
+                        is passed as VM argument when Maven the Surefire plugin is executed.
+                    -->
+                    <execution>
+                        <id>pre-unit-test</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+                            <!--
+                                Sets the name of the property containing the settings
+                                for JaCoCo runtime agent.
+                            -->
+                            <propertyName>surefireArgLine</propertyName>
+                        </configuration>
+                    </execution>
+                    <!--
+                        Ensures that the code coverage report for unit tests is created after
+                        unit tests have been run.
+                    -->
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+                        </configuration>
+                    </execution>
+
+                    <!--
+                        Prepares the property pointing to the JaCoCo runtime agent which
+                        is passed as VM argument when Maven the Failsafe plugin is executed.
+                    -->
+                    <execution>
+                        <id>pre-integration-test</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
+                            <!--
+                                Sets the name of the property containing the settings
+                                for JaCoCo runtime agent.
+                            -->
+                            <propertyName>failsafeArgLine</propertyName>
+                        </configuration>
+                    </execution>
+                    <!--
+                        Ensures that the code coverage report for integration tests after
+                        integration tests have been run.
+                    -->
+                    <execution>
+                        <id>post-integration-test</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the path to the file which contains the execution data. -->
+                            <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+                            <!-- Sets the output directory for the code coverage report. -->
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <!-- Sets the VM argument line used when unit tests are run. -->
+                    <argLine>${surefireArgLine}</argLine>
+                    <!-- Skips unit tests if the value of skip.unit.tests property is true -->
+                    <skipTests>${skip.unit.tests}</skipTests>
+                    <!-- Excludes integration tests when unit tests are run. -->
+                    <excludes>
+                        <exclude>**/e2e/*.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+                <executions>
+                    <!--
+                        Ensures that both integration-test and verify goals of the Failsafe Maven
+                        plugin are executed.
+                    -->
+                    <execution>
+                        <id>integration-tests</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Sets the VM argument line used when integration tests are run. -->
+                            <argLine>${failsafeArgLine}</argLine>
+                            <!--
+                                Skips integration tests if the value of skip.integration.tests property
+                                is true
+                            -->
+                            <skipTests>${skip.integration.tests}</skipTests>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven-release-plugin.version}</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <preparationGoals>clean verify</preparationGoals>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>${license-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>download-licenses</id>
+                        <goals>
+                            <goal>download-licenses</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.fusesource.mvnplugins</groupId>
+                <artifactId>maven-graph-plugin</artifactId>
+                <version>${maven-graph-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <executions>
+                    <execution>
+                      <id>attach-sources</id>
+                      <goals>
+                        <goal>jar</goal>
+                      </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>${site-maven-plugin.version}</version>
+                <configuration>
+                    <message>Creating site for ${project.artifactId}-${project.version}</message>
+                    <server>github-marcomaccio</server>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>site</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+          <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+          <version>${slf4j-log4j12.version}</version>
+        </dependency>
+    </dependencies>
+
+    <!-- DEPENDENCIES SECTION - END -->
+
+    <!-- REPORTING SECTION - START -->
+    <reporting>
+        <outputDirectory>${basedir}/target/site</outputDirectory>
+        <plugins>
+
+            <!-- Java doc plugin with UML Diagram-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <show>private</show>
+                    <show>public</show>
+
+                    <!-- Doclet Library to generate the UML Diagram -->
+                    <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+                    <docletArtifact>
+                        <groupId>org.umlgraph</groupId>
+                        <artifactId>umlgraph</artifactId>
+                        <version>${umlgraph.version}</version>
+                    </docletArtifact>
+
+                    <additionalparam>-views -all</additionalparam>
+                    <useStandardDocletOptions>true</useStandardDocletOptions>
+                    <failOnError>false</failOnError>
+                </configuration>
+            </plugin>
+
+            <!-- Source Xref -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jxr-plugin</artifactId>
+              <version>${maven-jxr-plugin.version}</version>
+            </plugin>
+
+            <!-- Maven Project Info Reports -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven-project-info-reports-plugin.version}</version>
+                <configuration>
+                    <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                </configuration>
+            </plugin>
+
+            <!-- Unit Test plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+
+            <!-- Test Report generator Plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${maven-surefire-report-plugin.version}</version>
+            </plugin>
+
+            <!-- Changes Report Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changes-plugin</artifactId>
+                <version>${maven-changes-plugin.version}</version>
+            </plugin>
+
+              <!-- ChangeLog Report Plugin -->
+              <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-changelog-plugin</artifactId>
+                  <version>${maven-changelog-plugin.version}</version>
+                  <configuration>
+                    <type>range</type>
+                    <range>90</range>
+                  </configuration>
+              </plugin>
+
+            <!-- taglist plugin to generate to do List -->
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>taglist-maven-plugin</artifactId>
+              <version>${taglist-maven-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>${jdepend-maven-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>dependency-updates-report</report>
+                            <report>plugin-updates-report</report>
+                            <report>property-updates-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar-maven-plugin.version}</version>
+            </plugin>
+
+        </plugins>
+
+    </reporting>
+
+</project>

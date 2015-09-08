@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>name.marmac.bankanalizer</groupId>
+        <version>1.0.0.BUILD-SNAPSHOT</version>
+        <artifactId>bankanalyzer-he</artifactId>
+    </parent>
+
+    <artifactId>ba-services</artifactId>
+    <packaging>pom</packaging>
+
+    <name>BA :: BANK ANALYZER HE :: SERVICES</name>
+    <description></description>
+    <url>http://marcomaccio.github.io/bankanalizer-he/ba-services</url>
+
+    <modules>
+        <!-- REST SERVICES API MODULE: -->
+        <module>ba-services-rest-api</module>
+        
+        <!-- REST SERVICES IMPL JAXRS MODULE: -->
+        <module>ba-services-rest-impl-jaxrs</module>
+    </modules>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Apache CXF Dependencies -->
+        <dependency>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-core</artifactId>
+          <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-transports-http</artifactId>
+          <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+           <groupId>org.apache.cxf</groupId>
+           <artifactId>cxf-rt-transports-http-jetty</artifactId>
+           <version>${cxf.version}</version>
+        </dependency>
+        <!-- -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-databinding-aegis</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-databinding-jaxb</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-local</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+    </dependencies>
+
+    <reporting>
+          <outputDirectory>${basedir}/target/site</outputDirectory>
+    </reporting>
+
+</project>
