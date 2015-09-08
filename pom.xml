@@ -72,7 +72,7 @@
 
     <ciManagement>
         <system>jenkins</system>
-        <url>http://cis.maccio-ch.homelinux.net/jenkins/job/PROJECT-BankAnalyzer-1a-Build/</url>
+        <url>http://cis.maccio-ch.homelinux.net/jenkins/job/PROJECTS-BankAnalyzer-1a-Build/</url>
         <notifiers>
           <notifier>
             <type>mail</type>
