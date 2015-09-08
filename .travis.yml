@@ -6,7 +6,7 @@ jdk:
   - oraclejdk7
 
 script:
-  - mvn clean install -Plocal-depl-j2se-hsqldb -B -e -V
+  - mvn clean install -B -e -V
 
 cache:
   directories:
