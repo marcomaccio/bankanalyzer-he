@@ -15,6 +15,29 @@
     <description>An Head End application to manage Bank Accounts data and make analysis out of it</description>
     <url>http://marcomaccio.github.io/bankanalizer-he</url>
 
+    <prerequisites>
+        <maven>3.1.0</maven>
+    </prerequisites>
+
+    <inceptionYear>2015</inceptionYear>
+
+    <organization>
+        <name>MARMAC</name>
+        <url>http://www.marmac.name</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>marcomaccio</id>
+            <name>Marco Maccio</name>
+            <roles>
+                <role>System Architect</role>
+                <role>Software Designer</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <scm>
         <connection>scm:git:git@github.com:marcomaccio/bankanalyzer-he.git</connection>
         <developerConnection>scm:git:git@github.com:marcomaccio/bankanalyzer-he.git</developerConnection>
@@ -38,7 +61,7 @@
         </repository>
         <site>
             <id>marmac-github-docs-website</id>
-            <url>https://github.com/marcomaccio/cxfatwork/tree/gh-pages</url>
+            <url>https://github.com/marcomaccio/bankanalizer-he/tree/gh-pages</url>
         </site>
     </distributionManagement>
 
@@ -476,7 +499,7 @@
                     </execution>
                 </executions>
             </plugin>
-
+            <!--
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
@@ -494,6 +517,7 @@
                     </execution>
                 </executions>
             </plugin>
+            -->
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -592,12 +616,18 @@
                 <version>${maven-surefire-report-plugin.version}</version>
             </plugin>
 
-            <!-- Changes Report Plugin -->
+            <!-- Changes Report Plugin
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changes-plugin</artifactId>
                 <version>${maven-changes-plugin.version}</version>
+                <configuration>
+                    <githubAPIScheme>https</githubAPIScheme>
+                    <githubAPIPort>443</githubAPIPort>
+                    <includeOpenIssues>false</includeOpenIssues>
+                </configuration>
             </plugin>
+            -->
 
               <!-- ChangeLog Report Plugin -->
               <plugin>
