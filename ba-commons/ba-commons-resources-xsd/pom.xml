@@ -16,12 +16,156 @@
 
     <name>BA :: BANK ANALYZER HE :: COMMONS :: RESOURCES XSD</name>
     <description></description>
-    <url>http://marcomaccio.github.io/bankanalizer-he/ba-commons/ba-commons-resources-xsd</url>
+    <url>http://marcomaccio.github.io/bankanalyzer-he/ba-commons/ba-commons-resources-xsd</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <defaultGoal>install</defaultGoal>
+
+        <filters>
+            <filter>profiles/${build.profile.id}/config.properties</filter>
+        </filters>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                  <include>**/*</include>
+                </includes>
+            </testResource>
+            <testResource>
+                <directory>${project.basedir}/src/integration-test/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                  <include>**/*</include>
+                </includes>
+            </testResource>
+        </testResources>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${build-helper-maven-plugin.version}</version>
+                <executions>
+
+                    <!-- This executions add the generated java source from the xsd to the sources to be compiled -->
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+
+                    <!-- This executions adds test sources to the generate-test-source phase. -->
+                    <execution>
+                        <id>add-integration-test-sources</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Configures the source directory of integration tests. -->
+                            <sources>
+                                <source>src/integration-test/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+
+                    <!-- This executions adds test sources to the generate-test-resource phase. -->
+                    <execution>
+                        <id>add-integration-test-resources</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>add-test-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/integration-test/resources</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${source.java.compliancy.version}</source>
+                    <target>${target.java.compliancy.version}</target>
+                </configuration>
+            </plugin>
+
+            <!-- This plugin control the generation of the java classes from the xsd definition -->
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>${maven-jaxb2-plugin.version}</version>
+                <configuration>
+
+                    <schemaDirectory>${basedir}/src/main/resources/xsd</schemaDirectory>
+                    <bindingDirectory>${basedir}/src/main/resources/bindings</bindingDirectory>
+                    <generateDirectory>${project.build.directory}/generated-sources/java</generateDirectory>
+                    <strict>false</strict>
+                    <extension>true</extension>
+                    <episode>true</episode>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics</artifactId>
+                            <version>${jaxb2-basics.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics-annotate</artifactId>
+                            <version>${jaxb2-basics-annotate.version}</version>
+                        </plugin>
+                    </plugins>
+                    <args>
+                        <arg>-Xannotate</arg>
+                    </args>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+        </plugins>
+
+    </build>
 
 
     <reporting>

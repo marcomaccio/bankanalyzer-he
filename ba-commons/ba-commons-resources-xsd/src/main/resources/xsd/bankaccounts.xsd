@@ -1,0 +1,29 @@
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:bans="http://marmac.name/bankanalyzer/model/to/bankaccounts/"
+        targetNamespace="http://marmac.name/bankanalyzer/model/to/bankaccounts/"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified">
+
+    <xsd:complexType name="BankAccountTOType">
+        <xsd:sequence>
+            <xsd:element name="holdername"      type="xsd:string"   />
+            <xsd:element name="IBAN"            type="xsd:string"   />
+            <xsd:element name="openDate"        type="xsd:string"   />
+            <xsd:element name="createDate"      type="xsd:dateTime" />
+            <xsd:element name="lastUpdate"      type="xsd:dateTime" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="BankAccountsTOType">
+        <xsd:sequence>
+            <xsd:element name="total_records"   type="xsd:long" nillable="false" />
+            <xsd:element name="bankaccounts"    type="bans:BankAccountTOType" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="bankaccount"  type="bans:BankAccountTOType"/>
+
+    <xsd:element name="bankaccounts" type="bans:BankAccountsTOType"/>
+
+</xsd:schema>

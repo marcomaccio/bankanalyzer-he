@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:annox="http://annox.dev.java.net"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+    version="2.1">
+
+    <jaxb:globalBindings>
+        <!-- Use java.util.Calendar instead of javax.xml.datatype.XMLGregorianCalendar for xs:dateTime -->
+        <jaxb:javaType name="java.util.Calendar" xmlType="xsd:dateTime"
+                parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime"
+                printMethod="javax.xml.bind.DatatypeConverter.printDateTime" />
+
+        <!-- Force all classes implements Serializable -->
+        <xjc:serializable uid="1" />
+    </jaxb:globalBindings>
+
+    <!-- START schemaLocation -->
+    <jaxb:bindings schemaLocation="../xsd/transactions.xsd" node="/xsd:schema">
+
+        <jaxb:bindings node="xsd:complexType[@name='TransactionTOType']" >
+            <annox:annotate>
+                <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement"
+                    value="transaction"
+                    description="Bank Account Transaction Resource Representation"/>
+            </annox:annotate>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="xsd:complexType[@name='TransactionsTOType']" >
+            <annox:annotate>
+                <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement"
+                    value="transactions"
+                    description="Bank Account Transaction List Resource Representation"/>
+            </annox:annotate>
+        </jaxb:bindings>
+
+    </jaxb:bindings>
+
+    <jaxb:bindings schemaLocation="../xsd/bankaccounts.xsd" node="/xsd:schema">
+
+        <jaxb:bindings node="xsd:complexType[@name='BankAccountTOType']" >
+            <annox:annotate>
+                <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement"
+                    value="transaction"
+                    description="Bank Account Resource Representation"/>
+            </annox:annotate>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="xsd:complexType[@name='BankAccountsTOType']" >
+            <annox:annotate>
+                <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement"
+                    value="transactions"
+                    description="Bank Account List Resource Representation"/>
+            </annox:annotate>
+        </jaxb:bindings>
+
+    </jaxb:bindings>
+    <!-- END schemaLocation -->
+</jaxb:bindings>
