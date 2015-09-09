@@ -16,7 +16,7 @@
 
     <name>BA :: BANK ANALYZER HE :: COMMONS</name>
     <description></description>
-    <url>http://marcomaccio.github.io/bankanalizer-he/ba-commons</url>
+    <url>http://marcomaccio.github.io/bankanalyzer-he/ba-commons</url>
 
     <modules>
         <!-- COMMONS RESOURCES XSD MODULE: -->

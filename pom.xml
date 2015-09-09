@@ -13,7 +13,7 @@
 
     <name>BA :: BANK ANALYZER HE - ROOT Project</name>
     <description>An Head End application to manage Bank Accounts data and make analysis out of it</description>
-    <url>http://marcomaccio.github.io/bankanalizer-he</url>
+    <url>http://marcomaccio.github.io/bankanalyzer-he</url>
 
     <prerequisites>
         <maven>3.1.0</maven>
@@ -41,7 +41,7 @@
     <scm>
         <connection>scm:git:git@github.com:marcomaccio/bankanalyzer-he.git</connection>
         <developerConnection>scm:git:git@github.com:marcomaccio/bankanalyzer-he.git</developerConnection>
-        <url>https://github.com/marcomaccio/bankanalizer-he</url>
+        <url>https://github.com/marcomaccio/bankanalyzer-he</url>
     </scm>
 
     <distributionManagement>
@@ -61,7 +61,7 @@
         </repository>
         <site>
             <id>marmac-github-docs-website</id>
-            <url>https://github.com/marcomaccio/bankanalizer-he/tree/gh-pages</url>
+            <url>https://github.com/marcomaccio/bankanalyzer-he/tree/gh-pages</url>
         </site>
     </distributionManagement>
 
@@ -90,6 +90,7 @@
     <modules>
         <!-- COMMONS LAYER MODULES: -->
         <module>ba-commons</module>
+
         <!-- DAL LAYER MODULES: -->
         <module>ba-dal</module>
 
@@ -149,7 +150,7 @@
         <umlgraph.version>5.6.6</umlgraph.version>
 
         <buildnumber-maven-plugin.version>1.3</buildnumber-maven-plugin.version>
-        <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
+        <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
         <features-maven-plugin.version>2.3.3</features-maven-plugin.version>
         <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
         <jdepend-maven-plugin.version>2.0-beta-2</jdepend-maven-plugin.version>
@@ -551,6 +552,13 @@
           <artifactId>slf4j-log4j12</artifactId>
           <version>${slf4j-log4j12.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.skins</groupId>
+            <artifactId>maven-fluido-skin</artifactId>
+            <version>1.4</version>
+        </dependency>
+
     </dependencies>
 
     <!-- DEPENDENCIES SECTION - END -->

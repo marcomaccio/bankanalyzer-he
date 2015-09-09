@@ -16,7 +16,7 @@
 
     <name>BA :: BANK ANALYZER HE :: SERVICES</name>
     <description></description>
-    <url>http://marcomaccio.github.io/bankanalizer-he/ba-services</url>
+    <url>http://marcomaccio.github.io/bankanalyzer-he/ba-services</url>
 
     <modules>
         <!-- REST SERVICES API MODULE: -->

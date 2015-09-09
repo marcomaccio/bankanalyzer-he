@@ -16,7 +16,7 @@
 
     <name>BA :: BANK ANALYZER HE :: SERVICES :: REST API</name>
     <description></description>
-    <url>http://marcomaccio.github.io/bankanalizer-he/ba-services/ba-services-rest-api</url>
+    <url>http://marcomaccio.github.io/bankanalyzer-he/ba-services/ba-services-rest-api</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -16,7 +16,7 @@
 
     <name>BA :: BANK ANALYZER HE :: COMMONS :: EXCEPTIONS XSD</name>
     <description></description>
-    <url>http://marcomaccio.github.io/bankanalizer-he/ba-commons/ba-commons-exceptions-xsd</url>
+    <url>http://marcomaccio.github.io/bankanalyzer-he/ba-commons/ba-commons-exceptions-xsd</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

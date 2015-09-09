@@ -16,7 +16,7 @@
 
     <name>BA :: BANK ANALYZER HE :: DAL :: API</name>
     <description></description>
-    <url>http://marcomaccio.github.io/bankanalizer-he/ba-dal/ba-dal-api</url>
+    <url>http://marcomaccio.github.io/bankanalyzer-he/ba-dal/ba-dal-api</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

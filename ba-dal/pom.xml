@@ -16,7 +16,7 @@
 
     <name>BA :: BANK ANALYZER HE :: DAL</name>
     <description></description>
-    <url>http://marcomaccio.github.io/bankanalizer-he/ba-dal</url>
+    <url>http://marcomaccio.github.io/bankanalyzer-he/ba-dal</url>
 
     <modules>
         <!-- DAL API MODULE: -->
