@@ -11,10 +11,10 @@
         <artifactId>ba-services</artifactId>
     </parent>
 
-    <artifactId>ba-services-rest-api</artifactId>
+    <artifactId>ba-services-rest-impl-jaxrs</artifactId>
     <packaging>jar</packaging>
 
-    <name>BA :: BANK ANALYZER HE :: SERVICES :: REST API</name>
+    <name>BA :: BANK ANALYZER HE :: SERVICES :: REST IMPL JAXRS</name>
     <description></description>
     <url>http://marcomaccio.github.io/bankanalyzer-he/ba-services/ba-services-rest-api</url>
 
