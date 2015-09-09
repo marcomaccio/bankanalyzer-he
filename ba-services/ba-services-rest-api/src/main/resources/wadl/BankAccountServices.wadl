@@ -1,0 +1,192 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:baservicens="http://marmac.name/bankanalyzer/services/web/rest/api/bankaccountservices/"
+             xmlns:bans="http://marmac.name/bankanalyzer/model/to/bankaccounts/">
+
+    <grammars>
+        <include href="http://marmac.name/bankanalyzer/model/to/bankaccounts/bankaccounts.xsd"
+                 xml:space="http://marmac.name/bankanalyzer/model/to/bankaccounts/" />
+
+    </grammars>
+
+    <resources base="http://localhost:9091/cxf/api/v1">
+
+        <!-- This will generate the Interface -->
+        <resource  path="/bankaccountservice" id="BankAccountService">
+
+            <resource  path="/bankaccounts">
+                <method name="POST" id="createBankAccount">
+                    <request>
+                        <representation mediaType="application/xml"  element="bans:bankaccount" />
+                        <representation mediaType="application/json" element="bans:bankaccount"/>
+                    </request>
+
+                    <response status="201" description="Created">
+                        <representation mediaType="application/xml"  element="bans:bankaccount"/>
+                        <representation mediaType="application/json" element="bans:bankaccount"/>
+                    </response>
+
+                    <response status="400" description="Bad Request">
+                        <representation mediaType="application/xml"     element="bans:bankaccount"/>
+                        <representation mediaType="application/json"    element="bans:bankaccount"/>
+                    </response>
+
+                    <response status="500" description="Service Internal Error">
+                        <representation mediaType="application/xml"     element="bans:bankaccount"/>
+                        <representation mediaType="application/json"    element="bans:bankaccount"/>
+                    </response>
+
+                    <response status="501" description="Method Not Implemented">
+                        <representation mediaType="application/xml"     element="bans:bankaccount"/>
+                        <representation mediaType="application/json"    element="bans:bankaccount"/>
+                    </response>
+
+                    <response status="504" description="DB Timeout">
+                        <representation mediaType="application/xml"     element="bans:bankaccount"/>
+                        <representation mediaType="application/json"    element="bans:bankaccount"/>
+                    </response>
+
+                </method>
+
+                <method name="GET" id="getBankAccountsByQuery">
+                    <request>
+                        <param name="limit"        type="xsd:int"      style="query" required="false" />
+                        <param name="iban"         type="xsd:string"   style="query" required="false"/>
+                        <param name="holdername"   type="xsd:string"   style="query" required="false"/>
+                        <param name="openingDate"  type="xsd:string"   style="query" required="false"/>
+                        <param name="createDate"   type="xsd:string"   style="query" required="false"/>
+                        <param name="lastUpdate"   type="xsd:string"   style="query" required="false"/>
+                    </request>
+
+                    <response status="200" description="Retireved Successfully a List">
+                        <representation mediaType="application/xml"    element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"   element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="400" description="Bad Request">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="500" description="Generic Internal Error">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="501" description="Method Not Implemented">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="504" description="Timeout">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                </method>
+
+                <method name="PUT" id="updateBankAccounts">
+                    <request>
+                        <representation mediaType="application/xml"     element="bans:bankaccounts" />
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </request>
+
+                    <response status="201" description="BankAccounts Updated">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="400" description="Bad Request">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="500" description="Generic Internal Error">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="501" description="Method Not Implemented">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="504" description="Internal Timeout">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                </method>
+
+                <method name="DELETE" id="deleteBankAccounts">
+                    <request>
+                        <representation mediaType="application/xml"     element="bans:bankaccounts" />
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </request>
+
+                    <response status="200" description="Deleted">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="400" description="Bad Request">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="500" description="Generic Internal Error">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="501" description="Method Not Implemented">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                    <response status="504" description="Encoder Timeout">
+                        <representation mediaType="application/xml"     element="bans:bankaccounts"/>
+                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                    </response>
+
+                </method>
+
+                <resource  path="/{id}">
+                    <param name="id" type="xsd:string" style="template" required="true" />
+
+                    <method name="GET" id="getBankAccountByNativeId">
+                        <response status="200" description="Customer Found">
+                            <representation mediaType="application/xml"     element="bans:bankaccount"/>
+                            <representation mediaType="application/json"    element="customerns:customer"/>
+                        </response>
+                    </method>
+
+                    <method name="PUT" id="updateBankAccountByNativeId">
+                        <request>
+                            <representation mediaType="application/xml"     element="bans:bankaccount"/>
+                            <representation mediaType="application/json"    element="bans:bankaccount"/>
+                        </request>
+                        <response status="200" description="Successfully Updated">
+                            <representation mediaType="application/xml"     element="bans:bankaccount"/>
+                            <representation mediaType="application/json"    element="bans:bankaccount"/>
+                        </response>
+                    </method>
+
+                    <method name="DEL" id="deleteBankAccountByNativeId">
+                        <response status="200" description="Successfully Deleted the BankAccount">
+                            <representation mediaType="application/xml"     element="bans:bankaccount"/>
+                            <representation mediaType="application/json"    element="bans:bankaccount"/>
+                        </response>
+                    </method>
+
+                </resource>
+
+            </resource>
+
+        </resource>
+
+
+    </resources>
+
+</application>

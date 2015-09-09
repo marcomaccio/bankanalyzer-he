@@ -1,0 +1,4 @@
+
+
+REWRITE_SYSTEM "http://marmac.name/bankanalyzer/model/to/bankaccounts/bankaccounts.xsd" "classpath:xsd/bankaccounts.xsd"
+REWRITE_SYSTEM "http://marmac.name/bankanalyzer/model/to/bankaccounts/transactions.xsd" "classpath:xsd/transactions.xsd"
