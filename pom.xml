@@ -692,4 +692,39 @@
 
     </reporting>
 
+    <profiles>
+        <profile>
+            <id>local-depl-j2se-mysql</id>
+            <properties>
+                <application.log.level>DEBUG</application.log.level>
+                <!-- SERVICE LAYER PROPERTIES -->
+                <deployment.host>localhost</deployment.host>
+                <deployment.port>9191</deployment.port>
+                <deployment.webContext/>
+                <deployment.servletContext>/cxf</deployment.servletContext>
+                <deployment.servicePath>/crm/provisioning</deployment.servicePath>
+                <deployment.serviceVersion>/v1</deployment.serviceVersion>
+                <deployment.serviceInterface>/customerprovisioning</deployment.serviceInterface>
+                <deployment.resourcePath>/customers</deployment.resourcePath>
+
+                <!-- DATA ACCESS LAYER PROPERTIES -->
+                <deployment.jdbcDriverName>com.mysql.jdbc.Driver</deployment.jdbcDriverName>
+                <deployment.jdbcUrl>jdbc:mysql://localhost:3306/gestimmo</deployment.jdbcUrl>
+                <deployment.jdbcUserName>gestimmo</deployment.jdbcUserName>
+                <deployment.jdbcPassword>Gestimmo@2013!</deployment.jdbcPassword>
+                <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
+                <deployment.schemaFileName>src/integration-test/data/schema-mysql.sql</deployment.schemaFileName>
+
+                <deployment.ddl-generation>create-tables</deployment.ddl-generation>
+                <deployment.createSchemaFilename>create-tables-mysql.sql</deployment.createSchemaFilename>
+                <deployment.dropSchemaFilename>drop-tables-mysql.sql</deployment.dropSchemaFilename>
+                <deployment.dataTypeFactory>org.dbunit.ext.mysql.MySqlDataTypeFactory</deployment.dataTypeFactory>
+                <deployment.metadataHandler>org.dbunit.ext.mysql.MySqlMetadataHandler</deployment.metadataHandler>
+
+                <deployment.createCustomers>src/integration-test/data/create-customers.xml</deployment.createCustomers>
+                <liquibase.contexts>test</liquibase.contexts>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

@@ -13,7 +13,7 @@
     <resources base="http://localhost:9091/cxf/api/v1">
 
         <!-- This will generate the Interface -->
-        <resource  path="/bankaccountservice" id="BankAccountService">
+        <resource  path="/bankaccountservice" id="BankAccountsServices">
 
             <resource  path="/bankaccounts">
                 <method name="POST" id="createBankAccount">
