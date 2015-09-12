@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="marcomaccio">
+
+        <createTable catalogName="gestimmo"
+                     tableName="BankAccounts">
+
+            <column name="pkId"         type="bigint(20)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="bankName"     type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="holderName"   type="varchar(100)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="iban"         type="varchar(100)">
+                <constraints unique="true"
+                             uniqueConstraintName="iban"
+                             nullable="false"/>
+            </column>
+            <column name="openingDate"  type="datetime" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="createDate"   type="datetime" >
+                <constraints nullable="true"/>
+            </column>
+            <column name="lastUpdate"   type="datetime" >
+                <constraints nullable="true"/>
+            </column>
+            <column name="version"   type="bigint(20)" >
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+
+        <createTable catalogName="gestimmo"
+                     tableName="Transactions">
+
+            <column name="pkId"         type="bigint(20)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="executionDate"  type="datetime" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="valueDate"        type="datetime" >
+                <constraints nullable="true"/>
+            </column>
+            <column name="description"      type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount"           type="decimal(20,3)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="currency"         type="varchar(3)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance"          type="decimal(20,3)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="category"         type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subCategory"         type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createDate"   type="datetime" >
+                <constraints nullable="true"/>
+            </column>
+            <column name="lastUpdate"   type="datetime" >
+                <constraints nullable="true"/>
+            </column>
+            <column name="version"   type="bigint(20)" >
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

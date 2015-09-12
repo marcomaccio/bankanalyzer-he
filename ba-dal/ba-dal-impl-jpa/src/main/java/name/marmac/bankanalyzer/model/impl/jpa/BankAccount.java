@@ -13,10 +13,10 @@ import java.util.Date;
 @Entity
 @Table(name = "BankAccounts", uniqueConstraints=@UniqueConstraint(columnNames="iban"))
 @NamedQueries({
-        @NamedQuery(name = "BankAccounts.findAll",      query = "SELECT ba from BankAccounts ba "),
-        @NamedQuery(name = "BankAccounts.Count",        query = "SELECT COUNT(ba) FROM BankAccounts ba"),
-        @NamedQuery(name = "BankAccounts.findByPkId",   query = "SELECT ba FROM BankAccounts ba WHERE ba.id = :id"),
-        @NamedQuery(name = "BankAccounts.findByIBAN",   query = "SELECT ba FROM BankAccounts ba WHERE ba.iban = :iban")
+        @NamedQuery(name = "BankAccounts.findAll",      query = "SELECT ba from BankAccount ba "),
+        @NamedQuery(name = "BankAccounts.Count",        query = "SELECT COUNT(ba) FROM BankAccount ba"),
+        @NamedQuery(name = "BankAccounts.findByPkId",   query = "SELECT ba FROM BankAccount ba WHERE ba.id = :id"),
+        @NamedQuery(name = "BankAccounts.findByIBAN",   query = "SELECT ba FROM BankAccount ba WHERE ba.iban = :iban")
 })
 public class BankAccount implements BankAccountPO {
 
@@ -48,7 +48,7 @@ public class BankAccount implements BankAccountPO {
 
         @Override
         @Column(name = "iban", nullable = false)
-        public String getIBAN() {
+        public String getIban() {
                 return iban;
         }
 
@@ -60,6 +60,7 @@ public class BankAccount implements BankAccountPO {
 
         @Override
         @Column(name = "openingDate", nullable = false)
+        @Temporal(TemporalType.DATE)
         public Date getOpeningDate() {
                 return openingDate;
         }
@@ -98,7 +99,7 @@ public class BankAccount implements BankAccountPO {
         }
 
         @Override
-        public void setIBAN(String iban) {
+        public void setIban(String iban) {
             this.iban = iban;
         }
 

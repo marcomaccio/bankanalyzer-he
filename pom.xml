@@ -186,7 +186,10 @@
         <slf4j-log4j12.version>1.7.6</slf4j-log4j12.version>
         <log4j.version>1.2.17</log4j.version>
         <logback.version>1.0.13</logback.version>
+
+        <liquibase-maven-plugin.version>3.4.1</liquibase-maven-plugin.version>
         <junit.version>4.11</junit.version>
+        <dbunit-maven-plugin.version>1.0-beta-3</dbunit-maven-plugin.version>
 
         <build.profile.id>dev</build.profile.id>
         <jacoco.it.execution.data.file>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.it.execution.data.file>
@@ -713,18 +716,45 @@
                 <deployment.jdbcUserName>gestimmo</deployment.jdbcUserName>
                 <deployment.jdbcPassword>Gestimmo@2013!</deployment.jdbcPassword>
                 <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
-                <deployment.schemaFileName>src/integration-test/data/schema-mysql.sql</deployment.schemaFileName>
+                <deployment.schemaFileName>src/integration-test/data/mysql-create-tables.sql</deployment.schemaFileName>
 
                 <deployment.ddl-generation>create-tables</deployment.ddl-generation>
-                <deployment.createSchemaFilename>create-tables-mysql.sql</deployment.createSchemaFilename>
-                <deployment.dropSchemaFilename>drop-tables-mysql.sql</deployment.dropSchemaFilename>
+                <deployment.createSchemaFilename>mysql-create-tables.sql</deployment.createSchemaFilename>
+                <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
                 <deployment.dataTypeFactory>org.dbunit.ext.mysql.MySqlDataTypeFactory</deployment.dataTypeFactory>
                 <deployment.metadataHandler>org.dbunit.ext.mysql.MySqlMetadataHandler</deployment.metadataHandler>
 
-                <deployment.createCustomers>src/integration-test/data/create-customers.xml</deployment.createCustomers>
+                <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
                 <liquibase.contexts>test</liquibase.contexts>
+
             </properties>
         </profile>
+
+        <profile>
+            <id>all-tests</id>
+            <properties>
+                <build.profile.id>all-tests</build.profile.id>
+                <!-- All tests are run. -->
+                <skip.integration.tests>false</skip.integration.tests>
+                <skip.unit.tests>false</skip.unit.tests>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>dev</id>
+        </profile>
+
+        <profile>
+            <id>integration-test</id>
+            <properties>
+                <!-- Used to locate the profile specific configuration file. -->
+                <build.profile.id>integration-test</build.profile.id>
+                <!-- Only integration tests are run. -->
+                <skip.integration.tests>false</skip.integration.tests>
+                <skip.unit.tests>true</skip.unit.tests>
+            </properties>
+        </profile>
+
     </profiles>
 
 </project>

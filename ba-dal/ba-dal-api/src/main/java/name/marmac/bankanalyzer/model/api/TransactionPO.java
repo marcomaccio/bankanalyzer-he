@@ -26,6 +26,24 @@ public interface TransactionPO extends Serializable {
 
     public String getSubCategory();
 
+    /**
+     *
+     * @return
+     */
+    public Date getCreatedDate();
+
+    /**
+     *
+     * @return
+     */
+    public Date getLastUpdate();
+
+    /**
+     *
+     * @return
+     */
+    public Long getVersion();
+
     /** Setters Methods - START **/
 
     public void setId(Long id);
@@ -45,5 +63,23 @@ public interface TransactionPO extends Serializable {
     public void setCategory(String category);
 
     public void setSubCategory(String subCategory);
+
+    /**
+     *
+     * @param createdDate
+     */
+    public void setCreatedDate(Date createdDate);
+
+    /**
+     *
+     * @param lastUpdate
+     */
+    public void setLastUpdate(Date lastUpdate);
+
+    /**
+     *
+     * @param version
+     */
+    public void setVersion(Long version);
 
 }

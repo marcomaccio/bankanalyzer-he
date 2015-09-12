@@ -25,7 +25,7 @@ public interface BankAccountPO extends Serializable {
      *
      * @return
      */
-    public String getIBAN();
+    public String getIban();
 
     /**
      *
@@ -75,7 +75,7 @@ public interface BankAccountPO extends Serializable {
      *
      * @param iban
      */
-    public void setIBAN(String iban);
+    public void setIban(String iban);
 
     /**
      *

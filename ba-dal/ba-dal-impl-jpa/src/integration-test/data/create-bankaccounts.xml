@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <BankAccounts pkId="1" bankName="BANQUE CANTONAL VAUDOIS" holderName="Marco Maccio"     iban="001"  version="1" />
+  <BankAccounts pkId="2" bankName="BANQUE CANTONAL VAUDOIS" holderName="Catherine Price"  iban="002"  version="1" />
+  <BankAccounts pkId="3" bankName="BANQUE CANTONAL VAUDOIS" holderName="Julie Maccio"     iban="003"  version="1" />
+</dataset>
