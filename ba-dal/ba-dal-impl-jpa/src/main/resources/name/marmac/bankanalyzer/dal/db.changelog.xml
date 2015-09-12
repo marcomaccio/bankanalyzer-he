@@ -8,7 +8,7 @@
 
     <changeSet id="1" author="marcomaccio">
 
-        <createTable catalogName="gestimmo"
+        <createTable catalogName="bankanalyzer"
                      tableName="BankAccounts">
 
             <column name="pkId"         type="bigint(20)">
@@ -40,7 +40,7 @@
         </createTable>
 
 
-        <createTable catalogName="gestimmo"
+        <createTable catalogName="bankanalyzer"
                      tableName="Transactions">
 
             <column name="pkId"         type="bigint(20)">
