@@ -26,6 +26,12 @@ public class Transaction implements TransactionPO {
     private Long    version;
     private Date    executionDate;
     private Date    valueDate;
+    private String  description;
+    private float   amount;
+    private float   balance;
+    private String  currency;
+    private String  category;
+    private String  subCategory;
     private Date    createDate;
     private Date    lastUpdate;
 
@@ -36,125 +42,125 @@ public class Transaction implements TransactionPO {
     @Column(name = "pkId", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
-        return null;
+        return id;
     }
 
     @Override
     @Column(name = "executionDate", nullable = false)
     @Temporal(TemporalType.DATE)
     public Date getExecutionDate() {
-        return null;
+        return executionDate;
     }
 
     @Override
     @Column(name = "valueDate", nullable = false)
     @Temporal(TemporalType.DATE)
     public Date getValueDate() {
-        return null;
+        return valueDate;
     }
 
     @Override
     @Column(name = "description", nullable = false)
     public String getDescription() {
-        return null;
+        return description;
     }
 
     @Override
     @Column(name = "amount", nullable = false)
     public float getAmount() {
-        return 0;
+        return amount;
     }
 
     @Override
     @Column(name = "currency", nullable = false)
     public String getCurrency() {
-        return null;
+        return currency;
     }
 
     @Override
     @Column(name = "balance", nullable = false)
     public float getBalance() {
-        return 0;
+        return balance;
     }
 
     @Override
     @Column(name = "category", nullable = true)
     public String getCategory() {
-        return null;
+        return category;
     }
 
     @Override
     @Column(name = "subCategory", nullable = true)
     public String getSubCategory() {
-        return null;
+        return subCategory;
     }
 
     @Override
     @Column(name = "createDate", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     public Date getCreatedDate() {
-            return createDate;
+        return createDate;
     }
 
     @Override
     @Column(name = "lastUpdate", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     public Date getLastUpdate() {
-            return lastUpdate;
+        return lastUpdate;
     }
 
     @Override
     @Version
     @Column(name = "version", nullable = true)
     public Long getVersion() {
-            return version;
+        return version;
     }
 
     /** Setters Methods - START **/
 
     @Override
     public void setId(Long id) {
-
+        this.id = id;
     }
 
     @Override
     public void setExecutionDate(Date executionDate) {
-
+        this.executionDate = executionDate;
     }
 
     @Override
     public void setValueDate(Date valueDate) {
-
+        this.valueDate = valueDate;
     }
 
     @Override
     public void setDescription(String description) {
-
+        this.description = description;
     }
 
     @Override
     public void setAmount(float amount) {
-
+        this.amount = amount;
     }
 
     @Override
     public void setCurrency(String currency) {
-
+        this.currency = currency;
     }
 
     @Override
     public void setBalance(float balance) {
-
+        this.balance = balance;
     }
 
     @Override
     public void setCategory(String category) {
-
+        this.category = category;
     }
 
     @Override
     public void setSubCategory(String subCategory) {
-
+        this.subCategory = category;
     }
 
     @Override
@@ -171,6 +177,5 @@ public class Transaction implements TransactionPO {
     public void setVersion(Long version) {
         this.version = version;
     }
-
 
 }
