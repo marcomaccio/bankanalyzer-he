@@ -16,7 +16,7 @@ public interface BankAccountsPersistenceServices {
 
     public BankAccountPO getBankAccountByNativeId(String nativeId);
 
-    public List<BankAccountPO> getAll();
+    public List<BankAccountPO> getAllBankAccounts();
 
     public int getBankAccountsCount();
 
@@ -27,7 +27,7 @@ public interface BankAccountsPersistenceServices {
 
     public TransactionPO getTransactionByNativeId();
 
-    public List<TransactionPO> getAllByBankAccount(String bankAccountNativeId);
+    public List<TransactionPO> getAllTransactionsByBankAccount(String bankAccountNativeId);
 
     public int getTransactionCount(String bankAccountNativeId);
 

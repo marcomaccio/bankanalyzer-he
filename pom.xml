@@ -212,6 +212,12 @@
         <jetty-maven-plugin.version>7.4.5.v20110725</jetty-maven-plugin.version>
         <jetty.version>8.1.10.v20130312</jetty.version>
 
+        <!-- Monitoring libraries -->
+        <java-melody-core.version>1.54.0</java-melody-core.version>
+        <itext.version>2.1.7</itext.version>
+        <jrobin.version>1.5.9</jrobin.version>
+        <xstream.version>1.4.7</xstream.version>
+
         <site.url>file://${env.HOME}/sitedocs/${project.artifactId}</site.url>
         <!-- GitHub Changelog Parameters -->
         <changelog.github.fileUri>${project.scm.url}/tree/master/%FILE%</changelog.github.fileUri>

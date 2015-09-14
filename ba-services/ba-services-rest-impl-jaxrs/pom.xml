@@ -413,16 +413,17 @@
         <!-- Springframework Dependencies  - END -->
 
         <!-- javamelody-core -->
+        <!-- With servlet 2.5 the max version for java melody is 1.54.0-->
         <dependency>
             <groupId>net.bull.javamelody</groupId>
             <artifactId>javamelody-core</artifactId>
-            <version>1.54.0</version>
+            <version>${java-melody-core.version}</version>
         </dependency>
         <!-- itext, option to add PDF export -->
         <dependency>
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
-            <version>2.1.7</version>
+            <version>${itext.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>bcmail-jdk14</artifactId>

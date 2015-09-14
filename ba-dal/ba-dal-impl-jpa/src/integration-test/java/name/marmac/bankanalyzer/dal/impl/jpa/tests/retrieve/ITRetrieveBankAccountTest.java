@@ -42,7 +42,7 @@ public class ITRetrieveBankAccountTest {
     private BankAccountsPersistenceServices   bankAccountsPersistenceServices;
 
     @Test
-    @DatabaseSetup("retrieved-bankaccounts.xml")
+    @DatabaseSetup("retrieved-bankaccounts-01.xml")
     public void testFindAllCustomers(){
 
         int EXPECTED_SIZE = 3;
@@ -53,7 +53,7 @@ public class ITRetrieveBankAccountTest {
 
                                                 jdbcProperties.getSchemaFileName());
 
-        List<BankAccountPO> bankAccountPOList = bankAccountsPersistenceServices.getAll();
+        List<BankAccountPO> bankAccountPOList = bankAccountsPersistenceServices.getAllBankAccounts();
 
         LOGGER.info("BankAccounts retrieved by the Persistence Layer: " + bankAccountPOList.size());
 

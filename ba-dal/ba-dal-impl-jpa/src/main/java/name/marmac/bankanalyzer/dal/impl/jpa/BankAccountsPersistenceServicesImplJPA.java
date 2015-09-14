@@ -79,7 +79,7 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
     }
 
     @Override
-    public List<BankAccountPO> getAll() {
+    public List<BankAccountPO> getAllBankAccounts() {
         LOGGER.debug("Method getAll has been called ");
         List<BankAccountPO> bankAccountList = entityManager.createNamedQuery("BankAccounts.findAll").getResultList();
 
@@ -108,7 +108,7 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
     }
 
     @Override
-    public List<TransactionPO> getAllByBankAccount(String bankAccountNativeId) {
+    public List<TransactionPO> getAllTransactionsByBankAccount(String bankAccountNativeId) {
         return null;
     }
 
