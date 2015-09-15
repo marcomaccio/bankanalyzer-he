@@ -2,6 +2,7 @@ package name.marmac.bankanalyzer.services.rest.server.impl.jaxrs;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import name.marmac.bankanalyzer.dal.api.BankAccountsPersistenceServices;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountsTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory;
@@ -28,7 +29,8 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     private MessageContext response                                                                 = null;
     private name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory bankAccountsObjectFactory  = null;
     private name.marmac.bankanalyzer.model.to.transactions.ObjectFactory transactionsObjectFactory  = null;
-    private BankAccountsServicesProperties bankAccountsServicesProperties   = null;
+    private BankAccountsServicesProperties bankAccountsServicesProperties                           = null;
+    private BankAccountsPersistenceServices bankAccountsPersistenceServices                         = null;
 
     /**
      *
@@ -42,30 +44,67 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
         return bankAccountsObjectFactory;
     }
 
+    /**
+     *
+     * @param bankAccountsObjectFactory
+     */
     public void setBankAccountsObjectFactory(ObjectFactory bankAccountsObjectFactory) {
         this.bankAccountsObjectFactory = bankAccountsObjectFactory;
     }
 
+    /**
+     *
+     * @return
+     */
     public name.marmac.bankanalyzer.model.to.transactions.ObjectFactory getTransactionsObjectFactory() {
         return transactionsObjectFactory;
     }
 
+    /**
+     *
+     * @param transactionsObjectFactory
+     */
     public void setTransactionsObjectFactory(name.marmac.bankanalyzer.model.to.transactions.ObjectFactory transactionsObjectFactory) {
         this.transactionsObjectFactory = transactionsObjectFactory;
     }
 
+    /**
+     *
+     * @return
+     */
     public BankAccountsServicesProperties getBankAccountsServicesProperties() {
         return bankAccountsServicesProperties;
     }
 
+    /**
+     *
+     * @param bankAccountsServicesProperties
+     */
     public void setBankAccountsServicesProperties(BankAccountsServicesProperties bankAccountsServicesProperties) {
         this.bankAccountsServicesProperties = bankAccountsServicesProperties;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public BankAccountsPersistenceServices getBankAccountsPersistenceServices() {
+        return bankAccountsPersistenceServices;
+    }
+
+    /**
+     *
+     * @param bankAccountsPersistenceServices
+     */
+    public void setBankAccountsPersistenceServices(BankAccountsPersistenceServices bankAccountsPersistenceServices) {
+        this.bankAccountsPersistenceServices = bankAccountsPersistenceServices;
     }
 
     /** Getters & Setters - END **/
 
     @Override
     public BankAccountTOType createBankAccount(BankAccountTOType bankaccounttotype) {
+
         return null;
     }
 

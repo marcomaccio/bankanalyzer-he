@@ -170,11 +170,13 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>${mysql-connector-java.version}</version>
                     </dependency>
+                    <!--
                     <dependency>
                         <groupId>org.hsqldb</groupId>
                         <artifactId>hsqldb</artifactId>
                         <version>${hsqldb.version}</version>
                     </dependency>
+                    -->
                 </dependencies>
 
                 <!-- Common Configuration  -->
@@ -219,26 +221,6 @@
                         </configuration>
                     </execution>
 
-                    <!--
-                    <execution>
-                        <id>export-test-data</id>
-                        <phase>post-integration-test</phase>
-
-                        <goals>
-                          <goal>export</goal>
-                        </goals>
-
-                        <configuration>
-                            <driver>${deployment.jdbcDriverName}</driver>
-                            <url>${deployment.jdbcUrl}</url>
-                            <username>${deployment.jdbcUserName}</username>
-                            <password>${deployment.jdbcPassword}</password>
-                            <dest>target/dbUnit/myexport.xml</dest>
-                            <dataTypeFactoryName>${deployment.dataTypeFactory}</dataTypeFactoryName>
-                            <metadataHandlerName>${deployment.metadataHandler}</metadataHandlerName>
-                        </configuration>
-                    </execution>
-                    -->
                 </executions>
             </plugin>
 

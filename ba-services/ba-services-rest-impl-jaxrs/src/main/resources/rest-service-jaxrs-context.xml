@@ -17,15 +17,14 @@
     <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-    <!--
+    <!-- Import the dal Spring context from the classpath -->
     <import resource="classpath:/dal-impl-jpa-context.xml" />
-    -->
+
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>classpath:rest-service-jaxrs.properties</value>
-                <!--<value>classpath:dal-impl-jpa.properties</value>-->
             </list>
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
@@ -92,12 +91,11 @@
     <bean id="bankAccountsServices"
         class="name.marmac.bankanalyzer.services.rest.server.impl.jaxrs.BankAccountsServicesImplJaxrs">
 
-        <property name="bankAccountsObjectFactory"      ref="bankAccountsObjectFactory"/>
-        <property name="transactionsObjectFactory"      ref="transactionsObjectFactory"/>
-        <property name="bankAccountsServicesProperties" ref="bankAccountsServicesProperties" />
-        <!--
-        <property name="bankAccountsPersistenceService"     ref="bankAccountsPersistenceService"/>
-        -->
+        <property name="bankAccountsObjectFactory"          ref="bankAccountsObjectFactory"/>
+        <property name="transactionsObjectFactory"          ref="transactionsObjectFactory"/>
+        <property name="bankAccountsServicesProperties"     ref="bankAccountsServicesProperties" />
+        <property name="bankAccountsPersistenceServices"    ref="bankAccountsPersistenceServices"/>
+
     </bean>
 
 
