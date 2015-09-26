@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name = "Transactions", uniqueConstraints=@UniqueConstraint(columnNames="transHash"))
 @NamedQueries({
-        @NamedQuery(name = "Transactions.findAll",              query = "SELECT t from Transaction t "),
+        @NamedQuery(name = "Transactions.findAllByBankAccount", query = "SELECT t from Transaction t "),
         @NamedQuery(name = "Transactions.Count",                query = "SELECT COUNT(t) FROM Transaction t"),
         @NamedQuery(name = "Transactions.findByPkId",           query = "SELECT t FROM Transaction t WHERE t.id = :id")
 })
