@@ -43,7 +43,7 @@ public class ITRetrieveBankAccountTest {
 
     @Test
     @DatabaseSetup("retrieved-bankaccounts-01.xml")
-    public void testFindAllCustomers(){
+    public void testFindAllBankAccounts(){
 
         int EXPECTED_SIZE = 3;
 
