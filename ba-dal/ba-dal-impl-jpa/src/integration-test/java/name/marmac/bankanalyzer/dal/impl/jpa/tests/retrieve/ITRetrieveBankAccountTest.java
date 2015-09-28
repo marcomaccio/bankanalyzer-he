@@ -34,7 +34,7 @@ import java.util.List;
 })
 public class ITRetrieveBankAccountTest {
 
-    private static final transient Logger LOGGER = LoggerFactory.getLogger(ITRetrieveBankAccountTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ITRetrieveBankAccountTest.class);
 
     @Resource
     private DataStoreProperties jdbcProperties;
@@ -42,7 +42,7 @@ public class ITRetrieveBankAccountTest {
     private BankAccountsPersistenceServices   bankAccountsPersistenceServices;
 
     @Test
-    @DatabaseSetup("retrieved-bankaccounts-01.xml")
+    @DatabaseSetup("retrieve-bankaccounts-setup-01.xml")
     public void testFindAllCustomers(){
 
         int EXPECTED_SIZE = 3;
