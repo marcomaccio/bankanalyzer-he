@@ -11,6 +11,7 @@
 
     <class>name.marmac.bankanalyzer.model.impl.jpa.BankAccount</class>
     <class>name.marmac.bankanalyzer.model.impl.jpa.Transaction</class>
+
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
     <properties>

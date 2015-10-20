@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public interface TransactionPO extends Serializable {
 
+
     public Long getId();
 
     public Date getExecutionDate();
@@ -26,6 +27,8 @@ public interface TransactionPO extends Serializable {
 
     public String getSubCategory();
 
+    public BankAccountPO getBankAccount();
+
     /**
      *
      * @return
@@ -43,6 +46,7 @@ public interface TransactionPO extends Serializable {
      * @return
      */
     public Long getVersion();
+
 
     /** Setters Methods - START **/
 
@@ -63,6 +67,8 @@ public interface TransactionPO extends Serializable {
     public void setCategory(String category);
 
     public void setSubCategory(String subCategory);
+
+    public void setBankAccount(BankAccountPO bankAccount);
 
     /**
      *

@@ -1,11 +1,14 @@
 package name.marmac.bankanalyzer.model.impl.jpa;
 
 import name.marmac.bankanalyzer.model.api.BankAccountPO;
+import name.marmac.bankanalyzer.model.api.TransactionPO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by marcomaccio on 10/09/2015.
@@ -31,6 +34,7 @@ public class BankAccount implements BankAccountPO {
         private Date    openingDate;
         private Date    createDate;
         private Date    lastUpdate;
+        private Set<TransactionPO> transactions = new HashSet<TransactionPO>(0);
 
         @Override
         @Id
@@ -86,6 +90,10 @@ public class BankAccount implements BankAccountPO {
                 return version;
         }
 
+        @Override
+        @OneToMany(targetEntity = Transaction.class, fetch = FetchType.LAZY, mappedBy = "bankAccount")
+        public Set<TransactionPO> getTransactions(){ return transactions;}
+
         /** Setters Methods - START **/
 
         @Override
@@ -126,6 +134,12 @@ public class BankAccount implements BankAccountPO {
         @Override
         public void setVersion(Long version) {
             this.version = version;
+        }
+
+        @Override
+        public void setTransactions(Set<TransactionPO> transactions){
+
+                this.transactions = transactions;
         }
 
 }

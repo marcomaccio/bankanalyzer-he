@@ -159,6 +159,8 @@
         <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
 
         <javax-persistence.version>2.1.0</javax-persistence.version>
+        <eclipselink.version>2.5.0</eclipselink.version>
+        <dbunit.version>2.5.1</dbunit.version>
 
         <geronimo-j2ee-connector_1.5_spec.version>2.0.0</geronimo-j2ee-connector_1.5_spec.version>
         <geronimo-transaction.version>2.2.2</geronimo-transaction.version>
@@ -703,39 +705,7 @@
     </reporting>
 
     <profiles>
-        <profile>
-            <id>local-depl-j2se-mysql</id>
-            <properties>
-                <application.log.level>DEBUG</application.log.level>
-                <!-- SERVICE LAYER PROPERTIES -->
-                <deployment.host>localhost</deployment.host>
-                <deployment.port>9191</deployment.port>
-                <deployment.webContext/>
-                <deployment.servletContext>/cxf</deployment.servletContext>
-                <deployment.servicePath>/crm/provisioning</deployment.servicePath>
-                <deployment.serviceVersion>/v1</deployment.serviceVersion>
-                <deployment.serviceInterface>/customerprovisioning</deployment.serviceInterface>
-                <deployment.resourcePath>/customers</deployment.resourcePath>
 
-                <!-- DATA ACCESS LAYER PROPERTIES -->
-                <deployment.jdbcDriverName>com.mysql.jdbc.Driver</deployment.jdbcDriverName>
-                <deployment.jdbcUrl>jdbc:mysql://localhost:3306/gestimmo</deployment.jdbcUrl>
-                <deployment.jdbcUserName>gestimmo</deployment.jdbcUserName>
-                <deployment.jdbcPassword>Gestimmo@2013!</deployment.jdbcPassword>
-                <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
-                <deployment.schemaFileName>src/integration-test/data/mysql-create-tables.sql</deployment.schemaFileName>
-
-                <deployment.ddl-generation>create-tables</deployment.ddl-generation>
-                <deployment.createSchemaFilename>mysql-create-tables.sql</deployment.createSchemaFilename>
-                <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
-                <deployment.dataTypeFactory>org.dbunit.ext.mysql.MySqlDataTypeFactory</deployment.dataTypeFactory>
-                <deployment.metadataHandler>org.dbunit.ext.mysql.MySqlMetadataHandler</deployment.metadataHandler>
-
-                <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
-                <liquibase.contexts>test</liquibase.contexts>
-
-            </properties>
-        </profile>
 
         <profile>
             <id>all-tests</id>
