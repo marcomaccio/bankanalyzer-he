@@ -9,8 +9,8 @@
         <xsd:sequence>
             <xsd:element name="holdername"      type="xsd:string"   />
             <xsd:element name="IBAN"            type="xsd:string"   />
-            <xsd:element name="openingDate"     type="xsd:string"   />
-            <xsd:element name="createDate"      type="xsd:dateTime" />
+            <xsd:element name="openingDate"     type="xsd:dateTime"   />
+            <xsd:element name="createdDate"     type="xsd:dateTime" />
             <xsd:element name="lastUpdate"      type="xsd:dateTime" />
         </xsd:sequence>
     </xsd:complexType>

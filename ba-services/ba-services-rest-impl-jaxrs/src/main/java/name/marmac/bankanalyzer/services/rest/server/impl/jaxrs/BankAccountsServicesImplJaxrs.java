@@ -3,6 +3,7 @@ package name.marmac.bankanalyzer.services.rest.server.impl.jaxrs;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import name.marmac.bankanalyzer.dal.api.BankAccountsPersistenceServices;
+import name.marmac.bankanalyzer.model.api.BankAccountPO;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountsTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory;
@@ -14,6 +15,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by marcomaccio on 10/09/2015.
@@ -134,7 +137,10 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
 
         //TODO: Implements the filters query
         BankAccountsTOType bankAccountsTOType = bankAccountsObjectFactory.createBankAccountsTOType();
-
+        //Retrieve the bankaccount from the Persistence Layer
+        List<BankAccountPO> bankAccountPOList = bankAccountsPersistenceServices.getAllBankAccounts();
+        //Convert the Persistence Object to the TransferObject
+        bankAccountsTOType = convertToBankAccountsTOType(bankAccountPOList);
         return bankAccountsTOType;
     }
 
@@ -173,4 +179,46 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
 
         return bankAccountTOType;
     }
+
+    /**
+     * Convert a list of BankAccountPO into a BankAccountsTOType
+     * @param bankAccountPOList
+     * @return
+     */
+    private BankAccountsTOType convertToBankAccountsTOType(List<BankAccountPO> bankAccountPOList){
+        BankAccountsTOType bankAccountsTOType = getBankAccountsObjectFactory().createBankAccountsTOType();
+        for (BankAccountPO bankAccountPO : bankAccountPOList){
+            //get each BankAccountPO and convert into a BankAccountTOType
+            BankAccountTOType bankAccountTOType = convertToBankAccountTOType(bankAccountPO);
+            //add the bankAccountTOType to the list BankAccountsTOType
+            bankAccountsTOType.getBankaccounts().add(bankAccountTOType);
+        }
+        return bankAccountsTOType;
+    }
+
+    /**
+     * Convert a single BankAccountPO into a BankAccountTOType
+     * @param bankAccountPO
+     * @return
+     */
+    private BankAccountTOType convertToBankAccountTOType(BankAccountPO bankAccountPO){
+        BankAccountTOType bankAccountTOType = getBankAccountsObjectFactory().createBankAccountTOType();
+        bankAccountTOType.setIBAN(bankAccountPO.getIban());
+        bankAccountTOType.setHoldername(bankAccountPO.getHolderName());
+
+        Calendar cal = Calendar.getInstance();
+
+        cal.setTime(bankAccountPO.getOpeningDate());
+        bankAccountTOType.setOpeningDate(cal);
+
+        cal.setTime(bankAccountPO.getCreatedDate());
+        bankAccountTOType.setCreateDate(cal);
+
+        cal.setTime(bankAccountPO.getLastUpdate());
+        bankAccountTOType.setLastUpdate(cal);
+
+        return bankAccountTOType;
+    }
+
+
 }
