@@ -152,8 +152,8 @@
 
                 </method>
 
-                <resource  path="/{id}">
-                    <param name="id" type="xsd:string" style="template" required="true" />
+                <resource  path="/{iban}">
+                    <param name="iban" type="xsd:string" style="template" required="true" />
 
                     <method name="GET" id="getBankAccountByNativeId">
                         <response status="200" description="Customer Found">

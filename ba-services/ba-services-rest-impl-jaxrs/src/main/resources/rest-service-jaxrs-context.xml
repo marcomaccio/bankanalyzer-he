@@ -39,9 +39,9 @@
 
     <!-- REST SERVICE ENDPOINT CONFIGURATION - START -->
         <!-- To browse:
-            - the services go to: http://host:port/cxf/crm/provisioning/v1
-            - the wadl go to: http://host:port/cxf/crm/provisioning/v1?_wadl
-            - the swagger api: http://host:port/cxf/crm/provisioning/v1/api-docs (as basepath set below)
+            - the services go to: http://host:port/cxf/api/v1
+            - the wadl go to: http://host:port/cxf/api/v1?_wadl
+            - the swagger api: http://host:port/cxf/api/v1/api-docs (as basepath set below)
 
             where for default karaf installation:
             - host: karaf_host_ip or karaf_host_name

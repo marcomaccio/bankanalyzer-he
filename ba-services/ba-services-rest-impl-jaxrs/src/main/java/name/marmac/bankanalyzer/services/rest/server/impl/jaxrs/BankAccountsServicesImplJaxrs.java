@@ -2,6 +2,7 @@ package name.marmac.bankanalyzer.services.rest.server.impl.jaxrs;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 import name.marmac.bankanalyzer.dal.api.BankAccountsPersistenceServices;
 import name.marmac.bankanalyzer.model.api.BankAccountPO;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountTOType;
@@ -27,13 +28,18 @@ import java.util.List;
 public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BankAccountsServicesImplJaxrs.class);
+    private static final String QUERY_PARAM_IBAN                = "iban";
+
+    private static final String PATH_PARAM_IBAN                 = "iban";
+    private static final String ACCESS_CONTROL_ALLOW_ORIGIN_ALL = "*";
+
     //JAX-RS and JAX-WS context
     @javax.ws.rs.core.Context
     private MessageContext response                                                                 = null;
     private name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory bankAccountsObjectFactory  = null;
     private name.marmac.bankanalyzer.model.to.transactions.ObjectFactory transactionsObjectFactory  = null;
-    private BankAccountsServicesProperties bankAccountsServicesProperties                           = null;
-    private BankAccountsPersistenceServices bankAccountsPersistenceServices                         = null;
+    private BankAccountsServicesProperties      bankAccountsServicesProperties                      = null;
+    private BankAccountsPersistenceServices     bankAccountsPersistenceServices                     = null;
 
     /**
      *
@@ -159,10 +165,22 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     }
 
     @Override
-    public BankAccountTOType getBankAccountByNativeId(@PathParam("id") String id) {
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Path("/bankaccounts/{iban}")
+    @ApiOperation(value = "Get BankAccount by IBAN",
+            notes = "Retrieve method of a specific Bank Account",
+            response = BankAccountTOType.class)
+    public BankAccountTOType getBankAccountByNativeId(@ApiParam(value = PATH_PARAM_IBAN, required = true) @PathParam("iban") String iban) {
+
+        LOGGER.debug("getBankAccountByNativeId Method: search for BankAccount with IBAN=" + iban);
 
         BankAccountTOType bankAccountTOType = bankAccountsObjectFactory.createBankAccountTOType();
-
+        BankAccountPO bankAccountPO = bankAccountsPersistenceServices.getBankAccountByNativeId(iban);
+        if (bankAccountPO != null) {
+            bankAccountTOType = this.convertToBankAccountTOType(bankAccountPO);
+            response.getHttpServletResponse().setHeader("Access-Control-Allow-Origin", ACCESS_CONTROL_ALLOW_ORIGIN_ALL);
+        }
         return bankAccountTOType;
     }
 
