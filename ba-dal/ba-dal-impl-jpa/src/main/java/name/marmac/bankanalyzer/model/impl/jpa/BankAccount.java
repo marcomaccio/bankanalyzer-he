@@ -70,7 +70,7 @@ public class BankAccount implements BankAccountPO {
         }
 
         @Override
-        @Column(name = "createDate", nullable = true)
+        @Column(name = "createdDate", nullable = true)
         @Temporal(TemporalType.TIMESTAMP)
         public Date getCreatedDate() {
                 return createDate;
