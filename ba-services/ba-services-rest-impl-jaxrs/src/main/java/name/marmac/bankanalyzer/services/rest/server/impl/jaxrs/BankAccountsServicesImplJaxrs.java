@@ -212,7 +212,7 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
         bankAccountTOType.setOpeningDate(cal);
 
         cal.setTime(bankAccountPO.getCreatedDate());
-        bankAccountTOType.setCreateDate(cal);
+        bankAccountTOType.setCreatedDate(cal);
 
         cal.setTime(bankAccountPO.getLastUpdate());
         bankAccountTOType.setLastUpdate(cal);
