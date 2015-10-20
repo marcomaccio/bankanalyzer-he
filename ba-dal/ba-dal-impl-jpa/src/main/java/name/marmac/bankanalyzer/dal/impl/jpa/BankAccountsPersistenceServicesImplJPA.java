@@ -80,10 +80,10 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
 
     @Override
     public List<BankAccountPO> getAllBankAccounts() {
-        LOGGER.debug("Method getAll has been called ");
+        LOGGER.debug("Method getAllBankAccounts has been called ");
         List<BankAccountPO> bankAccountList = entityManager.createNamedQuery("BankAccounts.findAll").getResultList();
 
-        LOGGER.debug("The PL has found N. " + bankAccountList.size() + " customers");
+        LOGGER.debug("The PL has found N. " + bankAccountList.size() + " bankaccounts");
         return bankAccountList;
     }
 
@@ -109,7 +109,12 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
 
     @Override
     public List<TransactionPO> getAllTransactionsByBankAccount(String bankAccountNativeId) {
-        return null;
+
+        LOGGER.debug("Method getAllTransactionsByBankAccount has been called ");
+        List<TransactionPO> transactionsList = entityManager.createNamedQuery("Transactions.findAllByBankAccount").getResultList();
+
+        LOGGER.debug("The PL has found N. " + transactionsList.size() + " transactions");
+        return transactionsList;
     }
 
     @Override

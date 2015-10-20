@@ -22,7 +22,7 @@ CREATE TABLE `Transactions` (
   `balance`       decimal(20,3) NOT NULL,
   `category`      varchar(255)  NOT NULL,
   `subCategory`   varchar(255)  NOT NULL,
-  `createDate`    datetime      DEFAULT NULL,
+  `createdDate`    datetime      DEFAULT NULL,
   `lastUpdate`    datetime      DEFAULT NULL,
   `version`       bigint(20)    DEFAULT NULL,
   PRIMARY KEY (`pkId`)

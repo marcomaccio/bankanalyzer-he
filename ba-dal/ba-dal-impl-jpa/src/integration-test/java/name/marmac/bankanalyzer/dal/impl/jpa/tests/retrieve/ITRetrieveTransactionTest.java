@@ -6,6 +6,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import name.marmac.bankanalyzer.dal.api.BankAccountsPersistenceServices;
 import name.marmac.bankanalyzer.dal.impl.properties.DataStoreProperties;
 import name.marmac.bankanalyzer.model.api.BankAccountPO;
+import name.marmac.bankanalyzer.model.api.TransactionPO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,9 +33,9 @@ import java.util.List;
         TransactionDbUnitTestExecutionListener.class,
         DbUnitTestExecutionListener.class
 })
-public class ITRetrieveBankAccountTest {
+public class ITRetrieveTransactionTest {
 
-    private static final transient Logger LOGGER = LoggerFactory.getLogger(ITRetrieveBankAccountTest.class);
+    private static final transient Logger LOGGER = LoggerFactory.getLogger(ITRetrieveTransactionTest.class);
 
     @Resource
     private DataStoreProperties jdbcProperties;
@@ -42,21 +43,20 @@ public class ITRetrieveBankAccountTest {
     private BankAccountsPersistenceServices   bankAccountsPersistenceServices;
 
     @Test
-    @DatabaseSetup("retrieve-bankaccounts-setup-01.xml")
-    public void testFindAllBankAccounts(){
+    @DatabaseSetup("retrieved-transactions-01.xml")
+    public void testFindAllTransactions(){
 
         int EXPECTED_SIZE = 3;
 
         LOGGER.info("Method under test: FindAll ...");
         LOGGER.info("JDBC Connection Properties: " + jdbcProperties.getJdbcDriverName() + ", " +
                                                 jdbcProperties.getJdbcUserName() + ", " +
-
                                                 jdbcProperties.getSchemaFileName());
 
-        List<BankAccountPO> bankAccountPOList = bankAccountsPersistenceServices.getAllBankAccounts();
+        List<TransactionPO> transactionPOList = bankAccountsPersistenceServices.getAllTransactionsByBankAccount("001");
 
-        LOGGER.info("BankAccounts retrieved by the Persistence Layer: " + bankAccountPOList.size());
+        LOGGER.info("Transactions retrieved by the Persistence Layer: " + transactionPOList.size());
 
-        Assert.assertEquals("It was expected " + EXPECTED_SIZE + " but retrieved: " + bankAccountPOList.size(), EXPECTED_SIZE, bankAccountPOList.size());
+        Assert.assertEquals("It was expected " + EXPECTED_SIZE + " but retrieved: " + transactionPOList.size(), EXPECTED_SIZE, transactionPOList.size());
     }
 }

@@ -2,6 +2,7 @@ package name.marmac.bankanalyzer.model.api;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by marcomaccio on 10/09/2015.
@@ -57,6 +58,13 @@ public interface BankAccountPO extends Serializable {
      */
     public Long getVersion();
 
+    /**
+     *
+     * @return
+     */
+    public Set<TransactionPO> getTransactions();
+
+
     /** SETTERS METHODS**/
 
     /**
@@ -106,5 +114,12 @@ public interface BankAccountPO extends Serializable {
      * @param version
      */
     public void setVersion(Long version);
+
+
+    /**
+     *
+     * @param transactions
+     */
+    public void setTransactions(Set<TransactionPO> transactions);
 
 }

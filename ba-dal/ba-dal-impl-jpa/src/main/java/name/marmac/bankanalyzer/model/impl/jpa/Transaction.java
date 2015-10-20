@@ -1,5 +1,6 @@
 package name.marmac.bankanalyzer.model.impl.jpa;
 
+import name.marmac.bankanalyzer.model.api.BankAccountPO;
 import name.marmac.bankanalyzer.model.api.TransactionPO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "Transactions", uniqueConstraints=@UniqueConstraint(columnNames="transHash"))
 @NamedQueries({
-        @NamedQuery(name = "Transactions.findAll",              query = "SELECT t from Transaction t "),
+        @NamedQuery(name = "Transactions.findAllByBankAccount", query = "SELECT t from Transaction t "),
         @NamedQuery(name = "Transactions.Count",                query = "SELECT COUNT(t) FROM Transaction t"),
         @NamedQuery(name = "Transactions.findByPkId",           query = "SELECT t FROM Transaction t WHERE t.id = :id")
 })
@@ -22,20 +23,19 @@ public class Transaction implements TransactionPO {
     private static final long serialVersionUID = 1L;
     private static final Logger LOGGER = LoggerFactory.getLogger(Transaction.class);
 
-    private Long    id;
-    private Long    version;
-    private Date    executionDate;
-    private Date    valueDate;
-    private String  description;
-    private float   amount;
-    private float   balance;
-    private String  currency;
-    private String  category;
-    private String  subCategory;
-    private Date    createDate;
-    private Date    lastUpdate;
-
-
+    private Long            id;
+    private Long            version;
+    private Date            executionDate;
+    private Date            valueDate;
+    private String          description;
+    private float           amount;
+    private float           balance;
+    private String          currency;
+    private String          category;
+    private String          subCategory;
+    private BankAccountPO   bankAccount;
+    private Date            createdDate;
+    private Date            lastUpdate;
 
     @Override
     @Id
@@ -96,10 +96,10 @@ public class Transaction implements TransactionPO {
     }
 
     @Override
-    @Column(name = "createDate", nullable = true)
+    @Column(name = "createdDate", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     public Date getCreatedDate() {
-        return createDate;
+        return createdDate;
     }
 
     @Override
@@ -114,6 +114,13 @@ public class Transaction implements TransactionPO {
     @Column(name = "version", nullable = true)
     public Long getVersion() {
         return version;
+    }
+
+    @Override
+    @ManyToOne(targetEntity = BankAccount.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "BANKACC_ID", nullable = false)
+    public BankAccountPO getBankAccount() {
+        return bankAccount;
     }
 
     /** Setters Methods - START **/
@@ -164,8 +171,11 @@ public class Transaction implements TransactionPO {
     }
 
     @Override
+    public void setBankAccount(BankAccountPO bankAccount) {this.bankAccount = bankAccount;}
+
+    @Override
     public void setCreatedDate(Date createdDate) {
-        this.createDate = createdDate;
+        this.createdDate = createdDate;
     }
 
     @Override

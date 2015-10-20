@@ -283,20 +283,20 @@
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
-            <version>2.5.0</version>
+            <version>${eclipselink.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa</artifactId>
-            <version>2.5.0</version>
+            <version>${eclipselink.version}</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
-            <version>2.4.8</version>
+            <version>${dbunit.version}</version>
             <type>jar</type>
             <scope>test</scope>
         </dependency>

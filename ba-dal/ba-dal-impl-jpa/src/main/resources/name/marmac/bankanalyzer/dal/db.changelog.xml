@@ -8,8 +8,7 @@
 
     <changeSet id="1" author="marcomaccio">
 
-        <createTable catalogName="bankanalyzer"
-                     tableName="BankAccounts">
+        <createTable catalogName="bankanalyzer" tableName="BankAccounts">
 
             <column name="pkId"         type="bigint(20)">
                 <constraints primaryKey="true" nullable="false"/>
@@ -40,8 +39,7 @@
         </createTable>
 
 
-        <createTable catalogName="bankanalyzer"
-                     tableName="Transactions">
+        <createTable catalogName="bankanalyzer" tableName="Transactions">
 
             <column name="pkId"         type="bigint(20)">
                 <constraints primaryKey="true" nullable="false"/>
@@ -70,7 +68,7 @@
             <column name="subCategory"         type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="createDate"   type="datetime" >
+            <column name="createdDate"   type="datetime" >
                 <constraints nullable="true"/>
             </column>
             <column name="lastUpdate"   type="datetime" >
@@ -81,6 +79,19 @@
             </column>
         </createTable>
 
+    </changeSet>
+
+    <changeSet id="2" author="marcomaccio">
+
+        <addColumn tableName="Transactions">
+            <column name="bankacc_id" type="bigint(20)"></column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="bankacc_id"
+                baseTableName="Transactions"
+                constraintName="fk_bankacc_transactions"
+                referencedColumnNames="pkId"
+                referencedTableName="BankAccounts"/>
     </changeSet>
 
 </databaseChangeLog>
