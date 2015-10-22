@@ -5,7 +5,6 @@ import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import name.marmac.bankanalyzer.dal.api.BankAccountsPersistenceServices;
 import name.marmac.bankanalyzer.dal.impl.properties.DataStoreProperties;
-import name.marmac.bankanalyzer.model.api.BankAccountPO;
 import name.marmac.bankanalyzer.model.api.TransactionPO;
 import org.junit.Assert;
 import org.junit.Test;
@@ -46,7 +45,7 @@ public class ITRetrieveTransactionTest {
     @DatabaseSetup("retrieved-transactions-01.xml")
     public void testFindAllTransactions(){
 
-        int EXPECTED_SIZE = 3;
+        int EXPECTED_SIZE = 2;
 
         LOGGER.info("Method under test: FindAll ...");
         LOGGER.info("JDBC Connection Properties: " + jdbcProperties.getJdbcDriverName() + ", " +
