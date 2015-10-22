@@ -4,6 +4,7 @@ import name.marmac.bankanalyzer.dal.api.BankAccountsPersistenceServices;
 import name.marmac.bankanalyzer.model.api.BankAccountPO;
 import name.marmac.bankanalyzer.model.api.TransactionPO;
 import name.marmac.bankanalyzer.model.impl.jpa.BankAccount;
+import name.marmac.bankanalyzer.model.impl.jpa.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -62,7 +63,7 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
 
     @Override
     public BankAccountPO getBankAccountByNativeId(String nativeId) {
-        LOGGER.debug("Method getBankAccountByNativeId has been called with iban="+ nativeId);
+        LOGGER.debug("Method getBankAccountByNativeId has been called with iban=" + nativeId);
 
         BankAccount bankAccount = null;
 
@@ -111,7 +112,10 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
     public List<TransactionPO> getAllTransactionsByBankAccount(String bankAccountNativeId) {
 
         LOGGER.debug("Method getAllTransactionsByBankAccount has been called ");
-        List<TransactionPO> transactionsList = entityManager.createNamedQuery("Transactions.findAllByBankAccount").getResultList();
+
+        Query query = entityManager.createNamedQuery("Transactions.findAllByBankAccount", Transaction.class);
+        query.setParameter("iban", bankAccountNativeId);
+        List<TransactionPO> transactionsList = query.getResultList();
 
         LOGGER.debug("The PL has found N. " + transactionsList.size() + " transactions");
         return transactionsList;
