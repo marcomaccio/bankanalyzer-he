@@ -198,6 +198,8 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
         return bankAccountTOType;
     }
 
+
+
     /**
      * Convert a list of BankAccountPO into a BankAccountsTOType
      * @param bankAccountPOList
