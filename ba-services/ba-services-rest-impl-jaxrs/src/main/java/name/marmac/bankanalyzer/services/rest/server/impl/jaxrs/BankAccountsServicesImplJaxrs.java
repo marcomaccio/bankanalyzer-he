@@ -8,6 +8,7 @@ import name.marmac.bankanalyzer.model.api.BankAccountPO;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountsTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory;
+import name.marmac.bankanalyzer.model.to.transactions.TransactionsTOType;
 import name.marmac.bankanalyzer.services.rest.server.properties.BankAccountsServicesProperties;
 import name.marmac.tutorials.cxfatwork.services.web.rest.api.customerservice.BankAccountsServices;
 import org.apache.cxf.jaxrs.ext.MessageContext;
@@ -198,6 +199,10 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
         return bankAccountTOType;
     }
 
+    @Override
+    public TransactionsTOType getTransactionsByBankAccount() {
+        return null;
+    }
 
 
     /**
