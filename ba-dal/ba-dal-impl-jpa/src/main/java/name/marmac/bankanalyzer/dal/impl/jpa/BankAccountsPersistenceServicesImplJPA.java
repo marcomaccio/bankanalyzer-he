@@ -25,6 +25,7 @@ import java.util.List;
 public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersistenceServices {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BankAccountsPersistenceServicesImplJPA.class);
+    private static final String OBJECT_FOUND_MESSAGELOG = "The PL has found N. :";
 
     @PersistenceContext(unitName = "bankanalyzer-punit", type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
@@ -45,6 +46,10 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
         return this.entityManager;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public BankAccountPO createNewBankAccount() {
         LOGGER.debug("Method createNewBankAccount has been called ");
@@ -56,11 +61,21 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
         return newBankAccount;
     }
 
+    /**
+     *
+     * @param bankAccountPO
+     * @return
+     */
     @Override
     public BankAccountPO save(BankAccountPO bankAccountPO) {
         return null;
     }
 
+    /**
+     *
+     * @param nativeId
+     * @return
+     */
     @Override
     public BankAccountPO getBankAccountByNativeId(String nativeId) {
         LOGGER.debug("Method getBankAccountByNativeId has been called with iban=" + nativeId);
@@ -71,7 +86,7 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
         query.setParameter("iban", nativeId);
 
         List<BankAccount> resultList = query.getResultList();
-        LOGGER.debug("The PL has found N. " + resultList.size());
+        LOGGER.debug(OBJECT_FOUND_MESSAGELOG + resultList.size() + " bankaccounts");
         if (!resultList.isEmpty())
         {
             bankAccount = resultList.get(0);
@@ -79,35 +94,67 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
         return bankAccount;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<BankAccountPO> getAllBankAccounts() {
         LOGGER.debug("Method getAllBankAccounts has been called ");
         List<BankAccountPO> bankAccountList = entityManager.createNamedQuery("BankAccounts.findAll").getResultList();
 
-        LOGGER.debug("The PL has found N. " + bankAccountList.size() + " bankaccounts");
+        LOGGER.debug(OBJECT_FOUND_MESSAGELOG + bankAccountList.size() + " bankaccounts");
         return bankAccountList;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getBankAccountsCount() {
-        return 0;
+        LOGGER.debug("Method getBankAccountsCount has been called ");
+
+        Query query = entityManager.createNamedQuery("BankAccounts.Count", int.class);
+        int totalCount = query.getResultList().size();
+
+        LOGGER.debug("Total Count: " + totalCount);
+        return totalCount;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public TransactionPO createNewTransaction() {
         return null;
     }
 
+    /**
+     *
+     * @param transactionPO
+     * @return
+     */
     @Override
     public TransactionPO save(TransactionPO transactionPO) {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public TransactionPO getTransactionByNativeId() {
         return null;
     }
 
+    /**
+     *
+     * @param bankAccountNativeId
+     * @return
+     */
     @Override
     public List<TransactionPO> getAllTransactionsByBankAccount(String bankAccountNativeId) {
 
@@ -117,12 +164,25 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
         query.setParameter("iban", bankAccountNativeId);
         List<TransactionPO> transactionsList = query.getResultList();
 
-        LOGGER.debug("The PL has found N. " + transactionsList.size() + " transactions");
+        LOGGER.debug(OBJECT_FOUND_MESSAGELOG + transactionsList.size() + " transactions");
         return transactionsList;
     }
 
+    /**
+     *
+     * @param bankAccountNativeId
+     * @return
+     */
     @Override
     public int getTransactionCount(String bankAccountNativeId) {
-        return 0;
+        LOGGER.debug("Method getTransactionCount has been called ");
+
+        Query query = entityManager.createNamedQuery("Transactions.Count", int.class);
+        query.setParameter("iban", bankAccountNativeId);
+        int totalCount = query.getResultList().size();
+
+        LOGGER.debug("Total Count: " + totalCount);
+        return totalCount;
     }
+
 }
