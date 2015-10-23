@@ -22,32 +22,16 @@ import java.util.Set;
         @NamedQuery(name = "BankAccounts.findByPkId",   query = "SELECT ba FROM BankAccount ba WHERE ba.id = :id"),
         @NamedQuery(name = "BankAccounts.findByIBAN",   query = "SELECT ba FROM BankAccount ba WHERE ba.iban = :iban")
 })
-public class BankAccount implements BankAccountPO {
+public class BankAccount extends BaseJPAObject implements BankAccountPO{
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOGGER = LoggerFactory.getLogger(BankAccount.class);
 
-    private Long    id;
-    private Long    version;
-    private String  bankName;
-    private String  holderName;
-    private String  iban;
-    private Date    openingDate;
-    private Date    createDate;
-    private Date    lastUpdate;
-    private Set<TransactionPO> transactions = new HashSet<TransactionPO>(0);
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    @Id
-    @Column(name = "pkId", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-            return id;
-    }
+    private String              bankName;
+    private String              holderName;
+    private String              iban;
+    private Date                openingDate;
+    private Set<TransactionPO>  transactions = new HashSet<TransactionPO>(0);
 
     /**
      *
@@ -95,54 +79,12 @@ public class BankAccount implements BankAccountPO {
      * @return
      */
     @Override
-    @Column(name = "createdDate", nullable = true)
-    @Temporal(TemporalType.TIMESTAMP)
-    public Date getCreatedDate() {
-            return createDate;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    @Column(name = "lastUpdate", nullable = true)
-    @Temporal(TemporalType.TIMESTAMP)
-    public Date getLastUpdate() {
-            return lastUpdate;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    @Version
-    @Column(name = "version", nullable = true)
-    public Long getVersion() {
-            return version;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
     @OneToMany(targetEntity = Transaction.class, fetch = FetchType.LAZY, mappedBy = "bankAccount")
     public Set<TransactionPO> getTransactions(){
             return transactions;
     }
 
     /** Setters Methods - START **/
-
-    /**
-     *
-     * @param id
-     */
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      *
@@ -182,33 +124,6 @@ public class BankAccount implements BankAccountPO {
 
     /**
      *
-     * @param createdDate
-     */
-    @Override
-    public void setCreatedDate(Date createdDate) {
-        this.createDate = createdDate;
-    }
-
-    /**
-     *
-     * @param lastUpdate
-     */
-    @Override
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    /**
-     *
-     * @param version
-     */
-    @Override
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    /**
-     *
      * @param transactions
      */
     @Override
@@ -223,8 +138,12 @@ public class BankAccount implements BankAccountPO {
      */
     @Override
     public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             BankAccount that = (BankAccount) o;
             return Objects.equals(holderName, that.holderName) &&
                     Objects.equals(iban, that.iban) &&
