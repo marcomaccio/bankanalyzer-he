@@ -1,91 +1,121 @@
 package name.marmac.bankanalyzer.model.api;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by marcomaccio on 10/09/2015.
  */
-public interface TransactionPO extends Serializable {
+public interface TransactionPO extends BasicPO {
 
-
-    public Long getId();
-
+    /**
+     *
+     * @return
+     */
     public Date getExecutionDate();
 
+    /**
+     *
+     * @return
+     */
     public Date getValueDate();
 
+    /**
+     *
+     * @return
+     */
     public String getDescription();
 
+    /**
+     *
+     * @return
+     */
     public float getAmount();
 
+    /**
+     *
+     * @return
+     */
     public String getCurrency();
 
+    /**
+     *
+     * @return
+     */
     public float getBalance();
 
+    /**
+     *
+     * @return
+     */
     public String getCategory();
 
+    /**
+     *
+     * @return
+     */
     public String getSubCategory();
 
+    /**
+     *
+     * @return
+     */
     public BankAccountPO getBankAccount();
-
-    /**
-     *
-     * @return
-     */
-    public Date getCreatedDate();
-
-    /**
-     *
-     * @return
-     */
-    public Date getLastUpdate();
-
-    /**
-     *
-     * @return
-     */
-    public Long getVersion();
 
 
     /** Setters Methods - START **/
 
-    public void setId(Long id);
-
+    /**
+     *
+     * @param executionDate
+     */
     public void setExecutionDate(Date executionDate);
 
+    /**
+     *
+     * @param valueDate
+     */
     public void setValueDate(Date valueDate);
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description);
 
+    /**
+     *
+     * @param amount
+     */
     public void setAmount(float amount);
 
+    /**
+     *
+     * @param currency
+     */
     public void setCurrency(String currency);
 
+    /**
+     *
+     * @param balance
+     */
     public void setBalance(float balance);
 
+    /**
+     *
+     * @param category
+     */
     public void setCategory(String category);
 
+    /**
+     *
+     * @param subCategory
+     */
     public void setSubCategory(String subCategory);
 
+    /**
+     *
+     * @param bankAccount
+     */
     public void setBankAccount(BankAccountPO bankAccount);
-
-    /**
-     *
-     * @param createdDate
-     */
-    public void setCreatedDate(Date createdDate);
-
-    /**
-     *
-     * @param lastUpdate
-     */
-    public void setLastUpdate(Date lastUpdate);
-
-    /**
-     *
-     * @param version
-     */
-    public void setVersion(Long version);
 
 }

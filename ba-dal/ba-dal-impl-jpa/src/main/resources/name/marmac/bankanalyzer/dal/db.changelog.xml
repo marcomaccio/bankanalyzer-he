@@ -91,7 +91,25 @@
                 baseTableName="Transactions"
                 constraintName="fk_bankacc_transactions"
                 referencedColumnNames="pkId"
-                referencedTableName="BankAccounts"/>
+                referencedTableName="BankAccounts"
+                onDelete="CASCADE"
+                onUpdate="CASCADE" />
+    </changeSet>
+
+    <changeSet id="3" author="marcomaccio">
+
+        <addColumn tableName="BankAccounts">
+            <column name="user" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+
+        <addColumn tableName="Transactions">
+            <column name="user" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+
     </changeSet>
 
 </databaseChangeLog>

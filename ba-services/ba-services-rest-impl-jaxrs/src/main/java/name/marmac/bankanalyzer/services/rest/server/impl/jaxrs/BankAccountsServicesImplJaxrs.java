@@ -8,6 +8,7 @@ import name.marmac.bankanalyzer.model.api.BankAccountPO;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountsTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory;
+import name.marmac.bankanalyzer.model.to.transactions.TransactionsTOType;
 import name.marmac.bankanalyzer.services.rest.server.properties.BankAccountsServicesProperties;
 import name.marmac.tutorials.cxfatwork.services.web.rest.api.customerservice.BankAccountsServices;
 import org.apache.cxf.jaxrs.ext.MessageContext;
@@ -28,7 +29,6 @@ import java.util.List;
 public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BankAccountsServicesImplJaxrs.class);
-    private static final String QUERY_PARAM_IBAN                = "iban";
 
     private static final String PATH_PARAM_IBAN                 = "iban";
     private static final String ACCESS_CONTROL_ALLOW_ORIGIN_ALL = "*";
@@ -197,6 +197,12 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
 
         return bankAccountTOType;
     }
+
+    @Override
+    public TransactionsTOType getTransactionsByBankAccount() {
+        return null;
+    }
+
 
     /**
      * Convert a list of BankAccountPO into a BankAccountsTOType
