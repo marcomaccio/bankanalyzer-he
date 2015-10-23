@@ -29,7 +29,6 @@ import java.util.List;
 public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BankAccountsServicesImplJaxrs.class);
-    private static final String QUERY_PARAM_IBAN                = "iban";
 
     private static final String PATH_PARAM_IBAN                 = "iban";
     private static final String ACCESS_CONTROL_ALLOW_ORIGIN_ALL = "*";

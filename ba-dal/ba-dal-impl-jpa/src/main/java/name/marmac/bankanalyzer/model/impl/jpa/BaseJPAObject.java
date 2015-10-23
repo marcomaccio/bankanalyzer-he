@@ -114,6 +114,7 @@ public class BaseJPAObject implements BasicPO {
      *
      * @param version
      */
+    @Override
     public void setVersion(Long version){
         this.version=version;
     }
