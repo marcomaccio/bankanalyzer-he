@@ -19,13 +19,11 @@ import java.util.Objects;
         @NamedQuery(name = "Transactions.Count",                query = "SELECT COUNT(t) FROM Transaction t"),
         @NamedQuery(name = "Transactions.findByPkId",           query = "SELECT t FROM Transaction t WHERE t.id = :id")
 })
-public class Transaction implements TransactionPO {
+public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOGGER = LoggerFactory.getLogger(Transaction.class);
 
-    private Long            id;
-    private Long            version;
     private Date            executionDate;
     private Date            valueDate;
     private String          description;
@@ -35,20 +33,6 @@ public class Transaction implements TransactionPO {
     private String          category;
     private String          subCategory;
     private BankAccountPO   bankAccount;
-    private Date            createdDate;
-    private Date            lastUpdate;
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    @Id
-    @Column(name = "pkId", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
-        return id;
-    }
 
     /**
      *
@@ -132,40 +116,6 @@ public class Transaction implements TransactionPO {
         return subCategory;
     }
 
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    @Column(name = "createdDate", nullable = true)
-    @Temporal(TemporalType.TIMESTAMP)
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    @Column(name = "lastUpdate", nullable = true)
-    @Temporal(TemporalType.TIMESTAMP)
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    @Version
-    @Column(name = "version", nullable = true)
-    public Long getVersion() {
-        return version;
-    }
-
     /**
      *
      * @return
@@ -178,15 +128,6 @@ public class Transaction implements TransactionPO {
     }
 
     /** Setters Methods - START **/
-
-    /**
-     *
-     * @param id
-     */
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      *
@@ -265,33 +206,8 @@ public class Transaction implements TransactionPO {
      * @param bankAccount
      */
     @Override
-    public void setBankAccount(BankAccountPO bankAccount) {this.bankAccount = bankAccount;}
-
-    /**
-     *
-     * @param createdDate
-     */
-    @Override
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    /**
-     *
-     * @param lastUpdate
-     */
-    @Override
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    /**
-     *
-     * @param version
-     */
-    @Override
-    public void setVersion(Long version) {
-        this.version = version;
+    public void setBankAccount(BankAccountPO bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
     /**
