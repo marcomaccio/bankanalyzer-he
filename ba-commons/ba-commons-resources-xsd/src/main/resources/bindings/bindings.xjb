@@ -14,6 +14,10 @@
                 parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime"
                 printMethod="javax.xml.bind.DatatypeConverter.printDateTime" />
 
+        <jaxb:javaType name="java.util.Calendar" xmlType="xsd:date"
+                parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime"
+                printMethod="javax.xml.bind.DatatypeConverter.printDateTime" />
+
         <!-- Force all classes implements Serializable -->
         <xjc:serializable uid="1" />
     </jaxb:globalBindings>

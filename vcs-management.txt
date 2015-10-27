@@ -1,0 +1,9 @@
+To rebase after Pull Requests
+
+on my pc:
+
+git checkout master
+git pull origin master
+git checkout BRANCH-X
+git rebase master
+git push origin BRANCH-X
