@@ -5,9 +5,11 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import name.marmac.bankanalyzer.dal.api.BankAccountsPersistenceServices;
 import name.marmac.bankanalyzer.model.api.BankAccountPO;
+import name.marmac.bankanalyzer.model.api.TransactionPO;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountsTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory;
+import name.marmac.bankanalyzer.model.to.transactions.TransactionTOType;
 import name.marmac.bankanalyzer.model.to.transactions.TransactionsTOType;
 import name.marmac.bankanalyzer.services.rest.server.properties.BankAccountsServicesProperties;
 import name.marmac.tutorials.cxfatwork.services.web.rest.api.customerservice.BankAccountsServices;
@@ -199,8 +201,17 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     }
 
     @Override
-    public TransactionsTOType getTransactionsByBankAccount() {
-        return null;
+    @GET
+    @Produces({"application/xml", "application/json" })
+    @Path("/bankaccounts/{iban}/transactions")
+    public TransactionsTOType getTransactionsByBankAccount(@PathParam("iban") String iban) {
+        TransactionsTOType transactionsTO = null;
+        LOGGER.debug("getTransactionsByBankAccount");
+        List<TransactionPO> transactionsPO = bankAccountsPersistenceServices.getAllTransactionsByBankAccount(iban);
+        //Convert the TransactionsPO (list) into TransactionsTO (list)
+        transactionsTO = convertToTransactionsTOType(transactionsPO);
+        LOGGER.debug("returning " + transactionsTO.getTransactions().size() + " transactions");
+        return transactionsTO;
     }
 
 
@@ -217,6 +228,7 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
             //add the bankAccountTOType to the list BankAccountsTOType
             bankAccountsTOType.getBankaccounts().add(bankAccountTOType);
         }
+        bankAccountsTOType.setTotalRecords(bankAccountsTOType.getBankaccounts().size());
         return bankAccountsTOType;
     }
 
@@ -242,6 +254,59 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
         bankAccountTOType.setLastUpdate(cal);
 
         return bankAccountTOType;
+    }
+
+    /**
+     * Convert a list of Transaction Persistence Object (PO) into a TransactionsTOType
+     * i.e. the list of Transaction Transfer Objects (TO) represented by the XSD
+     * @param transactionPOList
+     * @return
+     */
+    private TransactionsTOType convertToTransactionsTOType(List<TransactionPO> transactionPOList){
+        TransactionsTOType transactionsTOType = getTransactionsObjectFactory().createTransactionsTOType();
+        for (TransactionPO transactionPO : transactionPOList) {
+            TransactionTOType transactionTOType = convertToTransactionTOType(transactionPO);
+            transactionsTOType.getTransactions().add(transactionTOType);
+        }
+        transactionsTOType.setTotalRecords(transactionsTOType.getTransactions().size());
+        return transactionsTOType;
+    }
+
+    /**
+     * Convert a single TransactionPO into a TransactionTOType
+     * @param transactionPO
+     * @return
+     */
+    private TransactionTOType convertToTransactionTOType(TransactionPO transactionPO) {
+        TransactionTOType transactionTO = getTransactionsObjectFactory().createTransactionTOType();
+        Calendar cal = Calendar.getInstance();
+
+        transactionTO.setIBAN(transactionPO.getBankAccount().getIban());
+        transactionTO.setDescription(transactionPO.getDescription());
+
+        cal.setTime(transactionPO.getExecutionDate());
+        transactionTO.setExecutionDate(cal);
+        cal.setTime(transactionPO.getValueDate());
+        transactionTO.setValueDate(cal);
+
+        transactionTO.setCategory(transactionPO.getCategory());
+        transactionTO.setSubCategory(transactionPO.getSubCategory());
+        if (transactionPO.getAmount() > 0) {
+            transactionTO.setCredit(transactionPO.getAmount());
+        }
+        else {
+            transactionTO.setDebit(transactionPO.getAmount());
+        }
+
+        transactionTO.setCurrency(transactionPO.getCurrency());
+
+        cal.setTime(transactionPO.getCreatedDate());
+        transactionTO.setCreateDate(cal);
+
+        cal.setTime(transactionPO.getLastUpdate());
+        transactionTO.setLastUpdate(cal);
+
+        return transactionTO;
     }
 
 

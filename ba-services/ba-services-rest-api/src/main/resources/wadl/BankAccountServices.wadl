@@ -185,6 +185,7 @@
                     </method>
                     <!--  -->
                     <resource  path="/transactions">
+                        <param name="iban" type="xsd:string" style="template" required="true" />
                         <method name="GET" id="getTransactionsByBankAccount">
 
                             <response status="200" description="Retireved Successfully a List">
