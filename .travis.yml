@@ -1,16 +1,15 @@
 language: java
 sudo: false
 install: true
-
 jdk:
-  - oraclejdk7
-
+- oraclejdk7
 script:
-  - mvn clean install -B -e -V -Ddeployment.jdbcDriverName=${env.deployment.jdbcDriverName} -Ddeployment.jdbcUrl=${env.deployment.jdbcUrl} -Ddeployment.jdbcUserName=${env.deployment.jdbcUserName} -Ddeployment.jdbcPassword=${env.deployment.jdbcPassword}
+- mvn clean install -B -e -V -Ddeployment.jdbcDriverName=$env.deployment.jdbcDriverName
+  -Ddeployment.jdbcUrl=$env.deployment.jdbcUrl -Ddeployment.jdbcUserName=$env.deployment.jdbcUserName
+  -Ddeployment.jdbcPassword=$env.deployment.jdbcPassword
 
 cache:
   directories:
-    - '$HOME/.m2/repository'
-
+  - "$HOME/.m2/repository"
 notifications:
   email: marcus.maccio@gmail.com
