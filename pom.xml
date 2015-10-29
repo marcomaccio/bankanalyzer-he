@@ -177,12 +177,12 @@
         <jaxb2-basics-annotate.version>0.6.5</jaxb2-basics-annotate.version>
         
         <codehaus-jackson.version>1.9.13</codehaus-jackson.version>
-        <fasterxml-jackson.version>2.4.1</fasterxml-jackson.version>
+        <fasterxml-jackson.version>2.2.2</fasterxml-jackson.version>
         
         <scala-library.version>2.10.2</scala-library.version>
 
         <javaee-web-api.version>7.0</javaee-web-api.version>
-        <swagger-jaxrs.version>1.3.4</swagger-jaxrs.version>
+        <swagger-jaxrs.version>1.3.12</swagger-jaxrs.version>
 
         <slf4j.version>1.7.0</slf4j.version>
         <slf4j-log4j12.version>1.7.6</slf4j-log4j12.version>
