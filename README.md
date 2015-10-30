@@ -1,4 +1,5 @@
-#BANKANALIZER HE
+#BANKANALIZER HE         https://travis-ci.org/marcomaccio/bankanalyzer-he.svg?branch=master
+
 	An Head End Application that allows to store Bank Account transactions and allows to make analysis
 
 	This part is the Head End part and exposes the data via RESTful services
