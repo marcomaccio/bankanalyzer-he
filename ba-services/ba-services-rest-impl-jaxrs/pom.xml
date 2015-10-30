@@ -372,8 +372,8 @@
             <version>${swagger-jaxrs.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>javax.ws.rs</groupId>
-                    <artifactId>jsr311-api</artifactId>
+                     <groupId>javax.ws.rs</groupId>
+                     <artifactId>jsr311-api</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
