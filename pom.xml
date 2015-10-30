@@ -732,6 +732,27 @@
             </properties>
         </profile>
 
+        <profile>
+            <id>local-depl-j2se-hsqldb</id>
+            <properties>
+                <!-- DATA ACCESS LAYER PROPERTIES -->
+                <deployment.jdbcDriverName>org.hsqldb.jdbc.JDBCDriver</deployment.jdbcDriverName>
+                <deployment.jdbcUrl>jdbc:hsqldb:mem:bankanalyzer</deployment.jdbcUrl>
+                <deployment.jdbcUserName>sa</deployment.jdbcUserName>
+                <deployment.jdbcPassword/>
+                <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
+                <deployment.schemaFileName>src/integration-test/data/schema-mysql.sql</deployment.schemaFileName>
+
+                <deployment.ddl-generation>create-tables</deployment.ddl-generation>
+                <deployment.createSchemaFilename>mysql-create-tables.sql</deployment.createSchemaFilename>
+                <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
+                <deployment.dataTypeFactory>org.dbunit.ext.mysql.MySqlDataTypeFactory</deployment.dataTypeFactory>
+                <deployment.metadataHandler>org.dbunit.ext.mysql.MySqlMetadataHandler</deployment.metadataHandler>
+
+                <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
+                <liquibase.contexts>integration-test</liquibase.contexts>
+            </properties>
+        </profile>
     </profiles>
 
 </project>

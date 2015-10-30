@@ -4,9 +4,7 @@ install: true
 jdk:
 - oraclejdk7
 script:
-- mvn clean install -B -e -V -Ddeployment.jdbcDriverName=$env.deployment.jdbcDriverName
-  -Ddeployment.jdbcUrl=$env.deployment.jdbcUrl -Ddeployment.jdbcUserName=$env.deployment.jdbcUserName
-  -Ddeployment.jdbcPassword=$env.deployment.jdbcPassword
+- mvn clean install -B -e -V -Plocal-depl-j2se-hsqldb
 
 cache:
   directories:

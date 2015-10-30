@@ -170,13 +170,13 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>${mysql-connector-java.version}</version>
                     </dependency>
-                    <!--
+                    <!-- -->
                     <dependency>
                         <groupId>org.hsqldb</groupId>
                         <artifactId>hsqldb</artifactId>
                         <version>${hsqldb.version}</version>
                     </dependency>
-                    -->
+
                 </dependencies>
 
                 <!-- Common Configuration  -->
@@ -312,6 +312,7 @@
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>${hsqldb.version}</version>
+
         </dependency>
 
         <dependency>
