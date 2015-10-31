@@ -13,11 +13,12 @@ import java.util.Objects;
  * Created by marcomaccio on 10/09/2015.
  */
 @Entity
-@Table(name = "Transactions", uniqueConstraints=@UniqueConstraint(columnNames="transHash"))
+@Table(name = "Transactions", uniqueConstraints=@UniqueConstraint(columnNames={"executionDate","valueDate","amount","currency","bankacc_id"}))
 @NamedQueries({
-        @NamedQuery(name = "Transactions.findAllByBankAccount", query = "SELECT t from Transaction t WHERE t.bankAccount.iban = :iban"),
-        @NamedQuery(name = "Transactions.Count",                query = "SELECT COUNT(t) FROM Transaction t WHERE t.bankAccount.iban = :iban"),
-        @NamedQuery(name = "Transactions.findByPkId",           query = "SELECT t FROM Transaction t WHERE t.id = :id")
+        @NamedQuery(name = "Transactions.findAllByBankAccount",             query = "SELECT t from Transaction t WHERE t.bankAccount.iban = :iban"),
+        @NamedQuery(name = "Transactions.findAllByBankAccountAndValueDate", query = "SELECT t FROM Transaction t WHERE (t.valueDate=:valueDate) AND (t.bankAccount.iban=:iban)"),
+        @NamedQuery(name = "Transactions.findAllByKeyValues",               query = "SELECT t FROM Transaction t WHERE (t.executionDate = :executionDate) AND (t.valueDate=:valueDate) AND (t.amount=:amount) AND (t.currency=:currency) AND (t.bankAccount.iban=:iban)"),
+        @NamedQuery(name = "Transactions.Count",                            query = "SELECT COUNT(t) FROM Transaction t WHERE t.bankAccount.iban = :iban")
 })
 public class Transaction extends BaseJPAObject implements  TransactionPO {
 
@@ -33,6 +34,44 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
     private String          category;
     private String          subCategory;
     private BankAccountPO   bankAccount;
+
+    /**
+     * Public Empty constructor
+     */
+    public Transaction() {}
+
+    /**
+     * Public constructor with all parameters
+     * @param executionDate
+     * @param valueDate
+     * @param description
+     * @param amount
+     * @param balance
+     * @param currency
+     * @param category
+     * @param subCategory
+     * @param bankAccount
+     */
+    public Transaction(Date executionDate,
+                       Date valueDate,
+                       String description,
+                       float amount,
+                       float balance,
+                       String currency,
+                       String category,
+                       String subCategory,
+                       BankAccountPO bankAccount) {
+
+        this.executionDate  = executionDate;
+        this.valueDate      = valueDate;
+        this.description    = description;
+        this.amount         = amount;
+        this.balance        = balance;
+        this.currency       = currency;
+        this.category       = category;
+        this.subCategory    = subCategory;
+        this.bankAccount    = bankAccount;
+    }
 
     /**
      *
@@ -122,7 +161,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
      */
     @Override
     @ManyToOne(targetEntity = BankAccount.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "BANKACC_ID", nullable = false)
+    @JoinColumn(name = "bankacc_id", nullable = false)
     public BankAccountPO getBankAccount() {
         return bankAccount;
     }
@@ -221,7 +260,6 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
         return Float.compare(that.amount, amount) == 0 &&
-                Float.compare(that.balance, balance) == 0 &&
                 Objects.equals(executionDate, that.executionDate) &&
                 Objects.equals(valueDate, that.valueDate) &&
                 Objects.equals(description, that.description) &&
@@ -235,33 +273,33 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(executionDate, valueDate, description, amount, balance, currency, bankAccount);
+        return Objects.hash(executionDate, valueDate, amount, currency, bankAccount);
     }
 
     @Override
     public String toString() {
         LOGGER.debug("Transaction{" +
-                        "executionDate=" + executionDate +
-                        ", valueDate=" + valueDate +
-                        ", description='" + description + '\'' +
-                        ", amount=" + amount +
-                        ", balance=" + balance +
-                        ", currency='" + currency + '\'' +
-                        ", category='" + category + '\'' +
-                        ", subCategory='" + subCategory + '\'' +
-                        ", bankAccount=" + bankAccount +
+                        "executionDate="    + executionDate +
+                        ", valueDate="      + valueDate     +
+                        ", description='"   + description   + '\'' +
+                        ", amount="         + amount        +
+                        ", balance="        + balance       +
+                        ", currency='"      + currency      + '\'' +
+                        ", category='"      + category      + '\'' +
+                        ", subCategory='"   + subCategory   + '\'' +
+                        ", bankAccount="    + bankAccount   +
                         '}');
 
-        return "Transaction{" +
-                "executionDate=" + executionDate +
-                ", valueDate=" + valueDate +
-                ", description='" + description + '\'' +
-                ", amount=" + amount +
-                ", balance=" + balance +
-                ", currency='" + currency + '\'' +
-                ", category='" + category + '\'' +
-                ", subCategory='" + subCategory + '\'' +
-                ", bankAccount=" + bankAccount +
+        return "Transaction{"       +
+                "executionDate="    + executionDate +
+                ", valueDate="      + valueDate     +
+                ", description='"   + description   + '\'' +
+                ", amount="         + amount        +
+                ", balance="        + balance       +
+                ", currency='"      + currency      + '\'' +
+                ", category='"      + category      + '\'' +
+                ", subCategory='"   + subCategory   + '\'' +
+                ", bankAccount="    + bankAccount   +
                 '}';
     }
 }
