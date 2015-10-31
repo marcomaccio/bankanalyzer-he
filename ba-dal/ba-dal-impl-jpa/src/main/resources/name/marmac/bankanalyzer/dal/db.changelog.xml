@@ -112,4 +112,18 @@
 
     </changeSet>
 
+    <changeSet id="4" author="marcomaccio">
+        <addColumn tableName="Transactions">
+            <column name="transactionId" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="5" author="marcomaccio">
+        <dropColumn tableName="Transactions" columnName="transactionId" />
+
+        <addUniqueConstraint tableName="Transactions" columnNames="executionDate,valueDate,amount,currency,bankacc_id"/>
+    </changeSet>
+
 </databaseChangeLog>

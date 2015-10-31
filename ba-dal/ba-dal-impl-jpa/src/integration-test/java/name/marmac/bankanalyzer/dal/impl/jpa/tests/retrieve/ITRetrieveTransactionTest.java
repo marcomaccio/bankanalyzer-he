@@ -19,6 +19,8 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 
 import javax.annotation.Resource;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,13 +43,18 @@ public class ITRetrieveTransactionTest {
     @Autowired
     private BankAccountsPersistenceServices   bankAccountsPersistenceServices;
 
+    /**
+     * This test will verify that the method getAllTransactionsByBankAccount will return
+     * all transactions of a given BankAccount
+     *
+     */
     @Test
-    @DatabaseSetup("retrieved-transactions-01.xml")
-    public void testFindAllTransactions(){
+    @DatabaseSetup("findAllTransactionsByBankAccount.xml")
+    public void testFindAllTransactionsByBankAccount(){
 
         int EXPECTED_SIZE = 2;
 
-        LOGGER.info("Method under test: FindAll ...");
+        LOGGER.info("Method under test: FindAllTransactionsByBankAccounts ...");
         LOGGER.info("JDBC Connection Properties: " + jdbcProperties.getJdbcDriverName() + ", " +
                                                 jdbcProperties.getJdbcUserName() + ", " +
                                                 jdbcProperties.getSchemaFileName());
@@ -55,7 +62,64 @@ public class ITRetrieveTransactionTest {
         List<TransactionPO> transactionPOList = bankAccountsPersistenceServices.getAllTransactionsByBankAccount("001");
 
         LOGGER.info("Transactions retrieved by the Persistence Layer: " + transactionPOList.size());
+        Assert.assertEquals("It was expected " + EXPECTED_SIZE + " but retrieved: " + transactionPOList.size(), EXPECTED_SIZE, transactionPOList.size());
+    }
 
+    /**
+     * This test will verify that the method getAllTransactionsByValueDate will return
+     * all transactions done in a specific date
+     */
+    @Test
+    @DatabaseSetup("findAllTransactionByValueDate.xml")
+    public void testFindAllTransactionByValueDate(){
+
+        int EXPECTED_SIZE = 3;
+
+        LOGGER.info("Method under test: FindAllTransactionsByValueDate ...");
+        LOGGER.info("JDBC Connection Properties: " + jdbcProperties.getJdbcDriverName() + ", " +
+                                                jdbcProperties.getJdbcUserName() + ", " +
+                                                jdbcProperties.getSchemaFileName());
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(2012,11,06);
+
+        String  iban        = "001";
+        Date    valueDate   = cal.getTime();
+        List<TransactionPO> transactionPOList = bankAccountsPersistenceServices.getAllTransactionsByBankAccountAndValueDate(iban, valueDate);
+
+        LOGGER.info("Transactions retrieved by the Persistence Layer: " + transactionPOList.size());
+        Assert.assertEquals("It was expected " + EXPECTED_SIZE + " but retrieved: " + transactionPOList.size(), EXPECTED_SIZE, transactionPOList.size());
+    }
+
+    /**
+     * This test will verify that the method getAllTransactionByKeyValues will return
+     * only one transaction if the following parameters are set:
+     * - executionDate
+     * - valueDate
+     * - amount
+     * - currency
+     * - BankAccount.iban
+     */
+    @Test
+    @DatabaseSetup("findAllTransactionByKeyValues.xml")
+    public void testFindAllTransactionByKeyValues(){
+        int EXPECTED_SIZE = 1;
+
+        LOGGER.info("Method under test: FindAllTransactionsByValueDate ...");
+        LOGGER.info("JDBC Connection Properties: " + jdbcProperties.getJdbcDriverName() + ", " +
+                                                    jdbcProperties.getJdbcUserName()    + ", " +
+                                                    jdbcProperties.getSchemaFileName());
+        Calendar cal = Calendar.getInstance();
+        cal.set(2012,11,06);
+        String  iban            = "001";
+        Date    executionDate   = cal.getTime();
+        Date    valueDate       = cal.getTime();
+        float   amount          = 24.5F;
+        String  currency        = "CHF";
+
+        List<TransactionPO> transactionPOList = bankAccountsPersistenceServices.getTransactionByKeyValues(executionDate, valueDate, amount, currency, iban);
+
+        LOGGER.info("Transactions retrieved by the Persistence Layer: " + transactionPOList.size());
         Assert.assertEquals("It was expected " + EXPECTED_SIZE + " but retrieved: " + transactionPOList.size(), EXPECTED_SIZE, transactionPOList.size());
     }
 }

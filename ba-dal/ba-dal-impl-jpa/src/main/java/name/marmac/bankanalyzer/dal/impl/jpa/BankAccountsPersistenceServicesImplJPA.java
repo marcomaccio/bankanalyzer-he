@@ -143,15 +143,6 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
 
     /**
      *
-     * @return
-     */
-    @Override
-    public TransactionPO getTransactionByNativeId() {
-        return null;
-    }
-
-    /**
-     *
      * @param bankAccountNativeId
      * @return
      */
@@ -164,6 +155,45 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
         query.setParameter("iban", bankAccountNativeId);
         List<TransactionPO> transactionsList = query.getResultList();
 
+        LOGGER.debug(OBJECT_FOUND_MESSAGELOG + transactionsList.size() + " transactions");
+        return transactionsList;
+    }
+
+    /**
+     *
+     * @param iban
+     * @param valueDate
+     * @return
+     */
+    @Override
+    public List<TransactionPO> getAllTransactionsByBankAccountAndValueDate(String iban, Date valueDate){
+        LOGGER.debug("Method getTransactionByNativeId has been called ");
+        TransactionPO transactionPO = null;
+        Query query = entityManager.createNamedQuery("Transactions.findAllByBankAccountAndValueDate", Transaction.class);
+        query.setParameter("valueDate",     valueDate);
+        query.setParameter("iban",          iban);
+
+        List<TransactionPO> transactionsList = query.getResultList();
+        LOGGER.debug(OBJECT_FOUND_MESSAGELOG + transactionsList.size() + " transactions");
+        return transactionsList;
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<TransactionPO> getTransactionByKeyValues(Date executionDate, Date valueDate, float amount, String currency, String iban) {
+        LOGGER.debug("Method getTransactionByNativeId has been called ");
+        TransactionPO transactionPO = null;
+        Query query = entityManager.createNamedQuery("Transactions.findAllByKeyValues", Transaction.class);
+        query.setParameter("executionDate", executionDate);
+        query.setParameter("valueDate",     valueDate);
+        query.setParameter("amount",        amount);
+        query.setParameter("currency",      currency);
+        query.setParameter("iban",          iban);
+
+        List<TransactionPO> transactionsList = query.getResultList();
         LOGGER.debug(OBJECT_FOUND_MESSAGELOG + transactionsList.size() + " transactions");
         return transactionsList;
     }
