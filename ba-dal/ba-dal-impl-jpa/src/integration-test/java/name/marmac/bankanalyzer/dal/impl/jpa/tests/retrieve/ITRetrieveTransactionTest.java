@@ -113,14 +113,19 @@ public class ITRetrieveTransactionTest {
                                                     jdbcProperties.getJdbcUserName()    + ", " +
                                                     jdbcProperties.getSchemaFileName());
         Calendar cal = Calendar.getInstance();
-        cal.set(2012,11,06,00,00,00);
-        String  iban            = "001";
-        Date    executionDate   = cal.getTime();
-        Date    valueDate       = cal.getTime();
-        LOGGER.info("executionDate: " + executionDate.toString() + " valueDate: " + valueDate.toString());
+        cal.set(2012,11,06);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        String      iban            = "001";
+        Date        executionDate   = cal.getTime();
+        Date        valueDate       = cal.getTime();
+        BigDecimal  amount          = BigDecimal.valueOf(25.500).setScale(3, BigDecimal.ROUND_HALF_UP);
+        //amount.setScale(3, BigDecimal.ROUND_HALF_UP);
+        String      currency        = "CHF";
 
-        BigDecimal amount       = BigDecimal.valueOf(24.5);
-        String  currency        = "CHF";
+        LOGGER.info("executionDate: " + executionDate.toString() + " valueDate: " + valueDate.toString());
 
         List<TransactionPO> transactionPOList = bankAccountsPersistenceServices.getTransactionByKeyValues(executionDate, valueDate, amount, currency, iban);
 
@@ -128,11 +133,11 @@ public class ITRetrieveTransactionTest {
         Assert.assertEquals("It was expected " + EXPECTED_SIZE + " but retrieved: " + transactionPOList.size(), EXPECTED_SIZE, transactionPOList.size());
         for (TransactionPO transactionPO : transactionPOList){
             LOGGER.info("Transaction " + transactionPO.toString());
-            Assert.assertEquals("iban is wrong ",           iban,           transactionPO.getBankAccount().getIban());
-            Assert.assertEquals("executionDate is wrong ",  executionDate,  transactionPO.getExecutionDate());
-            Assert.assertEquals("valueDate is wrong ",      valueDate,      transactionPO.getValueDate());
-            Assert.assertEquals("amount is wrong",          amount,         transactionPO.getAmount());
-            Assert.assertEquals("amount is wrong",          currency,       transactionPO.getCurrency());
+            Assert.assertEquals("iban is wrong ",           iban,                                                       transactionPO.getBankAccount().getIban());
+            Assert.assertEquals("executionDate is wrong " + executionDate.toString() + "/" + transactionPO.getExecutionDate(),  executionDate.compareTo(transactionPO.getExecutionDate()),  0);
+            Assert.assertEquals("valueDate is wrong ",      valueDate.compareTo(transactionPO.getValueDate()),          0);
+            Assert.assertEquals("amount is wrong",          amount,                                                     transactionPO.getAmount());
+            Assert.assertEquals("amount is wrong",          currency,                                                   transactionPO.getCurrency());
         }
     }
 }

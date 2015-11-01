@@ -190,7 +190,7 @@
         <logback.version>1.0.13</logback.version>
 
         <liquibase-maven-plugin.version>3.4.1</liquibase-maven-plugin.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.12</junit.version>
         <dbunit-maven-plugin.version>1.0-beta-3</dbunit-maven-plugin.version>
 
         <build.profile.id>dev</build.profile.id>
@@ -735,6 +735,7 @@
         <profile>
             <id>local-depl-j2se-hsqldb</id>
             <properties>
+                <application.log.level>DEBUG</application.log.level>
                 <!-- DATA ACCESS LAYER PROPERTIES -->
                 <deployment.jdbcDriverName>org.hsqldb.jdbc.JDBCDriver</deployment.jdbcDriverName>
                 <deployment.jdbcUrl>jdbc:hsqldb:mem:bankanalyzer</deployment.jdbcUrl>

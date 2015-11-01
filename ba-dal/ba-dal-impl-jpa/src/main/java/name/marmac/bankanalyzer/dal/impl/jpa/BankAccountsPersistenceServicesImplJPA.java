@@ -181,12 +181,17 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
 
     /**
      *
+     *
+     * @param executionDate
+     * @param valueDate
+     * @param amount
+     * @param currency
+     * @param iban
      * @return
      */
     @Override
     public List<TransactionPO> getTransactionByKeyValues(Date executionDate, Date valueDate, BigDecimal amount, String currency, String iban) {
         LOGGER.debug("Method getTransactionByNativeId has been called ");
-        TransactionPO transactionPO = null;
         Query query = entityManager.createNamedQuery("Transactions.findAllByKeyValues", Transaction.class);
         query.setParameter("executionDate", executionDate);
         query.setParameter("valueDate",     valueDate);

@@ -79,7 +79,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
      */
     @Override
     @Column(name = "executionDate", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     public Date getExecutionDate() {
         return executionDate;
     }
@@ -90,7 +90,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
      */
     @Override
     @Column(name = "valueDate", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     public Date getValueDate() {
         return valueDate;
     }
