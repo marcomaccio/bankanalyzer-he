@@ -84,7 +84,7 @@
     <changeSet id="2" author="marcomaccio">
 
         <addColumn tableName="Transactions">
-            <column name="bankacc_id" type="bigint(20)"></column>
+            <column name="bankacc_id" type="bigint(20)"/>
         </addColumn>
 
         <addForeignKeyConstraint baseColumnNames="bankacc_id"

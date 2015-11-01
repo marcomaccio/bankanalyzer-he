@@ -3,6 +3,7 @@ package name.marmac.bankanalyzer.dal.api;
 import name.marmac.bankanalyzer.model.api.BankAccountPO;
 import name.marmac.bankanalyzer.model.api.TransactionPO;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -79,7 +80,7 @@ public interface BankAccountsPersistenceServices {
      * @param iban
      * @return
      */
-    public List<TransactionPO> getTransactionByKeyValues(Date executionDate, Date valueDate, float amount, String currency, String iban);
+    public List<TransactionPO> getTransactionByKeyValues(Date executionDate, Date valueDate, BigDecimal amount, String currency, String iban);
 
     /**
      *
