@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
@@ -28,38 +29,37 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
     private Date            executionDate;
     private Date            valueDate;
     private String          description;
-    private float           amount;
-    private float           balance;
+    private BigDecimal      amount;
+    private BigDecimal      balance;
     private String          currency;
     private String          category;
     private String          subCategory;
     private BankAccountPO   bankAccount;
 
     /**
-     * Public Empty constructor
+     *
      */
-    public Transaction() {}
-
+    public Transaction(){}
     /**
      * Public constructor with all parameters
-     * @param executionDate
-     * @param valueDate
-     * @param description
-     * @param amount
-     * @param balance
-     * @param currency
-     * @param category
-     * @param subCategory
-     * @param bankAccount
+     * @param executionDate the date of execution by the bank of the transaction
+     * @param valueDate     the date in which the transaction has been physically done
+     * @param description   the transaction description
+     * @param amount        the transaction amount (positive for a credit, negative for a debit)
+     * @param balance       the bankAccount balance after the transaction has been done
+     * @param currency      the currency on which the transaction has been registered by the bank
+     * @param category      the category that group the transaction
+     * @param subCategory   the subcategory the group the transaction
+     * @param bankAccount   the bankAccount at which the transaction is linked
      */
-    public Transaction(Date executionDate,
-                       Date valueDate,
-                       String description,
-                       float amount,
-                       float balance,
-                       String currency,
-                       String category,
-                       String subCategory,
+    public Transaction(Date         executionDate,
+                       Date         valueDate,
+                       String       description,
+                       BigDecimal   amount,
+                       BigDecimal   balance,
+                       String       currency,
+                       String       category,
+                       String       subCategory,
                        BankAccountPO bankAccount) {
 
         this.executionDate  = executionDate;
@@ -75,29 +75,29 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @return
+     * @return  the date of execution by the bank of the transaction
      */
     @Override
     @Column(name = "executionDate", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getExecutionDate() {
         return executionDate;
     }
 
     /**
      *
-     * @return
+     * @return  the date in which the transaction has been physically done
      */
     @Override
     @Column(name = "valueDate", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getValueDate() {
         return valueDate;
     }
 
     /**
      *
-     * @return
+     * @return  the transaction description
      */
     @Override
     @Column(name = "description", nullable = false)
@@ -107,17 +107,17 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @return
+     * @return  the transaction amount (positive for a credit, negative for a debit)
      */
     @Override
     @Column(name = "amount", nullable = false)
-    public float getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
     /**
      *
-     * @return
+     * @return  the currency on which the transaction has been registered by the bank
      */
     @Override
     @Column(name = "currency", nullable = false)
@@ -127,17 +127,17 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @return
+     * @return  the bankAccount balance after the transaction has been done
      */
     @Override
     @Column(name = "balance", nullable = false)
-    public float getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
     /**
      *
-     * @return
+     * @return  the category that group the transaction
      */
     @Override
     @Column(name = "category", nullable = true)
@@ -147,7 +147,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @return
+     * @return  the subcategory the group the transaction
      */
     @Override
     @Column(name = "subCategory", nullable = true)
@@ -157,7 +157,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @return
+     * @return  the bankAccount at which the transaction is linked
      */
     @Override
     @ManyToOne(targetEntity = BankAccount.class, fetch = FetchType.LAZY)
@@ -170,7 +170,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @param executionDate
+     * @param executionDate the date of execution by the bank of the transaction
      */
     @Override
     public void setExecutionDate(Date executionDate) {
@@ -179,7 +179,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @param valueDate
+     * @param valueDate the date in which the transaction has been physically done
      */
     @Override
     public void setValueDate(Date valueDate) {
@@ -188,7 +188,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @param description
+     * @param description   the transaction description
      */
     @Override
     public void setDescription(String description) {
@@ -197,16 +197,16 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @param amount
+     * @param amount    the transaction amount (positive for a credit, negative for a debit)
      */
     @Override
-    public void setAmount(float amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
     /**
      *
-     * @param currency
+     * @param currency  the currency on which the transaction has been registered by the bank
      */
     @Override
     public void setCurrency(String currency) {
@@ -215,16 +215,16 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @param balance
+     * @param balance   the bankAccount balance after the transaction has been done
      */
     @Override
-    public void setBalance(float balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
     /**
      *
-     * @param category
+     * @param category the category that group the transaction
      */
     @Override
     public void setCategory(String category) {
@@ -233,7 +233,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @param subCategory
+     * @param subCategory   the subcategory the group the transaction
      */
     @Override
     public void setSubCategory(String subCategory) {
@@ -242,7 +242,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
 
     /**
      *
-     * @param bankAccount
+     * @param bankAccount   the bankAccount at which the transaction is linked
      */
     @Override
     public void setBankAccount(BankAccountPO bankAccount) {
@@ -259,7 +259,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
-        return Float.compare(that.amount, amount) == 0 &&
+        return (that.amount.compareTo(amount) == 0) &&
                 Objects.equals(executionDate, that.executionDate) &&
                 Objects.equals(valueDate, that.valueDate) &&
                 Objects.equals(description, that.description) &&

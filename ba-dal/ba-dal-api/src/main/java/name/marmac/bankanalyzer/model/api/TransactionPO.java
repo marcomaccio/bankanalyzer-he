@@ -1,5 +1,6 @@
 package name.marmac.bankanalyzer.model.api;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -9,113 +10,113 @@ public interface TransactionPO extends BasicPO {
 
     /**
      *
-     * @return
+     * @return  the date of execution by the bank of the transaction
      */
-    public Date getExecutionDate();
+    Date getExecutionDate();
 
     /**
      *
-     * @return
+     * @return  the date in which the transaction has been physically done
      */
-    public Date getValueDate();
+    Date getValueDate();
 
     /**
      *
-     * @return
+     * @return  the transaction description
      */
-    public String getDescription();
+    String getDescription();
 
     /**
      *
-     * @return
+     * @return the transaction amount (positive for a credit, negative for a debit)
      */
-    public float getAmount();
+    BigDecimal getAmount();
 
     /**
      *
-     * @return
+     * @return the currency on which the transaction has been registered by the bank
      */
-    public String getCurrency();
+    String getCurrency();
 
     /**
      *
-     * @return
+     * @return the bankAccount balance after the transaction has been done
      */
-    public float getBalance();
+    BigDecimal getBalance();
 
     /**
      *
-     * @return
+     * @return  the category that group the transaction
      */
-    public String getCategory();
+    String getCategory();
 
     /**
      *
-     * @return
+     * @return the subcategory the group the transaction
      */
-    public String getSubCategory();
+    String getSubCategory();
 
     /**
      *
-     * @return
+     * @return  the bankAccount at which the transaction is linked
      */
-    public BankAccountPO getBankAccount();
+    BankAccountPO getBankAccount();
 
 
     /** Setters Methods - START **/
 
     /**
      *
-     * @param executionDate
+     * @param executionDate the date of execution by the bank of the transaction
      */
-    public void setExecutionDate(Date executionDate);
+    void setExecutionDate(Date executionDate);
 
     /**
      *
-     * @param valueDate
+     * @param valueDate the date in which the transaction has been physically done
      */
-    public void setValueDate(Date valueDate);
+    void setValueDate(Date valueDate);
 
     /**
      *
-     * @param description
+     * @param description   the transaction description
      */
-    public void setDescription(String description);
+    void setDescription(String description);
 
     /**
      *
-     * @param amount
+     * @param amount    the transaction amount (positive for a credit, negative for a debit)
      */
-    public void setAmount(float amount);
+    void setAmount(BigDecimal amount);
 
     /**
      *
-     * @param currency
+     * @param currency  the currency on which the transaction has been registered by the bank
      */
-    public void setCurrency(String currency);
+    void setCurrency(String currency);
 
     /**
      *
-     * @param balance
+     * @param balance   the bankAccount balance after the transaction has been done
      */
-    public void setBalance(float balance);
+    void setBalance(BigDecimal balance);
 
     /**
      *
-     * @param category
+     * @param category  the category that group the transaction
      */
-    public void setCategory(String category);
+    void setCategory(String category);
 
     /**
      *
-     * @param subCategory
+     * @param subCategory   the subcategory that group the transaction
      */
-    public void setSubCategory(String subCategory);
+    void setSubCategory(String subCategory);
 
     /**
      *
-     * @param bankAccount
+     * @param bankAccount   the bankAccount at which the transaction is linked
      */
-    public void setBankAccount(BankAccountPO bankAccount);
+    void setBankAccount(BankAccountPO bankAccount);
 
 }

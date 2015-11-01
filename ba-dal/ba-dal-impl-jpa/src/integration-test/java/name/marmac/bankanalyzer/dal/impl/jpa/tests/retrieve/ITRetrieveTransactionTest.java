@@ -19,6 +19,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -85,6 +86,8 @@ public class ITRetrieveTransactionTest {
 
         String  iban        = "001";
         Date    valueDate   = cal.getTime();
+        LOGGER.info("valueDate: " + valueDate.toString());
+
         List<TransactionPO> transactionPOList = bankAccountsPersistenceServices.getAllTransactionsByBankAccountAndValueDate(iban, valueDate);
 
         LOGGER.info("Transactions retrieved by the Persistence Layer: " + transactionPOList.size());
@@ -110,16 +113,26 @@ public class ITRetrieveTransactionTest {
                                                     jdbcProperties.getJdbcUserName()    + ", " +
                                                     jdbcProperties.getSchemaFileName());
         Calendar cal = Calendar.getInstance();
-        cal.set(2012,11,06);
+        cal.set(2012,11,06,00,00,00);
         String  iban            = "001";
         Date    executionDate   = cal.getTime();
         Date    valueDate       = cal.getTime();
-        float   amount          = 24.5F;
+        LOGGER.info("executionDate: " + executionDate.toString() + " valueDate: " + valueDate.toString());
+
+        BigDecimal amount       = BigDecimal.valueOf(24.5);
         String  currency        = "CHF";
 
         List<TransactionPO> transactionPOList = bankAccountsPersistenceServices.getTransactionByKeyValues(executionDate, valueDate, amount, currency, iban);
 
         LOGGER.info("Transactions retrieved by the Persistence Layer: " + transactionPOList.size());
         Assert.assertEquals("It was expected " + EXPECTED_SIZE + " but retrieved: " + transactionPOList.size(), EXPECTED_SIZE, transactionPOList.size());
+        for (TransactionPO transactionPO : transactionPOList){
+            LOGGER.info("Transaction " + transactionPO.toString());
+            Assert.assertEquals("iban is wrong ",           iban,           transactionPO.getBankAccount().getIban());
+            Assert.assertEquals("executionDate is wrong ",  executionDate,  transactionPO.getExecutionDate());
+            Assert.assertEquals("valueDate is wrong ",      valueDate,      transactionPO.getValueDate());
+            Assert.assertEquals("amount is wrong",          amount,         transactionPO.getAmount());
+            Assert.assertEquals("amount is wrong",          currency,       transactionPO.getCurrency());
+        }
     }
 }

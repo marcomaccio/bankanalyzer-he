@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -183,7 +184,7 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
      * @return
      */
     @Override
-    public List<TransactionPO> getTransactionByKeyValues(Date executionDate, Date valueDate, float amount, String currency, String iban) {
+    public List<TransactionPO> getTransactionByKeyValues(Date executionDate, Date valueDate, BigDecimal amount, String currency, String iban) {
         LOGGER.debug("Method getTransactionByNativeId has been called ");
         TransactionPO transactionPO = null;
         Query query = entityManager.createNamedQuery("Transactions.findAllByKeyValues", Transaction.class);
