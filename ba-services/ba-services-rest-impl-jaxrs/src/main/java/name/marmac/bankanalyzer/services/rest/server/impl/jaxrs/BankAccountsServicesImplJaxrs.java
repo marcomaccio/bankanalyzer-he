@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 
@@ -291,7 +292,7 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
 
         transactionTO.setCategory(transactionPO.getCategory());
         transactionTO.setSubCategory(transactionPO.getSubCategory());
-        if (transactionPO.getAmount() > 0) {
+        if (transactionPO.getAmount().compareTo(BigDecimal.ZERO) > 0) {
             transactionTO.setCredit(transactionPO.getAmount());
         }
         else {
