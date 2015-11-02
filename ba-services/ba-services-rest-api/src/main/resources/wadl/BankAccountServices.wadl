@@ -2,11 +2,15 @@
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:baservicens="http://marmac.name/bankanalyzer/services/web/rest/api/bankaccountservices/"
-             xmlns:bans="http://marmac.name/bankanalyzer/model/to/bankaccounts/">
+             xmlns:bans="http://marmac.name/bankanalyzer/model/to/bankaccounts/"
+             xmlns:tracns="http://marmac.name/bankanalyzer/model/to/transactions/">
 
     <grammars>
         <include href="http://marmac.name/bankanalyzer/model/to/bankaccounts/bankaccounts.xsd"
                  xml:space="http://marmac.name/bankanalyzer/model/to/bankaccounts/" />
+
+        <include href="http://marmac.name/bankanalyzer/model/to/transactions/transactions.xsd"
+                         xml:space="http://marmac.name/bankanalyzer/model/to/transactions/" />
 
     </grammars>
 
@@ -152,8 +156,8 @@
 
                 </method>
 
-                <resource  path="/{id}">
-                    <param name="id" type="xsd:string" style="template" required="true" />
+                <resource  path="/{iban}">
+                    <param name="iban" type="xsd:string" style="template" required="true" />
 
                     <method name="GET" id="getBankAccountByNativeId">
                         <response status="200" description="Customer Found">
@@ -179,6 +183,17 @@
                             <representation mediaType="application/json"    element="bans:bankaccount"/>
                         </response>
                     </method>
+                    <!--  -->
+                    <resource  path="/transactions">
+                        <param name="iban" type="xsd:string" style="template" required="true" />
+                        <method name="GET" id="getTransactionsByBankAccount">
+
+                            <response status="200" description="Retireved Successfully a List">
+                                <representation mediaType="application/xml"    element="tracns:transactions"/>
+                                <representation mediaType="application/json"   element="tracns:transactions"/>
+                            </response>
+                        </method>
+                    </resource>
 
                 </resource>
 

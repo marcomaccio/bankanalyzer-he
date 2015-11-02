@@ -42,7 +42,7 @@ public class ITRetrieveBankAccountTest {
     private BankAccountsPersistenceServices   bankAccountsPersistenceServices;
 
     @Test
-    @DatabaseSetup("retrieved-bankaccounts-01.xml")
+    @DatabaseSetup("retrieve-bankaccounts-setup-01.xml")
     public void testFindAllBankAccounts(){
 
         int EXPECTED_SIZE = 3;

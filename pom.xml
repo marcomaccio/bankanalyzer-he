@@ -159,6 +159,8 @@
         <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
 
         <javax-persistence.version>2.1.0</javax-persistence.version>
+        <eclipselink.version>2.5.0</eclipselink.version>
+        <dbunit.version>2.5.1</dbunit.version>
 
         <geronimo-j2ee-connector_1.5_spec.version>2.0.0</geronimo-j2ee-connector_1.5_spec.version>
         <geronimo-transaction.version>2.2.2</geronimo-transaction.version>
@@ -175,12 +177,12 @@
         <jaxb2-basics-annotate.version>0.6.5</jaxb2-basics-annotate.version>
         
         <codehaus-jackson.version>1.9.13</codehaus-jackson.version>
-        <fasterxml-jackson.version>2.4.1</fasterxml-jackson.version>
+        <fasterxml-jackson.version>2.2.2</fasterxml-jackson.version>
         
         <scala-library.version>2.10.2</scala-library.version>
 
         <javaee-web-api.version>7.0</javaee-web-api.version>
-        <swagger-jaxrs.version>1.3.4</swagger-jaxrs.version>
+        <swagger-jaxrs.version>1.3.12</swagger-jaxrs.version>
 
         <slf4j.version>1.7.0</slf4j.version>
         <slf4j-log4j12.version>1.7.6</slf4j-log4j12.version>
@@ -188,7 +190,7 @@
         <logback.version>1.0.13</logback.version>
 
         <liquibase-maven-plugin.version>3.4.1</liquibase-maven-plugin.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.12</junit.version>
         <dbunit-maven-plugin.version>1.0-beta-3</dbunit-maven-plugin.version>
 
         <build.profile.id>dev</build.profile.id>
@@ -201,7 +203,8 @@
         <sonar-maven-plugin.version>2.6</sonar-maven-plugin.version>
 
         <mysql-connector-java.version>5.1.18</mysql-connector-java.version>
-        <hsqldb.version>2.3.2</hsqldb.version>
+        <hsqldb.version>2.3.3</hsqldb.version>
+        <spring-test-dbunit.version>1.2.1</spring-test-dbunit.version>
 
         <!--
             OLDER V. 7.4.5.v20110725
@@ -702,39 +705,7 @@
     </reporting>
 
     <profiles>
-        <profile>
-            <id>local-depl-j2se-mysql</id>
-            <properties>
-                <application.log.level>DEBUG</application.log.level>
-                <!-- SERVICE LAYER PROPERTIES -->
-                <deployment.host>localhost</deployment.host>
-                <deployment.port>9191</deployment.port>
-                <deployment.webContext/>
-                <deployment.servletContext>/cxf</deployment.servletContext>
-                <deployment.servicePath>/crm/provisioning</deployment.servicePath>
-                <deployment.serviceVersion>/v1</deployment.serviceVersion>
-                <deployment.serviceInterface>/customerprovisioning</deployment.serviceInterface>
-                <deployment.resourcePath>/customers</deployment.resourcePath>
 
-                <!-- DATA ACCESS LAYER PROPERTIES -->
-                <deployment.jdbcDriverName>com.mysql.jdbc.Driver</deployment.jdbcDriverName>
-                <deployment.jdbcUrl>jdbc:mysql://localhost:3306/gestimmo</deployment.jdbcUrl>
-                <deployment.jdbcUserName>gestimmo</deployment.jdbcUserName>
-                <deployment.jdbcPassword>Gestimmo@2013!</deployment.jdbcPassword>
-                <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
-                <deployment.schemaFileName>src/integration-test/data/mysql-create-tables.sql</deployment.schemaFileName>
-
-                <deployment.ddl-generation>create-tables</deployment.ddl-generation>
-                <deployment.createSchemaFilename>mysql-create-tables.sql</deployment.createSchemaFilename>
-                <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
-                <deployment.dataTypeFactory>org.dbunit.ext.mysql.MySqlDataTypeFactory</deployment.dataTypeFactory>
-                <deployment.metadataHandler>org.dbunit.ext.mysql.MySqlMetadataHandler</deployment.metadataHandler>
-
-                <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
-                <liquibase.contexts>test</liquibase.contexts>
-
-            </properties>
-        </profile>
 
         <profile>
             <id>all-tests</id>
@@ -761,6 +732,28 @@
             </properties>
         </profile>
 
+        <profile>
+            <id>local-depl-j2se-hsqldb</id>
+            <properties>
+                <application.log.level>DEBUG</application.log.level>
+                <!-- DATA ACCESS LAYER PROPERTIES -->
+                <deployment.jdbcDriverName>org.hsqldb.jdbc.JDBCDriver</deployment.jdbcDriverName>
+                <deployment.jdbcUrl>jdbc:hsqldb:mem:bankanalyzer</deployment.jdbcUrl>
+                <deployment.jdbcUserName>sa</deployment.jdbcUserName>
+                <deployment.jdbcPassword/>
+                <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
+                <deployment.schemaFileName>src/integration-test/data/schema-mysql.sql</deployment.schemaFileName>
+
+                <deployment.ddl-generation>create-tables</deployment.ddl-generation>
+                <deployment.createSchemaFilename>mysql-create-tables.sql</deployment.createSchemaFilename>
+                <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
+                <deployment.dataTypeFactory>org.dbunit.ext.mysql.MySqlDataTypeFactory</deployment.dataTypeFactory>
+                <deployment.metadataHandler>org.dbunit.ext.mysql.MySqlMetadataHandler</deployment.metadataHandler>
+
+                <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
+                <liquibase.contexts>integration-test</liquibase.contexts>
+            </properties>
+        </profile>
     </profiles>
 
 </project>

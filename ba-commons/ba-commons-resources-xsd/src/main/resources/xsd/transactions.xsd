@@ -12,8 +12,8 @@
             <xsd:element name="IBAN"            type="xsd:string"   />
 
             <xsd:element name="description"     type="xsd:string"   />
-            <xsd:element name="debit"           type="xsd:float"   />
-            <xsd:element name="credit"          type="xsd:float"   />
+            <xsd:element name="debit"           type="xsd:decimal"   />
+            <xsd:element name="credit"          type="xsd:decimal"   />
             <xsd:element name="currency"        type="xsd:string"   />
             <xsd:element name="category"        type="xsd:string"   />
             <xsd:element name="subCategory"     type="xsd:string"   />

@@ -1,85 +1,122 @@
 package name.marmac.bankanalyzer.model.api;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * Created by marcomaccio on 10/09/2015.
  */
-public interface TransactionPO extends Serializable {
-
-    public Long getId();
-
-    public Date getExecutionDate();
-
-    public Date getValueDate();
-
-    public String getDescription();
-
-    public float getAmount();
-
-    public String getCurrency();
-
-    public float getBalance();
-
-    public String getCategory();
-
-    public String getSubCategory();
+public interface TransactionPO extends BasicPO {
 
     /**
      *
-     * @return
+     * @return  the date of execution by the bank of the transaction
      */
-    public Date getCreatedDate();
+    Date getExecutionDate();
 
     /**
      *
-     * @return
+     * @return  the date in which the transaction has been physically done
      */
-    public Date getLastUpdate();
+    Date getValueDate();
 
     /**
      *
-     * @return
+     * @return  the transaction description
      */
-    public Long getVersion();
+    String getDescription();
+
+    /**
+     *
+     * @return the transaction amount (positive for a credit, negative for a debit)
+     */
+    BigDecimal getAmount();
+
+    /**
+     *
+     * @return the currency on which the transaction has been registered by the bank
+     */
+    String getCurrency();
+
+    /**
+     *
+     * @return the bankAccount balance after the transaction has been done
+     */
+    BigDecimal getBalance();
+
+    /**
+     *
+     * @return  the category that group the transaction
+     */
+    String getCategory();
+
+    /**
+     *
+     * @return the subcategory the group the transaction
+     */
+    String getSubCategory();
+
+    /**
+     *
+     * @return  the bankAccount at which the transaction is linked
+     */
+    BankAccountPO getBankAccount();
+
 
     /** Setters Methods - START **/
 
-    public void setId(Long id);
-
-    public void setExecutionDate(Date executionDate);
-
-    public void setValueDate(Date valueDate);
-
-    public void setDescription(String description);
-
-    public void setAmount(float amount);
-
-    public void setCurrency(String currency);
-
-    public void setBalance(float balance);
-
-    public void setCategory(String category);
-
-    public void setSubCategory(String subCategory);
+    /**
+     *
+     * @param executionDate the date of execution by the bank of the transaction
+     */
+    void setExecutionDate(Date executionDate);
 
     /**
      *
-     * @param createdDate
+     * @param valueDate the date in which the transaction has been physically done
      */
-    public void setCreatedDate(Date createdDate);
+    void setValueDate(Date valueDate);
 
     /**
      *
-     * @param lastUpdate
+     * @param description   the transaction description
      */
-    public void setLastUpdate(Date lastUpdate);
+    void setDescription(String description);
 
     /**
      *
-     * @param version
+     * @param amount    the transaction amount (positive for a credit, negative for a debit)
      */
-    public void setVersion(Long version);
+    void setAmount(BigDecimal amount);
+
+    /**
+     *
+     * @param currency  the currency on which the transaction has been registered by the bank
+     */
+    void setCurrency(String currency);
+
+    /**
+     *
+     * @param balance   the bankAccount balance after the transaction has been done
+     */
+    void setBalance(BigDecimal balance);
+
+    /**
+     *
+     * @param category  the category that group the transaction
+     */
+    void setCategory(String category);
+
+    /**
+     *
+     * @param subCategory   the subcategory that group the transaction
+     */
+    void setSubCategory(String subCategory);
+
+    /**
+     *
+     * @param bankAccount   the bankAccount at which the transaction is linked
+     */
+    void setBankAccount(BankAccountPO bankAccount);
 
 }

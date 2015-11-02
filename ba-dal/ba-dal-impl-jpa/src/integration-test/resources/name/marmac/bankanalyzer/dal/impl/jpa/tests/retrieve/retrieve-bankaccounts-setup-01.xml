@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <BankAccounts pkId="1" bankName="BANQUE CANTONAL VAUDOIS" holderName="Marco Maccio"     iban="001"  openingDate="2012-12-06" createdDate="2015-10-01 10:00:00" lastUpdate="2015-10-01 10:00:00" version="1" user="marcomaccio" />
+  <BankAccounts pkId="2" bankName="BANQUE CANTONAL VAUDOIS" holderName="Catherine Price"  iban="002"  openingDate="2013-02-01" createdDate="2015-10-01 10:00:00" lastUpdate="2015-10-01 10:00:00" version="1" user="marcomaccio" />
+  <BankAccounts pkId="3" bankName="BANQUE CANTONAL VAUDOIS" holderName="Julie Maccio"     iban="003"  openingDate="2013-05-01" createdDate="2015-10-01 10:00:00" lastUpdate="2015-10-01 10:00:00" version="1" user="marcomaccio" />
+</dataset>
