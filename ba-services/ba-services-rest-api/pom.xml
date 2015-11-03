@@ -169,7 +169,7 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>org.apache.cxf</groupId>
+                        <groupId>org.apache.cxf.xjcplugins</groupId>
                         <artifactId>cxf-xjc-dv</artifactId>
                         <version>${cxf-xjc-dv.version}</version>
                     </dependency>

@@ -59,7 +59,7 @@
                         <param name="iban"         type="xsd:string"   style="query" required="false"/>
                         <param name="holdername"   type="xsd:string"   style="query" required="false"/>
                         <param name="openingDate"  type="xsd:string"   style="query" required="false"/>
-                        <param name="createDate"   type="xsd:string"   style="query" required="false"/>
+                        <param name="createdDate"  type="xsd:string"   style="query" required="false"/>
                         <param name="lastUpdate"   type="xsd:string"   style="query" required="false"/>
                     </request>
 
@@ -187,7 +187,14 @@
                     <resource  path="/transactions">
                         <param name="iban" type="xsd:string" style="template" required="true" />
                         <method name="GET" id="getTransactionsByBankAccount">
-
+                            <request>
+                                <param name="limit"         type="xsd:int"      style="query" required="false" />
+                                <param name="executionDate" type="xsd:date"     style="query" required="false"/>
+                                <param name="valueDate"     type="xsd:string"   style="query" required="false"/>
+                                <param name="debit"         type="xsd:decimal"  style="query" required="false"/>
+                                <param name="credit"        type="xsd:decimal"  style="query" required="false"/>
+                                <param name="currency"      type="xsd:string"   style="query" required="false"/>
+                            </request>
                             <response status="200" description="Retireved Successfully a List">
                                 <representation mediaType="application/xml"    element="tracns:transactions"/>
                                 <representation mediaType="application/json"   element="tracns:transactions"/>
