@@ -166,8 +166,8 @@
         <geronimo-transaction.version>2.2.2</geronimo-transaction.version>
         <geronimo-connector.version>2.2.2</geronimo-connector.version>
 
-        <cxf.version>2.7.15</cxf.version>
-        <cxf-xjc-dv.version>2.2.12</cxf-xjc-dv.version>
+        <cxf.version>2.7.17</cxf.version>
+        <cxf-xjc-dv.version>2.7.0</cxf-xjc-dv.version>
         <spring.version>3.2.4.RELEASE</spring.version>
 
         <guava.version>14.0.1</guava.version>
@@ -177,7 +177,7 @@
         <jaxb2-basics-annotate.version>0.6.5</jaxb2-basics-annotate.version>
         
         <codehaus-jackson.version>1.9.13</codehaus-jackson.version>
-        <fasterxml-jackson.version>2.2.2</fasterxml-jackson.version>
+        <fasterxml-jackson.version>2.6.3</fasterxml-jackson.version>
         
         <scala-library.version>2.10.2</scala-library.version>
 
