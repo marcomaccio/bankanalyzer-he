@@ -67,6 +67,7 @@
         <jaxrs:providers>
             <ref bean="jaxbProvider"/>
             <ref bean="jsonjaxbProvider" />
+            <ref bean="searchContextProvider"/>
 
             <ref bean="resourceWriter"/>
             <ref bean="apiWriter"/>
@@ -102,7 +103,8 @@
     <!-- JSON Provider -->
     <bean id="jsonjaxbProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
 
-
+    <!-- -->
+    <bean id="searchContextProvider" class="org.apache.cxf.jaxrs.ext.search.SearchContextProvider"/>
 
 <!-- SWAGGER SPECIFIC CONFIGURATION - START -->
     <bean id="swaggerResourceJSON"  class="com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON" />

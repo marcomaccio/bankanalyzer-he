@@ -14,13 +14,19 @@ import name.marmac.bankanalyzer.model.to.transactions.TransactionsTOType;
 import name.marmac.bankanalyzer.services.rest.server.properties.BankAccountsServicesProperties;
 import name.marmac.tutorials.cxfatwork.services.web.rest.api.customerservice.BankAccountsServices;
 import org.apache.cxf.jaxrs.ext.MessageContext;
+import org.apache.cxf.jaxrs.ext.search.SearchBean;
+import org.apache.cxf.jaxrs.ext.search.SearchCondition;
+import org.apache.cxf.jaxrs.ext.search.SearchContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,11 +40,26 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     private static final Logger LOGGER = LoggerFactory.getLogger(BankAccountsServicesImplJaxrs.class);
 
     private static final String PATH_PARAM_IBAN                 = "iban";
+    private static final String QUERY_PARAM_IBAN                = "iban";
+    private static final String QUERY_PARAM_LIMIT               = "limit";
+    private static final String QUERY_PARAM_HOLDERNAME          = "holderName";
+    private static final String QUERY_PARAM_OPENINGDATE         = "openingDate";
+    private static final String QUERY_PARAM_CREATEDDATE         = "createdDate";
+    private static final String QUERY_PARAM_LASTUPDATE          = "lastUpdate";
+    private static final String QUERY_PARAM_EXECUTIONDATE       = "executionDate";
+    private static final String QUERY_PARAM_VALUEDATE           = "valueDate";
+    private static final String QUERY_PARAM_DEBIT               = "debit";
+    private static final String QUERY_PARAM_CREDIT              = "credit";
+    private static final String QUERY_PARAM_CURRENCY            = "currency";
+
     private static final String ACCESS_CONTROL_ALLOW_ORIGIN_ALL = "*";
 
     //JAX-RS and JAX-WS context
-    @javax.ws.rs.core.Context
-    private MessageContext response                                                                 = null;
+    @Context
+    private MessageContext context = null;
+    @Context
+    private SearchContext  searchContext;
+
     private name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory bankAccountsObjectFactory  = null;
     private name.marmac.bankanalyzer.model.to.transactions.ObjectFactory transactionsObjectFactory  = null;
     private BankAccountsServicesProperties      bankAccountsServicesProperties                      = null;
@@ -112,6 +133,10 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
         this.bankAccountsPersistenceServices = bankAccountsPersistenceServices;
     }
 
+    public void setSearchContext(SearchContext searchContext){
+        this.searchContext = searchContext;
+    }
+
     /** Getters & Setters - END **/
 
     @Override
@@ -126,7 +151,7 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
      * @param iban
      * @param holdername
      * @param openingDate
-     * @param createDate
+     * @param createdDate
      * @param lastUpdate
      * @return
      */
@@ -137,12 +162,12 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     @ApiOperation(value = "Get BankAccounts filtering them by some parameters in AND condition",
             notes = "Retrieve method",
             response = BankAccountsTOType.class)
-    public BankAccountsTOType getBankAccountsByQuery(@QueryParam("limit") Integer limit,
-                                                     @QueryParam("iban") String iban,
-                                                     @QueryParam("holdername") String holdername,
-                                                     @QueryParam("openingDate") String openingDate,
-                                                     @QueryParam("createDate") String createDate,
-                                                     @QueryParam("lastUpdate") String lastUpdate) {
+    public BankAccountsTOType getBankAccountsByQuery(@ApiParam(value = QUERY_PARAM_LIMIT,       required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_LIMIT)          Integer limit,
+                                                     @ApiParam(value = QUERY_PARAM_IBAN,        required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_IBAN)           String iban,
+                                                     @ApiParam(value = QUERY_PARAM_HOLDERNAME,  required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_HOLDERNAME)     String holdername,
+                                                     @ApiParam(value = QUERY_PARAM_OPENINGDATE, required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_OPENINGDATE)    String openingDate,
+                                                     @ApiParam(value = QUERY_PARAM_CREATEDDATE, required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_CREATEDDATE)    String createdDate,
+                                                     @ApiParam(value = QUERY_PARAM_LASTUPDATE,  required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_LASTUPDATE)     String lastUpdate) {
 
         //TODO: Implements the filters query
         BankAccountsTOType bankAccountsTOType = bankAccountsObjectFactory.createBankAccountsTOType();
@@ -182,7 +207,7 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
         BankAccountPO bankAccountPO = bankAccountsPersistenceServices.getBankAccountByNativeId(iban);
         if (bankAccountPO != null) {
             bankAccountTOType = this.convertToBankAccountTOType(bankAccountPO);
-            response.getHttpServletResponse().setHeader("Access-Control-Allow-Origin", ACCESS_CONTROL_ALLOW_ORIGIN_ALL);
+            context.getHttpServletResponse().setHeader("Access-Control-Allow-Origin", ACCESS_CONTROL_ALLOW_ORIGIN_ALL);
         }
         return bankAccountTOType;
     }
@@ -205,9 +230,22 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     @GET
     @Produces({"application/xml", "application/json" })
     @Path("/bankaccounts/{iban}/transactions")
-    public TransactionsTOType getTransactionsByBankAccount(@PathParam("iban") String iban) {
+    @ApiOperation(value = "Get Transactions for a given Bank Account's iban, filtering them by some parameters in AND condition",
+                    notes = "Retrieve method",
+                    response = TransactionsTOType.class)
+    public TransactionsTOType getTransactionsByBankAccount(@ApiParam(value = PATH_PARAM_IBAN,           required = true)                        @PathParam(PATH_PARAM_IBAN)     String iban,
+                                                           @ApiParam(value = QUERY_PARAM_LIMIT,         required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_LIMIT)  Integer limit,
+                                                           @ApiParam(value = QUERY_PARAM_EXECUTIONDATE, required = false, allowMultiple = true) @QueryParam("executionDate") Date executionDate,
+                                                           @ApiParam(value = QUERY_PARAM_VALUEDATE,     required = false, allowMultiple = true) @QueryParam("valueDate") String valueDate,
+                                                           @ApiParam(value = QUERY_PARAM_DEBIT,         required = false, allowMultiple = true) @QueryParam("debit") BigInteger debit,
+                                                           @ApiParam(value = QUERY_PARAM_CREDIT,        required = false, allowMultiple = true) @QueryParam("credit") BigInteger credit,
+                                                           @ApiParam(value = QUERY_PARAM_CURRENCY,      required = false, allowMultiple = true) @QueryParam("currency") String currency) {
         TransactionsTOType transactionsTO = null;
         LOGGER.debug("getTransactionsByBankAccount");
+        //searchContext = context.getContext(SearchContext.class);
+        SearchCondition<SearchBean> sc=searchContext.getCondition(SearchBean.class);
+
+
         List<TransactionPO> transactionsPO = bankAccountsPersistenceServices.getAllTransactionsByBankAccount(iban);
         //Convert the TransactionsPO (list) into TransactionsTO (list)
         transactionsTO = convertToTransactionsTOType(transactionsPO);
