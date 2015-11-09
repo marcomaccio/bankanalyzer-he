@@ -82,7 +82,7 @@ public class ITRetrieveTransactionTest {
                                                 jdbcProperties.getSchemaFileName());
 
         Calendar cal = Calendar.getInstance();
-        cal.set(2012,11,06);
+        cal.set(2012,Calendar.DECEMBER, 6);
 
         String  iban        = "001";
         Date    valueDate   = cal.getTime();
@@ -113,11 +113,14 @@ public class ITRetrieveTransactionTest {
                                                     jdbcProperties.getJdbcUserName()    + ", " +
                                                     jdbcProperties.getSchemaFileName());
         Calendar cal = Calendar.getInstance();
-        cal.set(2012,11,06);
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
+            cal.set(Calendar.YEAR, 2012);
+            cal.set(Calendar.MONTH, Calendar.DECEMBER);
+            cal.set(Calendar.DAY_OF_MONTH,06);
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
+            cal.set(Calendar.MILLISECOND, 0);
+
         String      iban            = "001";
         Date        executionDate   = cal.getTime();
         Date        valueDate       = cal.getTime();

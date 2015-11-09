@@ -39,7 +39,10 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
     /**
      *
      */
-    public Transaction(){}
+    public Transaction(){
+
+    }
+
     /**
      * Public constructor with all parameters
      * @param executionDate the date of execution by the bank of the transaction
@@ -256,8 +259,12 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Transaction that = (Transaction) o;
         return (that.amount.compareTo(amount) == 0) &&
                 Objects.equals(executionDate, that.executionDate) &&
