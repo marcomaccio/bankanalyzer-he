@@ -156,7 +156,7 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
         query.setParameter("iban", bankAccountNativeId);
         List<TransactionPO> transactionsList = query.getResultList();
 
-        LOGGER.debug(OBJECT_FOUND_MESSAGELOG + transactionsList.size() + " transactions");
+        LOGGER.debug(OBJECT_FOUND_MESSAGELOG + transactionsList.size());
         return transactionsList;
     }
 
@@ -169,7 +169,7 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
     @Override
     public List<TransactionPO> getAllTransactionsByBankAccountAndValueDate(String iban, Date valueDate){
         LOGGER.debug("Method getTransactionByNativeId has been called ");
-        TransactionPO transactionPO = null;
+
         Query query = entityManager.createNamedQuery("Transactions.findAllByBankAccountAndValueDate", Transaction.class);
         query.setParameter("valueDate",     valueDate);
         query.setParameter("iban",          iban);

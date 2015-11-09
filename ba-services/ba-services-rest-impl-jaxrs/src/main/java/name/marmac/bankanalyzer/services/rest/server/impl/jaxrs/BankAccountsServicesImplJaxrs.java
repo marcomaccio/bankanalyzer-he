@@ -170,12 +170,12 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
                                                      @ApiParam(value = QUERY_PARAM_LASTUPDATE,  required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_LASTUPDATE)     String lastUpdate) {
 
         //TODO: Implements the filters query
-        BankAccountsTOType bankAccountsTOType = bankAccountsObjectFactory.createBankAccountsTOType();
+
         //Retrieve the bankaccount from the Persistence Layer
         List<BankAccountPO> bankAccountPOList = bankAccountsPersistenceServices.getAllBankAccounts();
         //Convert the Persistence Object to the TransferObject
-        bankAccountsTOType = convertToBankAccountsTOType(bankAccountPOList);
-        return bankAccountsTOType;
+
+        return convertToBankAccountsTOType(bankAccountPOList);
     }
 
     @Override
@@ -240,15 +240,14 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
                                                            @ApiParam(value = QUERY_PARAM_DEBIT,         required = false, allowMultiple = true) @QueryParam("debit") BigInteger debit,
                                                            @ApiParam(value = QUERY_PARAM_CREDIT,        required = false, allowMultiple = true) @QueryParam("credit") BigInteger credit,
                                                            @ApiParam(value = QUERY_PARAM_CURRENCY,      required = false, allowMultiple = true) @QueryParam("currency") String currency) {
-        TransactionsTOType transactionsTO = null;
-        LOGGER.debug("getTransactionsByBankAccount");
-        //searchContext = context.getContext(SearchContext.class);
-        SearchCondition<SearchBean> sc=searchContext.getCondition(SearchBean.class);
 
+        LOGGER.debug("getTransactionsByBankAccount");
+        SearchCondition<SearchBean> sc = searchContext.getCondition(SearchBean.class);
+        LOGGER.debug(sc.toString());
 
         List<TransactionPO> transactionsPO = bankAccountsPersistenceServices.getAllTransactionsByBankAccount(iban);
         //Convert the TransactionsPO (list) into TransactionsTO (list)
-        transactionsTO = convertToTransactionsTOType(transactionsPO);
+        TransactionsTOType transactionsTO = convertToTransactionsTOType(transactionsPO);
         LOGGER.debug("returning " + transactionsTO.getTransactions().size() + " transactions");
         return transactionsTO;
     }
