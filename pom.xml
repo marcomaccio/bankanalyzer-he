@@ -201,6 +201,7 @@
 
         
         <sonar-maven-plugin.version>2.6</sonar-maven-plugin.version>
+        <cucumber.version>1.2.4</cucumber.version>
 
         <mysql-connector-java.version>5.1.18</mysql-connector-java.version>
         <hsqldb.version>2.3.3</hsqldb.version>
@@ -540,6 +541,24 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.3.5</version>
+                <configuration>
+                    <imageName>example</imageName>
+                    <dockerDirectory>src/main/resources/docker</dockerDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>

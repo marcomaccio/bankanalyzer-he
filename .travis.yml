@@ -1,8 +1,13 @@
 language: java
-sudo: false
+sudo: required
 install: true
+
 jdk:
 - oraclejdk7
+
+services:
+  - docker
+
 script:
 - mvn clean install -B -e -V -Plocal-depl-j2se-hsqldb
 
