@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>ba-services-rest-impl-jaxrs</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>BA :: BANK ANALYZER HE :: SERVICES :: REST IMPL JAXRS</name>
     <description></description>
@@ -450,10 +450,23 @@
             <artifactId>jrobin</artifactId>
             <version>1.5.9</version>
         </dependency>
+
+        <!-- TESTING FRAMEWORKS: Cucumber for U.A. - START -->
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- TESTING FRAMEWORKS: Cucumber for U.A. - END -->
+
         <!-- EXTERNAL PROJECT DEPENDENCIES - END -->
-
-
-
     </dependencies>
 
     <reporting>
