@@ -1,0 +1,12 @@
+<settings>
+    <servers>
+        <server>
+            <id>docker-hub</id>
+            <username>${env.DOCKERHUB_USER}</username>
+            <password>${env.DOCKERHUB_PASSWORD}</password>
+            <configuration>
+                <email>${env.DOCKERHUB_EMAIL}</email>
+            </configuration>
+        </server>
+    </servers>
+</settings>

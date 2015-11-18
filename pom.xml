@@ -548,15 +548,27 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.3.5</version>
                 <configuration>
-                    <imageName>example</imageName>
+                    <imageName>bankanalyzer-he</imageName>
                     <dockerDirectory>src/main/resources/docker</dockerDirectory>
+                    <serverId>docker-hub</serverId>
                 </configuration>
                 <executions>
                     <execution>
+                        <id>build-image</id>
                         <phase>package</phase>
                         <goals>
                             <goal>build</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>tag-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <image>bankanalyzer-he</image>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
