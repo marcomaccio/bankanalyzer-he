@@ -10,7 +10,7 @@ services:
 - docker
 
 script:
-- mvn clean install -DskipTests=true -e -Plocal-depl-j2se-hsqldb --settings settings-travis.xml -Dsettings.security=settings-security.xml
+- mvn clean install -DskipTests -e -Plocal-depl-j2se-hsqldb --settings settings-travis.xml -Dsettings.security=settings-security.xml
 
 after_success:
 - mvn docker:build -DpushImage
