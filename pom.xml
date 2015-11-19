@@ -543,6 +543,7 @@
                 <artifactId>versions-maven-plugin</artifactId>
             </plugin>
 
+            <!--
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
@@ -563,6 +564,7 @@
 
                 </executions>
             </plugin>
+            -->
 
         </plugins>
     </build>
