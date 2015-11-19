@@ -560,16 +560,7 @@
                             <goal>build</goal>
                         </goals>
                     </execution>
-                    <execution>
-                        <id>tag-image</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>tag</goal>
-                        </goals>
-                        <configuration>
-                            <image>bankanalyzer-he</image>
-                        </configuration>
-                    </execution>
+
                 </executions>
             </plugin>
 
