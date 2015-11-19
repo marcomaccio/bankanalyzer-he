@@ -26,7 +26,7 @@ RUN useradd jetty && \
     rm -rf /opt/jetty/webapps.demo
 
 # Copies the BankAnalyzer-HE WAR
-COPY ba-services/ba-services-rest-impl-jaxrs/target/ba-services-rest-impl-jaxrs-${BA_VERSION}.war /opt/jetty/webapps/
+COPY ../../../../ba-services/ba-services-rest-impl-jaxrs/target/ba-services-rest-impl-jaxrs-${BA_VERSION}.war /opt/jetty/webapps/
 
 # Set defaults for docker run
 WORKDIR /opt/jetty

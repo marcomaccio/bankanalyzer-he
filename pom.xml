@@ -594,7 +594,6 @@
             <artifactId>maven-fluido-skin</artifactId>
             <version>1.4</version>
         </dependency>
-
     </dependencies>
 
     <!-- DEPENDENCIES SECTION - END -->
