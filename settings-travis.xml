@@ -9,4 +9,52 @@
             </configuration>
         </server>
     </servers>
+
+    <mirrors>
+
+        <!--This sends everything else to /public -->
+        <!--2013-03-20 MARMAC NEXUS REPO  -->
+        <mirror>
+            <id>marmac-m2</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://rms.maccio-ch.homelinux.net/nexus/content/groups/mm-m2-public/</url>
+        </mirror>
+
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>marmac-nexus</id>
+
+            <repositories>
+                <repository>
+                    <id>central</id>
+                        <url>http://central</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>http://central</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>marmac-nexus</activeProfile>
+    </activeProfiles>
+
 </settings>
