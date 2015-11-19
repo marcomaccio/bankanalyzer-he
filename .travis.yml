@@ -13,7 +13,7 @@ script:
 - mvn clean install -e -Plocal-depl-j2se-hsqldb --settings settings-travis.xml -Dsettings.security=settings-security.xml
 
 after_success:
-- docker build -t marcomaccio/bankanalyzer-he src/main/resources/docker/
+- mvn docker:build -DpushImage
 
 cache:
   directories:
