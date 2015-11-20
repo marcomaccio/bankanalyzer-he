@@ -248,11 +248,23 @@
         <!-- Overwrite from Parent Pom  -->
         <changelog.fileUri>${changelog.github.fileUri}</changelog.fileUri>
         <changelog.revision.fileUri>${changelog.revision.github.fileUri}</changelog.revision.fileUri>
+
+        <BA_VERSION>${project.version}</BA_VERSION>
     </properties>
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <defaultGoal>install</defaultGoal>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                  <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
 
         <extensions>
             <extension>
