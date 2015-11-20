@@ -206,7 +206,7 @@
         <skip.integration.tests>true</skip.integration.tests>
         <skip.unit.tests>false</skip.unit.tests>
         <!-- for JDK 1.7 -->
-        <javadoc-additionalparam>-views -all</javadoc-additionalparam>
+        <javadoc-additionalparam/>
         <javadoc-report-additionalparam>-views -all</javadoc-report-additionalparam>
 
         <!-- for JDK 1.8: add at the command line
