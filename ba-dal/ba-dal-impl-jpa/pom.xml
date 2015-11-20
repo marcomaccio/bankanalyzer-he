@@ -165,6 +165,7 @@
 
                 <!-- JDBC Driver dependency-->
                 <dependencies>
+
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
@@ -177,6 +178,11 @@
                         <version>${hsqldb.version}</version>
                     </dependency>
 
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                    </dependency>
                 </dependencies>
 
                 <!-- Common Configuration  -->
@@ -312,7 +318,12 @@
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>${hsqldb.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
         </dependency>
 
         <dependency>
