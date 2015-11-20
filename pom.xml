@@ -438,7 +438,8 @@
                     <skipTests>${skip.unit.tests}</skipTests>
                     <!-- Excludes integration tests when unit tests are run. -->
                     <excludes>
-                        <exclude>**/e2e/*.java</exclude>
+                        <exclude>**/it/*.java</exclude>
+                        <exclude>**/ua/*.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>

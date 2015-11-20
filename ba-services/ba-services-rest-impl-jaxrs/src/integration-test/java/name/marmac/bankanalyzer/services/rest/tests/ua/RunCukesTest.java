@@ -1,4 +1,4 @@
-package name.marmac.bankanalyzer.services.rest.tests.ut;
+package name.marmac.bankanalyzer.services.rest.tests.ua;
 
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
