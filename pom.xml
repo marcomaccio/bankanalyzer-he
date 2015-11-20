@@ -116,8 +116,8 @@
 
 
     <properties>
-        <source.java.compliancy.version>1.7</source.java.compliancy.version>
-        <target.java.compliancy.version>1.7</target.java.compliancy.version>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
 
         <!-- MAVEN PLUGINS VERSIONS -->
         <wagon-webdav-jackrabbit.version>2.4</wagon-webdav-jackrabbit.version>
@@ -296,8 +296,10 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${source.java.compliancy.version}</source>
-                    <target>${target.java.compliancy.version}</target>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
 
