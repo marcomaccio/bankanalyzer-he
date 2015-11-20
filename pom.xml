@@ -205,7 +205,14 @@
         <jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.ut.execution.data.file>
         <skip.integration.tests>true</skip.integration.tests>
         <skip.unit.tests>false</skip.unit.tests>
+        <!-- for JDK 1.7 -->
+        <javadoc-additionalparam>-views -all</javadoc-additionalparam>
+        <javadoc-report-additionalparam>-views -all</javadoc-report-additionalparam>
 
+        <!-- for JDK 1.8: add at the command line
+            -Djavadoc-additionalparam=-Xdoclint:none
+            -Djavadoc-report-additionalparam=-Xdoclint:none
+        -->
         
         <sonar-maven-plugin.version>2.6</sonar-maven-plugin.version>
         <cucumber.version>1.2.4</cucumber.version>
@@ -531,7 +538,7 @@
                     <aggregate>true</aggregate>
                     <show>private</show>
                     <show>public</show>
-                    <additionalparam>-Xdoclint:none</additionalparam>
+                    <additionalparam>${javadoc-additionalparam}</additionalparam>
                 </configuration>
                 <executions>
                     <execution>
@@ -652,7 +659,7 @@
                         <version>${umlgraph.version}</version>
                     </docletArtifact>
 
-                    <additionalparam>-Xdoclint:none</additionalparam>
+                    <additionalparam>${javadoc-report-additionalparam}</additionalparam>
                     <useStandardDocletOptions>true</useStandardDocletOptions>
                     <failOnError>false</failOnError>
                 </configuration>
