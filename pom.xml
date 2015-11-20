@@ -821,7 +821,7 @@
         <profile>
             <id>local-depl-j2se-h2</id>
             <properties>
-                <application.log.level>DEBUG</application.log.level>
+                <application.log.level>INFO</application.log.level>
                 <!-- SERVICE LAYER PROPERTIES -->
                 <deployment.host>localhost</deployment.host>
                 <deployment.port>9191</deployment.port>
