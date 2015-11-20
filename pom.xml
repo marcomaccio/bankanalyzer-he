@@ -531,7 +531,7 @@
                     <aggregate>true</aggregate>
                     <show>private</show>
                     <show>public</show>
-                    <additionalparam>-views -all -Xdoclint:none</additionalparam>
+                    <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
                 <executions>
                     <execution>
@@ -652,7 +652,7 @@
                         <version>${umlgraph.version}</version>
                     </docletArtifact>
 
-                    <additionalparam>-views -all -Xdoclint:none</additionalparam>
+                    <additionalparam>-Xdoclint:none</additionalparam>
                     <useStandardDocletOptions>true</useStandardDocletOptions>
                     <failOnError>false</failOnError>
                 </configuration>
