@@ -16,7 +16,7 @@
     <url>http://marcomaccio.github.io/bankanalyzer-he</url>
 
     <prerequisites>
-        <maven>3.1.0</maven>
+        <maven>3.2.0</maven>
     </prerequisites>
 
     <inceptionYear>2015</inceptionYear>
@@ -26,10 +26,20 @@
         <url>http://www.marmac.name</url>
     </organization>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
     <developers>
         <developer>
             <id>marcomaccio</id>
             <name>Marco Maccio</name>
+            <email>marcus.maccio@gmail.com</email>
             <roles>
                 <role>System Architect</role>
                 <role>Software Designer</role>
@@ -106,36 +116,34 @@
 
 
     <properties>
-        <source.java.compliancy.version>1.7</source.java.compliancy.version>
-        <target.java.compliancy.version>1.7</target.java.compliancy.version>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
 
         <!-- MAVEN PLUGINS VERSIONS -->
         <wagon-webdav-jackrabbit.version>2.4</wagon-webdav-jackrabbit.version>
 
-        <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <maven-clean-plugin.version>2.6</maven-clean-plugin.version>
         <maven-install-plugin.version>2.5</maven-install-plugin.version>
         <maven-deploy-plugin.version>2.8</maven-deploy-plugin.version>
-        <maven-release-plugin.version>2.4.1</maven-release-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
-        <maven-dependency-plugin.version>2.7</maven-dependency-plugin.version>
+        <maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
         <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
         <maven-site-plugin.version>3.4</maven-site-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
-        <maven-scm-plugin.version>1.9.2</maven-scm-plugin.version>
+        <maven-scm-plugin.version>1.9.4</maven-scm-plugin.version>
         <maven-scm-providers-jgit.version>1.9.2</maven-scm-providers-jgit.version>
         <maven-scm-publish-plugin.version>1.1</maven-scm-publish-plugin.version>
-        <maven-graph-plugin.version>1.10</maven-graph-plugin.version>
-        <maven-dependency-plugin.version>2.7</maven-dependency-plugin.version>
-
+        <graph-maven-plugin.version>1.2.3</graph-maven-plugin.version>
 
         <maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
         <maven-project-info-reports-plugin.version>2.7</maven-project-info-reports-plugin.version>
-        <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
-        <maven-surefire-report-plugin.version>2.16</maven-surefire-report-plugin.version>
-        <maven-failsafe-plugin.version>2.15</maven-failsafe-plugin.version>
+        <maven-surefire-plugin.version>2.19</maven-surefire-plugin.version>
+        <maven-surefire-report-plugin.version>2.19</maven-surefire-report-plugin.version>
+        <maven-failsafe-plugin.version>2.19</maven-failsafe-plugin.version>
 
-        <maven-jaxb2-plugin.version>0.8.3</maven-jaxb2-plugin.version>
+        <maven-jaxb2-plugin.version>0.12.3</maven-jaxb2-plugin.version>
         <maven-bundle-plugin.version>2.4.0</maven-bundle-plugin.version>
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
         <maven-war-plugin.version>2.4</maven-war-plugin.version>
@@ -145,11 +153,10 @@
         <maven-pmd-plugin.version>3.2</maven-pmd-plugin.version>
         <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
         <site-maven-plugin.version>0.12</site-maven-plugin.version>
-        <license-maven-plugin.version>1.7</license-maven-plugin.version>
+        <license-maven-plugin.version>1.8</license-maven-plugin.version>
 
         <umlgraph.version>5.6.6</umlgraph.version>
 
-        <buildnumber-maven-plugin.version>1.3</buildnumber-maven-plugin.version>
         <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
         <features-maven-plugin.version>2.3.3</features-maven-plugin.version>
         <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
@@ -184,8 +191,8 @@
         <javaee-web-api.version>7.0</javaee-web-api.version>
         <swagger-jaxrs.version>1.3.12</swagger-jaxrs.version>
 
-        <slf4j.version>1.7.0</slf4j.version>
-        <slf4j-log4j12.version>1.7.6</slf4j-log4j12.version>
+        <slf4j.version>1.7.13</slf4j.version>
+        <slf4j-log4j12.version>1.7.13</slf4j-log4j12.version>
         <log4j.version>1.2.17</log4j.version>
         <logback.version>1.0.13</logback.version>
 
@@ -198,12 +205,21 @@
         <jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.ut.execution.data.file>
         <skip.integration.tests>true</skip.integration.tests>
         <skip.unit.tests>false</skip.unit.tests>
+        <!-- for JDK 1.7 -->
+        <javadoc-additionalparam/>
+        <javadoc-report-additionalparam>-views -all</javadoc-report-additionalparam>
 
+        <!-- for JDK 1.8: add at the command line
+            -Djavadoc-additionalparam=-Xdoclint:none
+            -Djavadoc-report-additionalparam=-Xdoclint:none
+        -->
         
         <sonar-maven-plugin.version>2.6</sonar-maven-plugin.version>
+        <cucumber.version>1.2.4</cucumber.version>
 
         <mysql-connector-java.version>5.1.18</mysql-connector-java.version>
         <hsqldb.version>2.3.3</hsqldb.version>
+        <h2.version>1.4.190</h2.version>
         <spring-test-dbunit.version>1.2.1</spring-test-dbunit.version>
 
         <!--
@@ -239,11 +255,23 @@
         <!-- Overwrite from Parent Pom  -->
         <changelog.fileUri>${changelog.github.fileUri}</changelog.fileUri>
         <changelog.revision.fileUri>${changelog.revision.github.fileUri}</changelog.revision.fileUri>
+
+        <BA_VERSION>${project.version}</BA_VERSION>
     </properties>
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <defaultGoal>install</defaultGoal>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                  <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
 
         <extensions>
             <extension>
@@ -275,8 +303,10 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${source.java.compliancy.version}</source>
-                    <target>${target.java.compliancy.version}</target>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
 
@@ -415,7 +445,8 @@
                     <skipTests>${skip.unit.tests}</skipTests>
                     <!-- Excludes integration tests when unit tests are run. -->
                     <excludes>
-                        <exclude>**/e2e/*.java</exclude>
+                        <exclude>**/it/*.java</exclude>
+                        <exclude>**/ua/*.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>
@@ -474,9 +505,9 @@
             </plugin>
 
             <plugin>
-                <groupId>org.fusesource.mvnplugins</groupId>
-                <artifactId>maven-graph-plugin</artifactId>
-                <version>${maven-graph-plugin.version}</version>
+                <groupId>org.kuali.maven.plugins</groupId>
+                <artifactId>graph-maven-plugin</artifactId>
+                <version>${graph-maven-plugin.version}</version>
             </plugin>
 
             <plugin>
@@ -503,6 +534,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <show>private</show>
+                    <show>public</show>
+                    <additionalparam>${javadoc-additionalparam}</additionalparam>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -542,6 +579,31 @@
                 <artifactId>versions-maven-plugin</artifactId>
             </plugin>
 
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.3.6</version>
+                <configuration>
+                    <imageName>bankanalyzer-he</imageName>
+                    <dockerDirectory>src/main/resources/docker</dockerDirectory>
+                    <serverId>docker-hub</serverId>
+                </configuration>
+                <!--
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+
+                </executions>
+                -->
+            </plugin>
+
+
         </plugins>
     </build>
 
@@ -570,7 +632,6 @@
             <artifactId>maven-fluido-skin</artifactId>
             <version>1.4</version>
         </dependency>
-
     </dependencies>
 
     <!-- DEPENDENCIES SECTION - END -->
@@ -598,7 +659,7 @@
                         <version>${umlgraph.version}</version>
                     </docletArtifact>
 
-                    <additionalparam>-views -all</additionalparam>
+                    <additionalparam>${javadoc-report-additionalparam}</additionalparam>
                     <useStandardDocletOptions>true</useStandardDocletOptions>
                     <failOnError>false</failOnError>
                 </configuration>
@@ -636,18 +697,42 @@
                 <version>${maven-surefire-report-plugin.version}</version>
             </plugin>
 
-            <!-- Changes Report Plugin
+            <!-- Changes Report Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changes-plugin</artifactId>
                 <version>${maven-changes-plugin.version}</version>
+                <reportSets>
+                  <reportSet>
+                    <reports>
+                      <report>github-report</report>
+                    </reports>
+                  </reportSet>
+                </reportSets>
+                <configuration>
+                    <smtpHost>smtp.gmail.com</smtpHost>
+                    <smtpPort implementation="java.lang.Integer">465</smtpPort>
+                    <toAddresses>
+                        <toAddress implementation="java.lang.String">marcus.maccio@gmail.com</toAddress>
+                    </toAddresses>
+                    <issueTypes>
+                        <add>Story</add>
+                        <fix>Defect, Malfunction</fix>
+                    </issueTypes>
+                    <issueManagementSystems>
+                        <issueManagementSystem>GitHub</issueManagementSystem>
+                    </issueManagementSystems>
+                </configuration>
+
+                <!--
                 <configuration>
                     <githubAPIScheme>https</githubAPIScheme>
                     <githubAPIPort>443</githubAPIPort>
                     <includeOpenIssues>false</includeOpenIssues>
                 </configuration>
+                -->
             </plugin>
-            -->
+
 
               <!-- ChangeLog Report Plugin -->
               <plugin>
@@ -700,6 +785,12 @@
                 <version>${sonar-maven-plugin.version}</version>
             </plugin>
 
+            <plugin>
+                <groupId>org.kuali.maven.plugins</groupId>
+                <artifactId>graph-maven-plugin</artifactId>
+                <version>${graph-maven-plugin.version}</version>
+            </plugin>
+
         </plugins>
 
     </reporting>
@@ -749,6 +840,38 @@
                 <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
                 <deployment.dataTypeFactory>org.dbunit.ext.mysql.MySqlDataTypeFactory</deployment.dataTypeFactory>
                 <deployment.metadataHandler>org.dbunit.ext.mysql.MySqlMetadataHandler</deployment.metadataHandler>
+
+                <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
+                <liquibase.contexts>integration-test</liquibase.contexts>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>local-depl-j2se-h2</id>
+            <properties>
+                <application.log.level>INFO</application.log.level>
+                <!-- SERVICE LAYER PROPERTIES -->
+                <deployment.host>localhost</deployment.host>
+                <deployment.port>9191</deployment.port>
+                <deployment.webContext/>
+                <deployment.servletContext>/cxf</deployment.servletContext>
+                <deployment.servicePath>/api</deployment.servicePath>
+                <deployment.serviceVersion>/v1</deployment.serviceVersion>
+                <deployment.serviceInterface>/bankaccountsservices</deployment.serviceInterface>
+                <deployment.resourcePath>/bankaccounts</deployment.resourcePath>
+
+                <!-- DATA ACCESS LAYER PROPERTIES -->
+                <deployment.jdbcDriverName>org.h2.Driver</deployment.jdbcDriverName>
+                <deployment.jdbcUrl>jdbc:h2:file:${project.build.directory}/data/bankanalyzer</deployment.jdbcUrl>
+                <deployment.jdbcUserName>sa</deployment.jdbcUserName>
+                <deployment.jdbcPassword/>
+                <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
+                <deployment.schemaFileName>src/integration-test/data/schema-mysql.sql</deployment.schemaFileName>
+
+                <deployment.ddl-generation>create-tables</deployment.ddl-generation>
+                <deployment.createSchemaFilename>mysql-create-tables.sql</deployment.createSchemaFilename>
+                <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
+                <deployment.dataTypeFactory>org.dbunit.ext.h2.H2DataTypeFactory</deployment.dataTypeFactory>
 
                 <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
                 <liquibase.contexts>integration-test</liquibase.contexts>

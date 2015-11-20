@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+    http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- Load CXF modules from cxf.jar -->
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+    <!-- PropertyPlaceholderConfigurer -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:rest-client-integrationtest.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+    </bean>
+
+    <!-- bean that maps the Endpoint's Properties of the file rest-client-*.properties  -->
+    <bean id="clientProperties"
+          class="name.marmac.bankanalyzer.services.rest.client.properties.BankAnalyzerClientProperties" >
+
+        <property name="host"               value="${host}" />
+        <property name="port"               value="${port}" />
+        <property name="servletContext"     value="${servletContext}" />
+        <property name="servicePath"        value="${servicePath}" />
+        <property name="serviceVersion"     value="${serviceVersion}" />
+        <property name="serviceInterface"   value="${serviceInterface}" />
+        <property name="resourcePath"       value="${resourcePath}" />
+
+    </bean>
+
+    <!-- XML Provider with JAXB2 -->
+    <bean id="jaxbProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider">
+        <property name="marshallAsJaxbElement" value="true"/>
+    </bean>
+
+    <!-- JSON Provider -->
+    <bean id="jsonjaxbProvider"
+            class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
+
+    <!--  REST Service Client definitions
+        address="http://${deployment.host}:${deployment.port}${deployment.servletContext}${deployment.servicePath}${deployment.serviceVersion}${deployment.serviceInterface}"
+    -->
+    <jaxrs:client id="webClient"
+        address="http://${deployment.host}:${deployment.port}${deployment.servletContext}${deployment.servicePath}${deployment.serviceVersion}${deployment.serviceInterface}"
+        serviceClass="org.apache.cxf.jaxrs.client.WebClient" >
+
+        <jaxrs:schemaLocations>
+            <jaxrs:schemaLocation>classpath:xsd/bankaccounts.xsd</jaxrs:schemaLocation>
+            <jaxrs:schemaLocation>classpath:xsd/transactions.xsd</jaxrs:schemaLocation>
+        </jaxrs:schemaLocations>
+
+        <jaxrs:providers>
+            <ref bean="jaxbProvider" />
+            <ref bean="jsonjaxbProvider" />
+        </jaxrs:providers>
+    </jaxrs:client>
+
+
+    <!-- Transfer Objects (TO) ObjectFactory  -->
+    <bean id="bankAccountsObjectFactory"
+          class="name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory"/>
+
+    <bean id="transactionsObjectFactory"
+              class="name.marmac.bankanalyzer.model.to.transactions.ObjectFactory"/>
+
+    <!-- BankAnalyzerWebClient-->
+    <bean id="bankAnalyzerWebClient"
+            class="name.marmac.bankanalyzer.services.rest.client.webclient.BankAnalyzerWebClient">
+        <property name="webClient"      ref="webClient"   />
+
+        <property name="bankAccountsObjectFactory"  ref="bankAccountsObjectFactory"/>
+        <property name="transactionsObjectFactory"  ref="transactionsObjectFactory"/>
+
+    </bean>
+
+
+
+
+</beans>
+
