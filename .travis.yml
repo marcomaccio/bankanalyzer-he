@@ -10,7 +10,7 @@ services:
 - docker
 
 script:
-- mvn -Plocal-depl-j2se-h2 -B clean install --settings settings-travis.xml -Dsettings.security=settings-security.xml
+- mvn -B -e -Plocal-depl-j2se-h2 clean install --settings settings-travis.xml -Dsettings.security=settings-security.xml
 
 after_success:
 - mvn docker:build -DpushImage
