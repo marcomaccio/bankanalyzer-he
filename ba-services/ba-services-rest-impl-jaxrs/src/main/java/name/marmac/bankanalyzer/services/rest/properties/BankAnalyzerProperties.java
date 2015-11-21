@@ -89,7 +89,9 @@ public class BankAnalyzerProperties {
      *
      * @param serviceVersion
      */
-    public void setServiceVersion(String serviceVersion) { this.serviceVersion = serviceVersion; }
+    public void setServiceVersion(String serviceVersion) {
+        this.serviceVersion = serviceVersion;
+    }
 
     /**
      *

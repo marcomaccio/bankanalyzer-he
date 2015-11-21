@@ -169,7 +169,6 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
                                                      @ApiParam(value = QUERY_PARAM_CREATEDDATE, required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_CREATEDDATE)    String createdDate,
                                                      @ApiParam(value = QUERY_PARAM_LASTUPDATE,  required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_LASTUPDATE)     String lastUpdate) {
 
-        //TODO: Implements the filters query
 
         //Retrieve the bankaccount from the Persistence Layer
         List<BankAccountPO> bankAccountPOList = bankAccountsPersistenceServices.getAllBankAccounts();
