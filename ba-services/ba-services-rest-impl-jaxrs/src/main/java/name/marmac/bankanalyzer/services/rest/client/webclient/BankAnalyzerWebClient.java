@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +19,7 @@ import java.util.Map;
  */
 public class BankAnalyzerWebClient {
 
-    public static final transient Logger LOGGER = LoggerFactory.getLogger(BankAnalyzerWebClient.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(BankAnalyzerWebClient.class);
 
     private WebClient                                                       mWebClient;
     private name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory    mBankAccountsObjectFactory;
@@ -73,7 +76,14 @@ public class BankAnalyzerWebClient {
         BankAccountTOType bankAccountTOType = mBankAccountsObjectFactory.createBankAccountTOType();
         bankAccountTOType.setHoldername(holderName);
         bankAccountTOType.setIBAN(iban);
-        //bankAccountTOType.setOpeningDate(openingDate);
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            cal.setTime(simpleDateFormat.parse(openingDate));
+        } catch (ParseException pe) {
+            LOGGER.error(pe.getMessage());
+        }
+        bankAccountTOType.setOpeningDate(cal);
 
         //call the cxf web client
         WebClient.getConfig(mWebClient).getHttpConduit().getClient().setReceiveTimeout(10000000);

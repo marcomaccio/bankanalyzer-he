@@ -81,8 +81,8 @@
     <bean id="transactionsObjectFactory"
               class="name.marmac.bankanalyzer.model.to.transactions.ObjectFactory"/>
 
-    <bean id="bankAccountsServicesProperties"
-          class="name.marmac.bankanalyzer.services.rest.server.properties.BankAccountsServicesProperties" />
+    <bean id="bankAnalyzerProperties"
+          class="name.marmac.bankanalyzer.services.rest.properties.BankAnalyzerProperties" />
 
     <!-- REST API IMPL - JAXRS  -->
     <bean id="bankAccountsServices"
@@ -90,7 +90,7 @@
 
         <property name="bankAccountsObjectFactory"          ref="bankAccountsObjectFactory"/>
         <property name="transactionsObjectFactory"          ref="transactionsObjectFactory"/>
-        <property name="bankAccountsServicesProperties"     ref="bankAccountsServicesProperties" />
+        <property name="bankAnalyzerProperties"             ref="bankAnalyzerProperties" />
         <property name="bankAccountsPersistenceServices"    ref="bankAccountsPersistenceServices"/>
 
     </bean>

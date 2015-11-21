@@ -30,7 +30,7 @@
 
     <!-- bean that maps the Endpoint's Properties of the file rest-client-*.properties  -->
     <bean id="clientProperties"
-          class="name.marmac.bankanalyzer.services.rest.client.properties.BankAnalyzerClientProperties" >
+          class="name.marmac.bankanalyzer.services.rest.properties.BankAnalyzerProperties" >
 
         <property name="host"               value="${host}" />
         <property name="port"               value="${port}" />

@@ -1,25 +1,21 @@
-package name.marmac.bankanalyzer.services.rest.server.properties;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package name.marmac.bankanalyzer.services.rest.properties;
 
 /**
- * Created by marcomaccio on 10/09/2015.
+ * Created by marcomaccio on 07/11/2014.
  */
-public class BankAccountsServicesProperties {
+public class BankAnalyzerProperties {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BankAccountsServicesProperties.class);
+    private String host;
+    private String port;
+    private String servletContext;
+    private String servicePath;
+    private String serviceVersion;
+    private String serviceInterface;
+    private String resourcePath;
 
-    private String host             = null;
-    private String port             = null;
-    private String servletContext   = null;
-    private String servicePath      = null;
-    private String serviceVersion   = null;
-    private String serviceInterface = null;
-    private String resourcePath     = null;
-
-    /*
-
+    /**
+     *
+     * @return
      */
     public String getHost() {
         return host;
@@ -135,17 +131,7 @@ public class BankAccountsServicesProperties {
      */
     @Override
     public String toString() {
-        LOGGER.debug("BankAccountsServicesProperties{" +
-                        "host='" + host + '\'' +
-                        ", port='" + port + '\'' +
-                        ", servletContext='" + servletContext + '\'' +
-                        ", servicePath='" + servicePath + '\'' +
-                        ", serviceVersion='" + serviceVersion + '\'' +
-                        ", serviceInterface='" + serviceInterface + '\'' +
-                        ", resourcePath='" + resourcePath + '\'' +
-                        '}');
-
-        return "BankAccountsServicesProperties{" +
+        return "CustomerProvisioningClientProperties{" +
                 "host='" + host + '\'' +
                 ", port='" + port + '\'' +
                 ", servletContext='" + servletContext + '\'' +
@@ -155,5 +141,4 @@ public class BankAccountsServicesProperties {
                 ", resourcePath='" + resourcePath + '\'' +
                 '}';
     }
-
 }

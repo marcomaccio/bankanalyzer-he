@@ -11,7 +11,7 @@ import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountsTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory;
 import name.marmac.bankanalyzer.model.to.transactions.TransactionTOType;
 import name.marmac.bankanalyzer.model.to.transactions.TransactionsTOType;
-import name.marmac.bankanalyzer.services.rest.server.properties.BankAccountsServicesProperties;
+import name.marmac.bankanalyzer.services.rest.properties.BankAnalyzerProperties;
 import name.marmac.tutorials.cxfatwork.services.web.rest.api.customerservice.BankAccountsServices;
 import org.apache.cxf.jaxrs.ext.MessageContext;
 import org.apache.cxf.jaxrs.ext.search.SearchBean;
@@ -60,10 +60,10 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     @Context
     private SearchContext  searchContext;
 
-    private name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory bankAccountsObjectFactory  = null;
-    private name.marmac.bankanalyzer.model.to.transactions.ObjectFactory transactionsObjectFactory  = null;
-    private BankAccountsServicesProperties      bankAccountsServicesProperties                      = null;
-    private BankAccountsPersistenceServices     bankAccountsPersistenceServices                     = null;
+    private name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory bankAccountsObjectFactory;
+    private name.marmac.bankanalyzer.model.to.transactions.ObjectFactory transactionsObjectFactory;
+    private BankAnalyzerProperties              bankAnalyzerProperties;
+    private BankAccountsPersistenceServices     bankAccountsPersistenceServices;
 
     /**
      *
@@ -105,16 +105,16 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
      *
      * @return
      */
-    public BankAccountsServicesProperties getBankAccountsServicesProperties() {
-        return bankAccountsServicesProperties;
+    public BankAnalyzerProperties getBankAnalyzerProperties() {
+        return bankAnalyzerProperties;
     }
 
     /**
      *
-     * @param bankAccountsServicesProperties
+     * @param bankAnalyzerProperties
      */
-    public void setBankAccountsServicesProperties(BankAccountsServicesProperties bankAccountsServicesProperties) {
-        this.bankAccountsServicesProperties = bankAccountsServicesProperties;
+    public void setBankAnalyzerProperties(BankAnalyzerProperties bankAnalyzerProperties) {
+        this.bankAnalyzerProperties = bankAnalyzerProperties;
     }
 
     /**
@@ -169,7 +169,6 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
                                                      @ApiParam(value = QUERY_PARAM_CREATEDDATE, required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_CREATEDDATE)    String createdDate,
                                                      @ApiParam(value = QUERY_PARAM_LASTUPDATE,  required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_LASTUPDATE)     String lastUpdate) {
 
-        //TODO: Implements the filters query
 
         //Retrieve the bankaccount from the Persistence Layer
         List<BankAccountPO> bankAccountPOList = bankAccountsPersistenceServices.getAllBankAccounts();
