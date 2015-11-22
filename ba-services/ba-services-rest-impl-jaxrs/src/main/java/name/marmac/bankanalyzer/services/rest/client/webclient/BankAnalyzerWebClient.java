@@ -117,12 +117,23 @@ public class BankAnalyzerWebClient {
             LOGGER.info("\t Header (Key:value) = " + header.getKey() + ": ");
 
             for (Object value : header.getValue()) {
-                LOGGER.info("\n" + value.toString() + ", ");
+                LOGGER.info("\t" + value.toString() + ", ");
             }
             LOGGER.info("\n");
         }
         LOGGER.info("media-type: " + response.getMediaType().getType());
         LOGGER.info("Entity " + response.readEntity(BankAccountsTOType.class));
+        return response;
+    }
+
+    public Response getBankAccountByNativeId(String iban,
+                                             MediaType requestType,
+                                             MediaType responseType){
+        WebClient.getConfig(mWebClient).getHttpConduit().getClient().setReceiveTimeout(10000000);
+        mWebClient.reset();
+        Response response = mWebClient.type(requestType).accept(responseType).path("/bankaccounts").path(iban).get();
+        LOGGER.info("media-type: " + response.getMediaType().getType());
+        LOGGER.info("Entity " + response.readEntity(BankAccountTOType.class));
         return response;
     }
 
