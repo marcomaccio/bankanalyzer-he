@@ -34,11 +34,25 @@ public class ITRetrieveBankAccountsTest {
         this.bankAnalyzerWebClient = bankAnalyzerWebClient;
     }
 
+    /**
+     *
+     */
     @Test
     public void testGetBankAccounts() {
         LOGGER.info("TEST: getBankAccounts");
         Response response = bankAnalyzerWebClient.getBankAccounts(MediaType.APPLICATION_JSON_TYPE, MediaType.APPLICATION_JSON_TYPE);
 
+        //Check that the response status code is 200
+        Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+    }
+
+    /**
+     *
+     */
+    @Test
+    public void testGetBankAccountByNativeId(){
+        LOGGER.info("TEST: getBankAccounts");
+        Response response = bankAnalyzerWebClient.getBankAccountByNativeId("001", MediaType.APPLICATION_JSON_TYPE,MediaType.APPLICATION_JSON_TYPE);
         //Check that the response status code is 200
         Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
     }

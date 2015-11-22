@@ -173,7 +173,6 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
         //Retrieve the bankaccount from the Persistence Layer
         List<BankAccountPO> bankAccountPOList = bankAccountsPersistenceServices.getAllBankAccounts();
         //Convert the Persistence Object to the TransferObject
-
         return convertToBankAccountsTOType(bankAccountPOList);
     }
 
