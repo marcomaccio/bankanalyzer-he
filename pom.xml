@@ -579,7 +579,22 @@
                 <artifactId>versions-maven-plugin</artifactId>
             </plugin>
 
+            <plugin>
+                <groupId>org.jolokia</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.13.6</version>
+                <configuration>
 
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>name.marmac.bankanalizer</groupId>
+                        <artifactId>ba-services-rest-impl-jaxrs</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <!--
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
@@ -589,7 +604,7 @@
                     <dockerDirectory>src/main/resources/docker</dockerDirectory>
                     <serverId>docker-hub</serverId>
                 </configuration>
-                <!--
+
                 <executions>
                     <execution>
                         <id>build-image</id>
@@ -600,9 +615,9 @@
                     </execution>
 
                 </executions>
-                -->
-            </plugin>
 
+            </plugin>
+            -->
 
         </plugins>
     </build>
