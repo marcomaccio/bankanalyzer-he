@@ -31,7 +31,7 @@ ENV BA_RELEASE_TYPE BUILD-SNAPSHOT
 EXPOSE 8080
 
 # Add the BankAnalyzer-HE WAR
-ADD target/ba-services-rest-impl-jaxrs-1.0.0.BUILD-SNAPSHOT.war /opt/jetty/webapps/
+ADD bankanalyzer-he.war /opt/jetty/webapps/
 
 # Set defaults for docker run
 WORKDIR /opt/jetty

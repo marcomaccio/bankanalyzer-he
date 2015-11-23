@@ -277,11 +277,12 @@
                     <autoPull>always</autoPull>
                     <images>
                         <image>
-                            <alias>bankanalyzer</alias>
+                            <alias>bankanalyzer-he</alias>
                             <name>marcomaccio/bankanalyzer-he:${project.version}</name>
                             <build>
                                 <assembly>
                                     <dockerFileDir>${project.basedir}/src/main/resources/docker</dockerFileDir>
+                                    <descriptor>${project.basedir}/src/main/resources/assembly.xml</descriptor>
                                 </assembly>
                             </build>
                         </image>
