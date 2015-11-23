@@ -266,6 +266,29 @@
                 </executions>
             </plugin>
             -->
+
+            <plugin>
+                <groupId>org.jolokia</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.13.6</version>
+                <configuration>
+                    <logDate>default</logDate>
+                    <verbose>true</verbose>
+                    <autoPull>always</autoPull>
+                    <images>
+                        <image>
+                            <alias>bankanalyzer</alias>
+                            <name>marcomaccio/bankanalyzer-he:${project.version}</name>
+                            <build>
+                                <assembly>
+                                    <dockerFileDir>${project.basedir}/src/main/resources/docker</dockerFileDir>
+                                </assembly>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+
+            </plugin>
         </plugins>
 
     </build>
