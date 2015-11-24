@@ -17,6 +17,20 @@
     <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
+    <!-- Import the dal Spring context from the classpath -->
+    <import resource="classpath:/dal-impl-jpa-context.xml" />
+
+    <!-- DbUnit Datasource: it allows DbUnit to connect to the datasource     -->
+    <bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+        <property name="driverClassName"    value="${deployment.jdbcDriverName}" />
+        <property name="url"                value="${deployment.jdbcUrl}" />
+        <property name="username"           value="${deployment.jdbcUserName}" />
+        <property name="password"           value="${deployment.jdbcPassword}" />
+
+    </bean>
+
     <!-- PropertyPlaceholderConfigurer -->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">

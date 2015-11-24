@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <BankAccounts pkId="1" bankName="BANQUE CANTONAL VAUDOIS" holderName="Marco Maccio"     iban="001"  version="1" user="marcomaccio" />
+  <BankAccounts pkId="2" bankName="BANQUE CANTONAL VAUDOIS" holderName="Catherine Price"  iban="002"  version="1" user="marcomaccio" />
+  <BankAccounts pkId="3" bankName="BANQUE CANTONAL VAUDOIS" holderName="Julie Maccio"     iban="003"  version="1" user="marcomaccio" />
+
+  <Transactions pkId="10" executionDate="2015-10-10" valueDate="2015-10-10" description="test insert Transaction 01" amount="25" currency="CHF" balance="25" category="SHOPPING" subcategory="FOOD-MARKET" version="1" bankacc_id="1" user="marcomaccio" />
+</dataset>
