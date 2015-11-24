@@ -20,6 +20,7 @@
         <property name="javax.persistence.jdbc.user"        value="${deployment.jdbcUserName}"/>
         <property name="javax.persistence.jdbc.password"    value="${deployment.jdbcPassword}"/>
 
+        <property name="eclipselink.target-database"                    value="${deployment.dbPlatform}"/>
         <property name="eclipselink.logging.level"                      value="FINEST"/>
         <property name="eclipselink.logging.level.sql"                  value="FINEST"/>
         <property name="eclipselink.ddl-generation"                     value="${deployment.ddl-generation}"/>
@@ -29,6 +30,7 @@
         <property name="eclipselink.create-ddl-jdbc-file-name"          value="${deployment.createSchemaFilename}"/>
         <property name="eclipselink.drop-ddl-jdbc-file-name"            value="${deployment.dropSchemaFilename}"/>
 
+        <property name="eclipselink.logging.parameters"                 value="true"/>
         <!--
         <property name="eclipselink.logging.parameters"                 value="true"/>
         <property name="eclipselink.logging.timestamp"                  value="true"/>

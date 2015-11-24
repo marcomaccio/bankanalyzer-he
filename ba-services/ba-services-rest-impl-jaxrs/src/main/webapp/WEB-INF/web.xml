@@ -6,7 +6,7 @@
          id="CXFRS"
          version="2.5">
 
-  	<display-name>Customer RESt Service</display-name>
+  	<display-name>BankAnalyzer RESTful Service</display-name>
 
   	<!-- Context Params -->
   	<context-param>

@@ -15,11 +15,12 @@
     <packaging>war</packaging>
 
     <name>BA :: BANK ANALYZER HE :: SERVICES :: REST IMPL JAXRS</name>
-    <description></description>
+    <description>REST SERVICES Module</description>
     <url>http://marcomaccio.github.io/bankanalyzer-he/ba-services/ba-services-rest-api</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <build>
@@ -179,7 +180,8 @@
                     <skipTests>${skip.unit.tests}</skipTests>
                     <!-- Excludes integration tests when unit tests are run. ß-->
                     <excludes>
-                        <exclude>**/IT*.java</exclude>
+                        <exclude>**/it/*.java</exclude>
+                        <exclude>**/ua/*.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>
@@ -218,36 +220,56 @@
                </configuration>
             </plugin>
 
-            <!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>dbunit-maven-plugin</artifactId>
-                <version>1.0-beta-3</version>
+                <version>${dbunit-maven-plugin.version}</version>
 
+                <!-- JDBC Driver dependency-->
                 <dependencies>
+
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
                         <version>${mysql-connector-java.version}</version>
                     </dependency>
+                    <!-- -->
                     <dependency>
                         <groupId>org.hsqldb</groupId>
                         <artifactId>hsqldb</artifactId>
                         <version>${hsqldb.version}</version>
                     </dependency>
+
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                    </dependency>
+
                 </dependencies>
 
+                <!-- Common Configuration  -->
                 <configuration>
                     <driver>${deployment.jdbcDriverName}</driver>
                     <url>${deployment.jdbcUrl}</url>
                     <username>${deployment.jdbcUserName}</username>
                     <password>${deployment.jdbcPassword}</password>
-                    <src>${deployment.createCustomers}</src>
+                    <src>${deployment.createBankAccounts}</src>
+
+                    <!--
+                    <schema>gestimmo</schema>
+                    <dataTypeFactoryName>${deployment.dataTypeFactory}</dataTypeFactoryName>
+                    <metadataHandlerName>${deployment.metadataHandler}</metadataHandlerName>
+                    -->
                 </configuration>
 
+                <!-- Executions-->
                 <executions>
+
                     <execution>
+                        <id>load-test-data</id>
                         <phase>pre-integration-test</phase>
+
                         <goals>
                           <goal>operation</goal>
                         </goals>
@@ -259,13 +281,40 @@
                             <password>${deployment.jdbcPassword}</password>
                             <type>CLEAN_INSERT</type>
                             <format>xml</format>
+                            <!--
+                            <src>${deployment.createCustomers}</src>
+                            -->
                             <dataTypeFactoryName>${deployment.dataTypeFactory}</dataTypeFactoryName>
                             <metadataHandlerName>${deployment.metadataHandler}</metadataHandlerName>
                         </configuration>
                     </execution>
+
                 </executions>
             </plugin>
-            -->
+
+            <plugin>
+                <groupId>org.jolokia</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.13.6</version>
+                <configuration>
+                    <logDate>default</logDate>
+                    <verbose>true</verbose>
+                    <autoPull>always</autoPull>
+                    <images>
+                        <image>
+                            <alias>bankanalyzer-he</alias>
+                            <name>marcomaccio/bankanalyzer-he:${project.version}</name>
+                            <build>
+                                <assembly>
+                                    <dockerFileDir>${project.basedir}/src/main/resources/docker</dockerFileDir>
+                                    <descriptor>${project.basedir}/src/main/resources/assembly.xml</descriptor>
+                                </assembly>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+
+            </plugin>
         </plugins>
 
     </build>
@@ -367,6 +416,20 @@
             <version>${fasterxml-jackson.version}</version>
         </dependency>
         <!-- FASTERXML JACKSON Dependencies  - END -->
+
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>${dbunit.version}</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.springtestdbunit</groupId>
+            <artifactId>spring-test-dbunit</artifactId>
+            <version>${spring-test-dbunit.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>com.wordnik</groupId>

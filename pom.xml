@@ -116,6 +116,9 @@
 
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
 
@@ -579,34 +582,8 @@
                 <artifactId>versions-maven-plugin</artifactId>
             </plugin>
 
-
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.3.6</version>
-                <configuration>
-                    <imageName>bankanalyzer-he</imageName>
-                    <dockerDirectory>src/main/resources/docker</dockerDirectory>
-                    <serverId>docker-hub</serverId>
-                </configuration>
-                <!--
-                <executions>
-                    <execution>
-                        <id>build-image</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-
-                </executions>
-                -->
-            </plugin>
-
-
         </plugins>
     </build>
-
 
     <dependencies>
         <dependency>
@@ -640,7 +617,6 @@
     <reporting>
         <outputDirectory>${basedir}/target/site</outputDirectory>
         <plugins>
-
             <!-- Java doc plugin with UML Diagram-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -650,7 +626,6 @@
                     <aggregate>true</aggregate>
                     <show>private</show>
                     <show>public</show>
-
                     <!-- Doclet Library to generate the UML Diagram -->
                     <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
                     <docletArtifact>
@@ -658,7 +633,6 @@
                         <artifactId>umlgraph</artifactId>
                         <version>${umlgraph.version}</version>
                     </docletArtifact>
-
                     <additionalparam>${javadoc-report-additionalparam}</additionalparam>
                     <useStandardDocletOptions>true</useStandardDocletOptions>
                     <failOnError>false</failOnError>
@@ -797,7 +771,6 @@
 
     <profiles>
 
-
         <profile>
             <id>all-tests</id>
             <properties>
@@ -862,7 +835,8 @@
 
                 <!-- DATA ACCESS LAYER PROPERTIES -->
                 <deployment.jdbcDriverName>org.h2.Driver</deployment.jdbcDriverName>
-                <deployment.jdbcUrl>jdbc:h2:file:${project.build.directory}/data/bankanalyzer</deployment.jdbcUrl>
+                <deployment.jdbcUrl>jdbc:h2:file:${session.executionRootDirectory}/ba-dal/bal-dal-impl-jpa/target/data/bankanalyzer;AUTO_SERVER=TRUE</deployment.jdbcUrl>
+                <deployment.dbPlatform>org.eclipse.persistence.platform.database.H2Platform</deployment.dbPlatform>
                 <deployment.jdbcUserName>sa</deployment.jdbcUserName>
                 <deployment.jdbcPassword/>
                 <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
@@ -872,8 +846,9 @@
                 <deployment.createSchemaFilename>mysql-create-tables.sql</deployment.createSchemaFilename>
                 <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
                 <deployment.dataTypeFactory>org.dbunit.ext.h2.H2DataTypeFactory</deployment.dataTypeFactory>
-
+                <!-- -->
                 <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
+
                 <liquibase.contexts>integration-test</liquibase.contexts>
             </properties>
         </profile>
