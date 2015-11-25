@@ -31,7 +31,7 @@ ENV BA_RELEASE_TYPE BUILD-SNAPSHOT
 EXPOSE 8080
 
 # Add the BankAnalyzer-HE WAR
-ADD bankanalyzer-he.war /opt/jetty/webapps/
+ADD maven/bankanalyzer-he.war /opt/jetty/webapps/
 
 # Set defaults for docker run
 WORKDIR /opt/jetty
