@@ -300,11 +300,16 @@
                     <logDate>default</logDate>
                     <verbose>true</verbose>
                     <autoPull>always</autoPull>
+                    <useColor>true</useColor>
+                    <registry>hub.docker.com</registry>
                     <images>
                         <image>
                             <alias>bankanalyzer-he</alias>
                             <name>marcomaccio/bankanalyzer-he:${project.version}</name>
                             <build>
+                                <tags>
+                                    <tag>${project.version}</tag>
+                                </tags>
                                 <assembly>
                                     <dockerFileDir>${project.basedir}/src/main/resources/docker</dockerFileDir>
                                     <descriptor>${project.basedir}/src/main/resources/assembly.xml</descriptor>
