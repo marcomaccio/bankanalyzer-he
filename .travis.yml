@@ -4,13 +4,13 @@ language: java
 install: true
 
 jdk:
-- oraclejdk7
+- oraclejdk8
 
 services:
 - docker
 
 script:
-- mvn -B -e -Plocal-depl-j2se-h2 clean install --settings settings-travis.xml -Dsettings.security=settings-security.xml
+- mvn -B -e -Plocal-depl-j2se-h2 clean install --settings settings-travis.xml -Dsettings.security=settings-security.xml -Djavadoc-additionalparam=-Xdoclint:none -Djavadoc-report-additionalparam=-Xdoclint:none
 
 after_success:
 - mvn -amd -pl ba-services/ba-services-rest-impl-jaxrs docker:build docker:push

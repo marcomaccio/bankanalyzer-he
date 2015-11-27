@@ -12,7 +12,7 @@ import name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory;
 import name.marmac.bankanalyzer.model.to.transactions.TransactionTOType;
 import name.marmac.bankanalyzer.model.to.transactions.TransactionsTOType;
 import name.marmac.bankanalyzer.services.rest.properties.BankAnalyzerProperties;
-import name.marmac.tutorials.cxfatwork.services.web.rest.api.customerservice.BankAccountsServices;
+import name.marmac.bankanalyzer.services.web.rest.api.bankaccountservices.BankAccountsServices;
 import org.apache.cxf.jaxrs.ext.MessageContext;
 import org.apache.cxf.jaxrs.ext.search.SearchBean;
 import org.apache.cxf.jaxrs.ext.search.SearchCondition;

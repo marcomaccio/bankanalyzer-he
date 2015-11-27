@@ -155,10 +155,11 @@
 
                                     </extraargs>
 
-                                    <packagename>name.marmac.tutorials.cxfatwork.services.web.rest.api.customerservice</packagename>
+                                    <packagename>name.marmac.bankanalyzer.services.web.rest.api.bankaccountservices</packagename>
 
                                     <schemaPackagenames>
-                                       <schemaPackagename>http://marmac.name/tutorials/cxfatwork/model/to/customers/=name.marmac.tutorials.cxfatwork.model.to.customers</schemaPackagename>
+                                        <schemaPackagename>http://marmac.name/bankanalyzer/model/to/bankaccounts/=name.marmac.bankanalyzer.model.to.bankaccounts</schemaPackagename>
+                                        <schemaPackagename>http://marmac.name/bankanalyzer/model/to/transactions/=name.marmac.bankanalyzer.model.to.transactions</schemaPackagename>
                                     </schemaPackagenames>
                                 </wadlOption>
 

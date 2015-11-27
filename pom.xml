@@ -176,9 +176,9 @@
         <geronimo-transaction.version>2.2.2</geronimo-transaction.version>
         <geronimo-connector.version>2.2.2</geronimo-connector.version>
 
-        <cxf.version>2.7.17</cxf.version>
+        <cxf.version>3.1.4</cxf.version>
         <cxf-xjc-dv.version>2.7.0</cxf-xjc-dv.version>
-        <spring.version>3.2.4.RELEASE</spring.version>
+        <spring.version>4.2.2.RELEASE</spring.version>
 
         <guava.version>14.0.1</guava.version>
         <xbean-blueprint.version>3.12</xbean-blueprint.version>
@@ -231,7 +231,7 @@
             NEWER V. 8.1.14.v20131031
             NEWER V. 9.2.3.v20140905
         -->
-        <jetty-maven-plugin.version>7.4.5.v20110725</jetty-maven-plugin.version>
+        <jetty-maven-plugin.version>9.3.6.v20151106</jetty-maven-plugin.version>
         <jetty.version>8.1.10.v20130312</jetty.version>
 
         <!-- Monitoring libraries -->
@@ -835,7 +835,7 @@
 
                 <!-- DATA ACCESS LAYER PROPERTIES -->
                 <deployment.jdbcDriverName>org.h2.Driver</deployment.jdbcDriverName>
-                <deployment.jdbcUrl>jdbc:h2:file:${session.executionRootDirectory}/ba-dal/bal-dal-impl-jpa/target/data/bankanalyzer;AUTO_SERVER=TRUE</deployment.jdbcUrl>
+                <deployment.jdbcUrl>jdbc:h2:file:~/.bankanalyzer/bankanalyzerDB;AUTO_SERVER=TRUE</deployment.jdbcUrl>
                 <deployment.dbPlatform>org.eclipse.persistence.platform.database.H2Platform</deployment.dbPlatform>
                 <deployment.jdbcUserName>sa</deployment.jdbcUserName>
                 <deployment.jdbcPassword/>
