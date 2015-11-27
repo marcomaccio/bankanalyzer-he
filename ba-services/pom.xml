@@ -32,16 +32,22 @@
     </properties>
 
     <dependencies>
-        <!-- Apache CXF Dependencies -->
+        <!-- Apache CXF Dependencies
         <dependency>
           <groupId>org.apache.cxf</groupId>
-          <artifactId>cxf-rt-core</artifactId>
+          <artifactId>cxf-rt-rs</artifactId>
           <version>${cxf.version}</version>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http</artifactId>
+            <artifactId>cxf-rt-transports-local</artifactId>
             <version>${cxf.version}</version>
         </dependency>
 
@@ -51,7 +57,7 @@
             <version>${cxf.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- -->
+
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-databinding-aegis</artifactId>
@@ -64,11 +70,6 @@
             <version>${cxf.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-local</artifactId>
-            <version>${cxf.version}</version>
-        </dependency>
     </dependencies>
 
     <reporting>

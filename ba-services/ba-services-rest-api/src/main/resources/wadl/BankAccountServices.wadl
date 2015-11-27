@@ -22,8 +22,12 @@
             <resource  path="/bankaccounts">
                 <method name="POST" id="createBankAccount">
                     <request>
-                        <representation mediaType="application/xml"  element="bans:bankaccount" />
-                        <representation mediaType="application/json" element="bans:bankaccount"/>
+                        <representation mediaType="application/xml">
+                            <param name="bankaccount" style="plain" type="bans:bankaccount"/>
+                        </representation>
+                        <representation mediaType="application/json">
+                            <param name="bankaccount" style="plain" type="bans:bankaccount"/>
+                        </representation>
                     </request>
 
                     <response status="201" description="Created">
@@ -92,8 +96,12 @@
 
                 <method name="PUT" id="updateBankAccounts">
                     <request>
-                        <representation mediaType="application/xml"     element="bans:bankaccounts" />
-                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                        <representation mediaType="application/xml">
+                            <param name="bankaccount" style="plain" type="bans:bankaccounts"/>
+                        </representation>
+                        <representation mediaType="application/json">
+                            <param name="bankaccount" style="plain" type="bans:bankaccounts"/>
+                        </representation>
                     </request>
 
                     <response status="201" description="BankAccounts Updated">
@@ -125,8 +133,12 @@
 
                 <method name="DELETE" id="deleteBankAccounts">
                     <request>
-                        <representation mediaType="application/xml"     element="bans:bankaccounts" />
-                        <representation mediaType="application/json"    element="bans:bankaccounts"/>
+                        <representation mediaType="application/xml">
+                            <param name="bankaccount" style="plain" type="bans:bankaccounts"/>
+                        </representation>
+                        <representation mediaType="application/json">
+                            <param name="bankaccount" style="plain" type="bans:bankaccounts"/>
+                        </representation>
                     </request>
 
                     <response status="200" description="Deleted">
@@ -168,8 +180,12 @@
 
                     <method name="PUT" id="updateBankAccountByNativeId">
                         <request>
-                            <representation mediaType="application/xml"     element="bans:bankaccount"/>
-                            <representation mediaType="application/json"    element="bans:bankaccount"/>
+                            <representation mediaType="application/xml">
+                                <param name="bankaccount" style="plain" type="bans:bankaccount"/>
+                            </representation>
+                            <representation mediaType="application/json">
+                                <param name="bankaccount" style="plain" type="bans:bankaccount"/>
+                            </representation>
                         </request>
                         <response status="200" description="Successfully Updated">
                             <representation mediaType="application/xml"     element="bans:bankaccount"/>

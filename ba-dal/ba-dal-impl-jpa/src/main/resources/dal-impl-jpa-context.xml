@@ -13,6 +13,16 @@
     <context:component-scan base-package="name.marmac.bankanalyzer.dal.impl.jpa" />
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:dal-impl-jpa.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+    </bean>
+
     <!--     -->
     <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
