@@ -301,7 +301,7 @@
                     <verbose>true</verbose>
                     <autoPull>always</autoPull>
                     <useColor>true</useColor>
-                    <registry>hub.docker.com</registry>
+                    <registry>index.docker.io</registry>
                     <images>
                         <image>
                             <alias>bankanalyzer-he</alias>
