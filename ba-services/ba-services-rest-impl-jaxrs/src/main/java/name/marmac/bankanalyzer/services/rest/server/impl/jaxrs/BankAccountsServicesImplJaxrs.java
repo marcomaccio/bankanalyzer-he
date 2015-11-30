@@ -1,8 +1,8 @@
 package name.marmac.bankanalyzer.services.rest.server.impl.jaxrs;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import name.marmac.bankanalyzer.dal.api.BankAccountsPersistenceServices;
 import name.marmac.bankanalyzer.model.api.BankAccountPO;
 import name.marmac.bankanalyzer.model.api.TransactionPO;
@@ -229,7 +229,7 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     @Produces({"application/xml", "application/json" })
     @Path("/bankaccounts/{iban}/transactions")
     @ApiOperation(value = "Get Transactions for a given Bank Account's iban, filtering them by some parameters in AND condition",
-                    notes = "Retrieve method",
+                    notes = "Retrieve method, filtering with parameters",
                     response = TransactionsTOType.class)
     public TransactionsTOType getTransactionsByBankAccount(@ApiParam(value = PATH_PARAM_IBAN,           required = true)                        @PathParam(PATH_PARAM_IBAN)     String iban,
                                                            @ApiParam(value = QUERY_PARAM_LIMIT,         required = false, allowMultiple = true) @QueryParam(QUERY_PARAM_LIMIT)  Integer limit,
@@ -240,8 +240,8 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
                                                            @ApiParam(value = QUERY_PARAM_CURRENCY,      required = false, allowMultiple = true) @QueryParam("currency") String currency) {
 
         LOGGER.debug("getTransactionsByBankAccount");
-        SearchCondition<SearchBean> sc = searchContext.getCondition(SearchBean.class);
-        LOGGER.debug(sc.toString());
+        //SearchCondition<SearchBean> sc = searchContext.getCondition(SearchBean.class);
+        //LOGGER.debug(sc.toString());
 
         List<TransactionPO> transactionsPO = bankAccountsPersistenceServices.getAllTransactionsByBankAccount(iban);
         //Convert the TransactionsPO (list) into TransactionsTO (list)
@@ -344,6 +344,4 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
 
         return transactionTO;
     }
-
-
 }

@@ -109,12 +109,6 @@
             </plugin>
 
             <plugin>
-                <!--
-                For version 8-
-                <groupId>org.mortbay.jetty</groupId>
-                For version 8+
-                <groupId>org.eclipse.jetty</groupId>
-                -->
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty-maven-plugin.version}</version>
@@ -126,22 +120,10 @@
                     <webApp>
                         <contextPath>/cxf</contextPath>
                     </webApp>
-
-                    <!-- Config for Jetty 8+ -->
                     <httpConnector>
                         <port>9191</port>
                         <idleTimeout>60000</idleTimeout>
                     </httpConnector>
-
-                    <!-- Config for Jetty 7-
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>9191</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
-                    -->
-
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -149,9 +131,7 @@
                         <artifactId>slf4j-api</artifactId>
                         <version>${slf4j.version}</version>
                     </dependency>
-
                 </dependencies>
-
                 <executions>
                     <execution>
                         <id>start-jetty</id>
@@ -161,7 +141,6 @@
                         </goals>
                         <configuration>
                             <scanIntervalSeconds>0</scanIntervalSeconds>
-                            <!--<daemon>true</daemon>-->
                         </configuration>
                     </execution>
                     <execution>
@@ -236,7 +215,7 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>${mysql-connector-java.version}</version>
                     </dependency>
-                    <!-- -->
+
                     <dependency>
                         <groupId>org.hsqldb</groupId>
                         <artifactId>hsqldb</artifactId>
@@ -258,12 +237,6 @@
                     <username>${deployment.jdbcUserName}</username>
                     <password>${deployment.jdbcPassword}</password>
                     <src>${deployment.createBankAccounts}</src>
-
-                    <!--
-                    <schema>gestimmo</schema>
-                    <dataTypeFactoryName>${deployment.dataTypeFactory}</dataTypeFactoryName>
-                    <metadataHandlerName>${deployment.metadataHandler}</metadataHandlerName>
-                    -->
                 </configuration>
 
                 <!-- Executions-->
@@ -298,7 +271,7 @@
             <plugin>
                 <groupId>org.jolokia</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.13.6</version>
+                <version>${docker-maven-plugin.version}</version>
                 <configuration>
                     <logDate>default</logDate>
                     <verbose>true</verbose>
@@ -321,7 +294,6 @@
                         </image>
                     </images>
                 </configuration>
-
             </plugin>
         </plugins>
 
@@ -378,6 +350,12 @@
 
         <dependency>
             <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-service-description</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-rs-extension-providers</artifactId>
             <version>${cxf.version}</version>
         </dependency>
@@ -389,9 +367,15 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-security-cors</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
           <groupId>javax.servlet</groupId>
           <artifactId>javax.servlet-api</artifactId>
-          <version>3.1.0</version>
+          <version>${javax.servlet-api.version}</version>
           <scope>provided</scope>
         </dependency>
 
@@ -446,15 +430,15 @@
         </dependency>
 
         <dependency>
-            <groupId>com.wordnik</groupId>
-            <artifactId>swagger-jaxrs_2.10</artifactId>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-jaxrs</artifactId>
             <version>${swagger-jaxrs.version}</version>
-            <exclusions>
-                <exclusion>
-                     <groupId>javax.ws.rs</groupId>
-                     <artifactId>jsr311-api</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger-jaxrs.version}</version>
         </dependency>
 
         <!-- Springframework Dependencies  - START -->
@@ -543,6 +527,7 @@
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
+        
         <!-- TESTING FRAMEWORKS: Cucumber for U.A. - END -->
 
         <!-- EXTERNAL PROJECT DEPENDENCIES - END -->
