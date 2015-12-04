@@ -193,6 +193,8 @@
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <javaee-web-api.version>7.0</javaee-web-api.version>
         <swagger-jaxrs.version>1.5.4</swagger-jaxrs.version>
+        <hawtio.version>1.4.58</hawtio.version>
+        <jolokia.version>1.3.2</jolokia.version>
 
         <slf4j.version>1.7.13</slf4j.version>
         <slf4j-log4j12.version>1.7.13</slf4j-log4j12.version>
@@ -846,6 +848,40 @@
                 <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
 
                 <liquibase.contexts>integration-test</liquibase.contexts>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>docker-mysql</id>
+            <properties>
+                <application.log.level>INFO</application.log.level>
+                <!-- SERVICE LAYER PROPERTIES -->
+                <deployment.host>localhost</deployment.host>
+                <deployment.port>9191</deployment.port>
+                <deployment.webContext/>
+                <deployment.servletContext>/cxf</deployment.servletContext>
+                <deployment.servicePath>/api</deployment.servicePath>
+                <deployment.serviceVersion>/v1</deployment.serviceVersion>
+                <deployment.serviceInterface>/bankaccountsservices</deployment.serviceInterface>
+                <deployment.resourcePath>/bankaccounts</deployment.resourcePath>
+
+                <!-- DATA ACCESS LAYER PROPERTIES -->
+                <deployment.dbPlatform>MySQL</deployment.dbPlatform>
+                <deployment.jdbcDriverName>com.mysql.jdbc.Driver</deployment.jdbcDriverName>
+                <deployment.jdbcUrl>jdbc:mysql://bankanalyzerdb:3306/bankanalyzer</deployment.jdbcUrl>
+                <deployment.jdbcUserName>adminbadb</deployment.jdbcUserName>
+                <deployment.jdbcPassword>baadmin**15</deployment.jdbcPassword>
+                <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
+                <deployment.schemaFileName>src/integration-test/data/schema-mysql.sql</deployment.schemaFileName>
+
+                <deployment.ddl-generation>create-tables</deployment.ddl-generation>
+                <deployment.createSchemaFilename>mysql-create-tables.sql</deployment.createSchemaFilename>
+                <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
+                <deployment.dataTypeFactory>org.dbunit.ext.mysql.MySqlDataTypeFactory</deployment.dataTypeFactory>
+                <deployment.metadataHandler>org.dbunit.ext.mysql.MySqlMetadataHandler</deployment.metadataHandler>
+
+                <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
+                <liquibase.contexts>test</liquibase.contexts>
             </properties>
         </profile>
     </profiles>
