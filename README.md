@@ -38,3 +38,13 @@ Project set up and CI&CD life cycle
 	PUT /BankAccounts/{id}/transactions/{id}	
 
 	from a relational db (MariaDB)
+	
+	
+#HOW TO BUILD
+mvn -U -X -Pall-tests,local-depl-j2se-h2 clean install
+
+#HOT TO RUN JETTY
+mvn -U -amd -pl ba-services/ba-services-rest-impl-jaxrs/ -Pall-tests,local-depl-j2se-h2 jetty:run
+	
+#HOW TO LAUNCH A H2 CONSOLE
+java -jar ~/.m2/repository/com/h2database/
