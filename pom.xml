@@ -155,6 +155,7 @@
         <maven-changelog-plugin.version>2.3</maven-changelog-plugin.version>
         <maven-pmd-plugin.version>3.2</maven-pmd-plugin.version>
         <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
+        <doxia-module-markdown.version>1.6</doxia-module-markdown.version>
         <site-maven-plugin.version>0.12</site-maven-plugin.version>
         <license-maven-plugin.version>1.8</license-maven-plugin.version>
 
@@ -218,7 +219,6 @@
             -Djavadoc-additionalparam=-Xdoclint:none
             -Djavadoc-report-additionalparam=-Xdoclint:none
         -->
-        
         <sonar-maven-plugin.version>2.6</sonar-maven-plugin.version>
         <cucumber.version>1.2.4</cucumber.version>
 
@@ -315,6 +315,13 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <version>${maven-site-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                      <groupId>org.apache.maven.doxia</groupId>
+                      <artifactId>doxia-module-markdown</artifactId>
+                      <version>${doxia-module-markdown.version}</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <id>stage-for-scm-publish</id>
