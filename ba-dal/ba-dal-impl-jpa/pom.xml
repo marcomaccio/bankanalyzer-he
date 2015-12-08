@@ -15,7 +15,7 @@
     <packaging>jar</packaging>
 
     <name>BA :: BANK ANALYZER HE :: DAL :: IMPL JPA</name>
-    <description></description>
+    <description>DATA ACCESS LAYER IMPLEMENTATION module with Eclipse Link JPA</description>
     <url>http://marcomaccio.github.io/bankanalyzer-he/ba-dal/ba-dal-impl-jpa</url>
 
     <properties>
@@ -173,12 +173,6 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>${mysql-connector-java.version}</version>
                     </dependency>
-                    <!-- -->
-                    <dependency>
-                        <groupId>org.hsqldb</groupId>
-                        <artifactId>hsqldb</artifactId>
-                        <version>${hsqldb.version}</version>
-                    </dependency>
 
                     <dependency>
                         <groupId>com.h2database</groupId>
@@ -193,7 +187,6 @@
                     <url>${deployment.jdbcUrl}</url>
                     <username>${deployment.jdbcUserName}</username>
                     <password>${deployment.jdbcPassword}</password>
-
 
                     <src>${deployment.createBankAccounts}</src>
                     <!--
@@ -221,9 +214,6 @@
                             <password>${deployment.jdbcPassword}</password>
                             <type>CLEAN_INSERT</type>
                             <format>xml</format>
-                            <!--
-                            <src>${deployment.createCustomers}</src>
-                            -->
                             <dataTypeFactoryName>${deployment.dataTypeFactory}</dataTypeFactoryName>
                             <metadataHandlerName>${deployment.metadataHandler}</metadataHandlerName>
                         </configuration>
@@ -252,7 +242,6 @@
                                 </tags>
                                 <assembly>
                                     <dockerFileDir>${project.basedir}/src/main/resources/docker</dockerFileDir>
-                                    <descriptor>${project.basedir}/src/main/resources/assembly.xml</descriptor>
                                 </assembly>
                             </build>
                         </image>
@@ -264,12 +253,16 @@
     </build>
 
     <dependencies>
+        <!-- INTERNAL dependencies - START -->
         <dependency>
             <groupId>name.marmac.bankanalizer</groupId>
             <artifactId>ba-dal-api</artifactId>
             <version>${project.version}</version>
         </dependency>
-    <!-- Springframework Dependencies  - START -->
+        <!-- INTERNAL dependencies - END -->
+
+        <!-- EXTERNAL dependencies - START -->
+        <!-- Springframework Dependencies  - START -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -290,7 +283,6 @@
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
@@ -301,7 +293,6 @@
             <artifactId>spring-aop</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -310,25 +301,38 @@
         </dependency>
         <!-- Springframework Dependencies  - END -->
 
+        <!-- EclipseLink Dependencies  - START -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>javax.persistence</artifactId>
             <version>${javax-persistence.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>${eclipselink.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa</artifactId>
             <version>${eclipselink.version}</version>
         </dependency>
+        <!-- EclipseLink Dependencies  - END -->
 
+        <!-- DB Driver dependencies - START -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
+        </dependency>
+        <!-- DB Driver dependencies - END -->
 
+        <!-- TESTING dependencies - START -->
         <dependency>
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
@@ -342,29 +346,26 @@
             <version>${spring-test-dbunit.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- DB Driver dependency -->
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>${hsqldb.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${h2.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector-java.version}</version>
-        </dependency>
+        <!-- TESTING dependencies - END -->
+        <!-- EXTERNAL dependencies - END -->
     </dependencies>
 
     <reporting>
           <outputDirectory>${basedir}/target/site</outputDirectory>
     </reporting>
+
+    <profiles>
+        <!-- OVERRIDE docker-mysql profile in order to:
+            - Add the creation of the docker image for the db
+            - Start the Db docker image
+            - Inject the docker image with the correct schema.
+        -->
+        <profile>
+            <id>docker-mysql</id>
+            <properties>
+            </properties>
+        </profile>
+
+    </profiles>
 
 </project>
