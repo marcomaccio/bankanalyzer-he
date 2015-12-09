@@ -37,6 +37,13 @@
                   <include>**/*</include>
                 </includes>
             </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/scripts</directory>
+                <filtering>true</filtering>
+                <includes>
+                  <include>**/*</include>
+                </includes>
+            </resource>
         </resources>
 
         <testResources>
@@ -164,23 +171,18 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>dbunit-maven-plugin</artifactId>
                 <version>${dbunit-maven-plugin.version}</version>
-
-                <!-- JDBC Driver dependency-->
                 <dependencies>
-
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
                         <version>${mysql-connector-java.version}</version>
                     </dependency>
-
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
                         <version>${h2.version}</version>
                     </dependency>
                 </dependencies>
-
                 <!-- Common Configuration  -->
                 <configuration>
                     <driver>${deployment.jdbcDriverName}</driver>
@@ -190,23 +192,18 @@
 
                     <src>${deployment.createBankAccounts}</src>
                     <!--
-                    <schema>gestimmo</schema>
                     <dataTypeFactoryName>${deployment.dataTypeFactory}</dataTypeFactoryName>
                     <metadataHandlerName>${deployment.metadataHandler}</metadataHandlerName>
                     -->
                 </configuration>
-
                 <!-- Executions-->
                 <executions>
-
                     <execution>
                         <id>load-test-data</id>
                         <phase>pre-integration-test</phase>
-
                         <goals>
                           <goal>operation</goal>
                         </goals>
-
                         <configuration>
                             <driver>${deployment.jdbcDriverName}</driver>
                             <url>${deployment.jdbcUrl}</url>
@@ -218,7 +215,6 @@
                             <metadataHandlerName>${deployment.metadataHandler}</metadataHandlerName>
                         </configuration>
                     </execution>
-
                 </executions>
             </plugin>
 
@@ -241,7 +237,20 @@
                                     <tag>${project.version}</tag>
                                 </tags>
                                 <assembly>
-                                    <dockerFileDir>${project.basedir}/src/main/resources/docker</dockerFileDir>
+                                    <dockerFileDir>${project.basedir}/src/main/resources/docker/badb</dockerFileDir>
+                                </assembly>
+                            </build>
+                        </image>
+                        <image>
+                            <alias>bankanalyzer-db</alias>
+                            <name>marcomaccio/bankanalyzer-db-client:${project.version}</name>
+                            <build>
+                                <tags>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                                <assembly>
+                                    <dockerFileDir>${project.basedir}/src/main/resources/docker/badb-client</dockerFileDir>
+                                    <descriptor>${project.basedir}/src/main/descriptors/assembly.xml</descriptor>
                                 </assembly>
                             </build>
                         </image>

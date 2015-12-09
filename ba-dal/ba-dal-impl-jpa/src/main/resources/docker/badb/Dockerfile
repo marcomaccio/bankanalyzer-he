@@ -1,5 +1,5 @@
 #Base
-FROM mysql:5.5.46
+FROM mariadb:10.0.22
 
 #Mainteiner
 MAINTAINER Marco Maccio <marco.maccio@marmac.name>
