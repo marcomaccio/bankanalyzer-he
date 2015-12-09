@@ -2,13 +2,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
 
-    <!-- Assembly specifying what to build with rhuss/docker-maven-plugin
+    <!-- Assembly specifying what to build with rhuss/docker-maven-plugin-->
     <dependencySets>
         <dependencySet>
             <useProjectArtifact>true</useProjectArtifact>
+            <includes>
+                <include>mysql:mysql-connector-java</include>
+                <include>com.h2database:h2</include>
+                <include>org.liquibase:liquibase-core</include>
+            </includes>
             <outputDirectory>.</outputDirectory>
-            <outputFileNameMapping>bankanalyzer-he.war</outputFileNameMapping>
+            <outputFileNameMapping>${module.artifactId}-${module.version}.${module.extension}</outputFileNameMapping>
         </dependencySet>
     </dependencySets>
-    -->
+
 </assembly>

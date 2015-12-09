@@ -242,7 +242,7 @@
                             </build>
                         </image>
                         <image>
-                            <alias>bankanalyzer-db</alias>
+                            <alias>bankanalyzer-db-client</alias>
                             <name>marcomaccio/bankanalyzer-db-client:${project.version}</name>
                             <build>
                                 <tags>
@@ -250,7 +250,7 @@
                                 </tags>
                                 <assembly>
                                     <dockerFileDir>${project.basedir}/src/main/resources/docker/badb-client</dockerFileDir>
-                                    <descriptor>${project.basedir}/src/main/descriptors/assembly.xml</descriptor>
+                                    <descriptor>${project.basedir}/src/main/descriptors/assembly-db-client.xml</descriptor>
                                 </assembly>
                             </build>
                         </image>
@@ -329,6 +329,11 @@
         <!-- EclipseLink Dependencies  - END -->
 
         <!-- DB Driver dependencies - START -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase-maven-plugin.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

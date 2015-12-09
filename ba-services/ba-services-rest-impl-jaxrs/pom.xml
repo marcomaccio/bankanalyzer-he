@@ -118,7 +118,7 @@
                     <stopPort>9999</stopPort>
 
                     <webApp>
-                        <contextPath>/cxf</contextPath>
+                        <contextPath>${deployment.servletContext}</contextPath>
                     </webApp>
                     <httpConnector>
                         <port>${deployment.port}</port>
