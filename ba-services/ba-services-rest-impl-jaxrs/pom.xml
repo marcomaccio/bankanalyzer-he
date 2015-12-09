@@ -281,8 +281,8 @@
                                     <tag>${project.version}</tag>
                                 </tags>
                                 <assembly>
-                                    <dockerFileDir>${project.basedir}/src/main/resources/docker</dockerFileDir>
-                                    <descriptor>${project.basedir}/src/main/resources/assembly.xml</descriptor>
+                                    <dockerFileDir>${project.basedir}/src/main/resources/docker/ba-fe/</dockerFileDir>
+                                    <descriptor>${project.basedir}/src/main/descriptors/assembly.xml</descriptor>
                                 </assembly>
                             </build>
                         </image>
