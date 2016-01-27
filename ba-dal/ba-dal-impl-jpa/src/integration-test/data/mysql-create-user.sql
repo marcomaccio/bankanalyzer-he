@@ -1,6 +1,6 @@
-CREATE DATABASE bankanalyzer CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE badb CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-CREATE USER 'bankanalyzer' IDENTIFIED BY 'sonar';
-GRANT ALL ON bankanalyzer.* TO `bankanalyzer`@`%` IDENTIFIED BY `sonar`;
-GRANT ALL ON bankanalyzer.* TO `bankanalyzer`@`localhost` IDENTIFIED BY `sonar`;
+CREATE USER 'baAdmin' IDENTIFIED BY 'baAdmin2015!';
+GRANT ALL PRIVILEGES ON badb.* TO 'baAdmin'@'%' IDENTIFIED BY 'baAdmin2015' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON badb.* TO 'baAdmin'@'localhost' IDENTIFIED BY 'baAdmin2015' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
