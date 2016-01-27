@@ -231,7 +231,7 @@
         <jetty-maven-plugin.version>9.3.6.v20151106</jetty-maven-plugin.version>
         <jetty.version>9.3.6.v20151106</jetty.version>
 
-        <docker-maven-plugin.version>0.13.6</docker-maven-plugin.version>
+        <docker-maven-plugin.version>0.13.7</docker-maven-plugin.version>
 
         <!-- Monitoring libraries -->
         <java-melody-core.version>1.54.0</java-melody-core.version>
@@ -803,29 +803,6 @@
         </profile>
 
         <profile>
-            <id>local-depl-j2se-hsqldb</id>
-            <properties>
-                <application.log.level>DEBUG</application.log.level>
-                <!-- DATA ACCESS LAYER PROPERTIES -->
-                <deployment.jdbcDriverName>org.hsqldb.jdbc.JDBCDriver</deployment.jdbcDriverName>
-                <deployment.jdbcUrl>jdbc:hsqldb:mem:bankanalyzer</deployment.jdbcUrl>
-                <deployment.jdbcUserName>sa</deployment.jdbcUserName>
-                <deployment.jdbcPassword/>
-                <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
-                <deployment.schemaFileName>src/integration-test/data/schema-mysql.sql</deployment.schemaFileName>
-
-                <deployment.ddl-generation>create-tables</deployment.ddl-generation>
-                <deployment.createSchemaFilename>mysql-create-tables.sql</deployment.createSchemaFilename>
-                <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
-                <deployment.dataTypeFactory>org.dbunit.ext.mysql.MySqlDataTypeFactory</deployment.dataTypeFactory>
-                <deployment.metadataHandler>org.dbunit.ext.mysql.MySqlMetadataHandler</deployment.metadataHandler>
-
-                <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
-                <liquibase.contexts>integration-test</liquibase.contexts>
-            </properties>
-        </profile>
-
-        <profile>
             <id>local-depl-j2se-h2</id>
             <properties>
                 <application.log.level>INFO</application.log.level>
@@ -876,9 +853,9 @@
                 <!-- DATA ACCESS LAYER PROPERTIES -->
                 <deployment.dbPlatform>MySQL</deployment.dbPlatform>
                 <deployment.jdbcDriverName>com.mysql.jdbc.Driver</deployment.jdbcDriverName>
-                <deployment.jdbcUrl>jdbc:mysql://bankanalyzerdb:3306/bankanalyzer</deployment.jdbcUrl>
-                <deployment.jdbcUserName>adminbadb</deployment.jdbcUserName>
-                <deployment.jdbcPassword>baadmin**15</deployment.jdbcPassword>
+                <deployment.jdbcUrl>jdbc:mysql://bankanalyzerdb:3307/bankanalyzer</deployment.jdbcUrl>
+                <deployment.jdbcUserName>baAdmin</deployment.jdbcUserName>
+                <deployment.jdbcPassword>baAdmin2015</deployment.jdbcPassword>
                 <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
                 <deployment.schemaFileName>src/integration-test/data/schema-mysql.sql</deployment.schemaFileName>
 
