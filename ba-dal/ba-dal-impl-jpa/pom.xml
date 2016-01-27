@@ -235,12 +235,14 @@
                             <build>
                                 <tags>
                                     <tag>${project.version}</tag>
+                                    <tag>latest</tag>
                                 </tags>
                                 <assembly>
                                     <dockerFileDir>${project.basedir}/src/main/resources/docker/badb</dockerFileDir>
                                 </assembly>
                             </build>
                         </image>
+                        <!--
                         <image>
                             <alias>bankanalyzer-db-client</alias>
                             <name>marcomaccio/bankanalyzer-db-client:${project.version}</name>
@@ -254,6 +256,7 @@
                                 </assembly>
                             </build>
                         </image>
+                        -->
                     </images>
                 </configuration>
             </plugin>
