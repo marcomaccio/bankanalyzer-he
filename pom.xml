@@ -166,7 +166,7 @@
         <features-maven-plugin.version>2.3.3</features-maven-plugin.version>
         <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
         <jdepend-maven-plugin.version>2.0-beta-2</jdepend-maven-plugin.version>
-        <findbugs-maven-plugin.version>2.5.2</findbugs-maven-plugin.version>
+        <findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
 
@@ -771,6 +771,17 @@
                 <version>${graph-maven-plugin.version}</version>
             </plugin>
 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs-maven-plugin.version}</version>
+                <configuration>
+                    <effort>Default</effort>
+                    <threshold>Low</threshold>
+                </configuration>
+            </plugin>
+
+
         </plugins>
 
     </reporting>
@@ -853,7 +864,7 @@
                 <!-- DATA ACCESS LAYER PROPERTIES -->
                 <deployment.dbPlatform>MySQL</deployment.dbPlatform>
                 <deployment.jdbcDriverName>com.mysql.jdbc.Driver</deployment.jdbcDriverName>
-                <deployment.jdbcUrl>jdbc:mysql://bankanalyzerdb:3307/bankanalyzer</deployment.jdbcUrl>
+                <deployment.jdbcUrl>jdbc:mysql://bankanalyzer:3307/bankanalyzer</deployment.jdbcUrl>
                 <deployment.jdbcUserName>baAdmin</deployment.jdbcUserName>
                 <deployment.jdbcPassword>baAdmin2015</deployment.jdbcPassword>
                 <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
