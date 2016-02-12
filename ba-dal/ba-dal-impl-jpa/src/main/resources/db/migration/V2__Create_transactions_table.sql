@@ -1,0 +1,20 @@
+CREATE TABLE Transactions (
+  pkId          bigint(20)      NOT NULL,
+  executionDate datetime        NOT NULL,
+  valueDate     datetime        DEFAULT NULL,
+  description   varchar(255)    NOT NULL,
+  amount        decimal(20,3)   NOT NULL,
+  currency      varchar(3)      NOT NULL,
+  balance       decimal(20,3)   NOT NULL,
+  category      varchar(255)    NOT NULL,
+  subCategory   varchar(255)    NOT NULL,
+  createdDate   datetime        DEFAULT NULL,
+  lastUpdate    datetime        DEFAULT NULL,
+  version       bigint(20)      DEFAULT NULL,
+  bankacc_id    bigint(20)      DEFAULT NULL,
+  user          varchar(50)     DEFAULT NULL,
+  PRIMARY KEY (pkId),
+  UNIQUE KEY executionDate (executionDate,valueDate,amount,currency,bankacc_id),
+  KEY fk_bankacc_transactions (bankacc_id),
+  CONSTRAINT fk_bankacc_transactions FOREIGN KEY (bankacc_id) REFERENCES BankAccounts (pkId) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

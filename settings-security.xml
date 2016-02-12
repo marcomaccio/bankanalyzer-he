@@ -1,3 +1,0 @@
-<settingsSecurity>
-  <master>${env.MASTER_PASSWORD}</master>
-</settingsSecurity>

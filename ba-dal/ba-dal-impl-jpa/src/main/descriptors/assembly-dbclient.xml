@@ -12,7 +12,7 @@
                 <include>org.liquibase:liquibase-core</include>
             </includes>
             <outputDirectory>.</outputDirectory>
-            <outputFileNameMapping>${module.artifactId}-${module.version}.${module.extension}</outputFileNameMapping>
+            <!--<outputFileNameMapping>${module.artifactId}-${module.version}.${module.extension}</outputFileNameMapping>-->
         </dependencySet>
     </dependencySets>
 
