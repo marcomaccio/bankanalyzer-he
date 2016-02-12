@@ -166,7 +166,7 @@
         <features-maven-plugin.version>2.3.3</features-maven-plugin.version>
         <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
         <jdepend-maven-plugin.version>2.0-beta-2</jdepend-maven-plugin.version>
-        <findbugs-maven-plugin.version>2.5.2</findbugs-maven-plugin.version>
+        <findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
 
@@ -220,7 +220,7 @@
             -Djavadoc-additionalparam=-Xdoclint:none
             -Djavadoc-report-additionalparam=-Xdoclint:none
         -->
-        <sonar-maven-plugin.version>2.6</sonar-maven-plugin.version>
+        <sonar-maven-plugin.version>3.0.1</sonar-maven-plugin.version>
         <cucumber.version>1.2.4</cucumber.version>
 
         <mysql-connector-java.version>5.1.18</mysql-connector-java.version>
@@ -289,11 +289,6 @@
                   <groupId>org.codehaus.mojo</groupId>
                   <artifactId>versions-maven-plugin</artifactId>
                   <version>${versions-maven-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sonar-maven-plugin</artifactId>
-                    <version>${sonar-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -579,8 +574,9 @@
             -->
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar-maven-plugin.version}</version>
             </plugin>
 
             <plugin>
@@ -760,7 +756,7 @@
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>${sonar-maven-plugin.version}</version>
             </plugin>
@@ -770,6 +766,17 @@
                 <artifactId>graph-maven-plugin</artifactId>
                 <version>${graph-maven-plugin.version}</version>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs-maven-plugin.version}</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                </configuration>
+            </plugin>
+
 
         </plugins>
 
@@ -837,7 +844,7 @@
         </profile>
 
         <profile>
-            <id>docker-mysql</id>
+            <id>docker-depl-j2se-h2</id>
             <properties>
                 <application.log.level>INFO</application.log.level>
                 <!-- SERVICE LAYER PROPERTIES -->
@@ -851,9 +858,43 @@
                 <deployment.resourcePath>/bankaccounts</deployment.resourcePath>
 
                 <!-- DATA ACCESS LAYER PROPERTIES -->
+                <deployment.jdbcDriverName>org.h2.Driver</deployment.jdbcDriverName>
+                <deployment.jdbcUrl>jdbc:h2:file:/usr/local/jetty/.bankanalyzer/bankanalyzerDB;AUTO_SERVER=TRUE</deployment.jdbcUrl>
+                <deployment.dbPlatform>org.eclipse.persistence.platform.database.H2Platform</deployment.dbPlatform>
+                <deployment.jdbcUserName>sa</deployment.jdbcUserName>
+                <deployment.jdbcPassword/>
+                <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
+                <deployment.schemaFileName>src/integration-test/data/schema-mysql.sql</deployment.schemaFileName>
+
+                <deployment.ddl-generation>create-tables</deployment.ddl-generation>
+                <deployment.createSchemaFilename>mysql-create-tables.sql</deployment.createSchemaFilename>
+                <deployment.dropSchemaFilename>mysql-drop-tables.sql</deployment.dropSchemaFilename>
+                <deployment.dataTypeFactory>org.dbunit.ext.h2.H2DataTypeFactory</deployment.dataTypeFactory>
+                <deployment.metadataHandler/>
+                <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
+
+                <liquibase.contexts>integration-test</liquibase.contexts>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>docker-mysql</id>
+            <properties>
+                <application.log.level>INFO</application.log.level>
+                <!-- SERVICE LAYER PROPERTIES -->
+                <deployment.host>localhost</deployment.host>
+                <deployment.port>8080</deployment.port>
+                <deployment.webContext/>
+                <deployment.servletContext>/cxf</deployment.servletContext>
+                <deployment.servicePath>/api</deployment.servicePath>
+                <deployment.serviceVersion>/v1</deployment.serviceVersion>
+                <deployment.serviceInterface>/bankaccountsservices</deployment.serviceInterface>
+                <deployment.resourcePath>/bankaccounts</deployment.resourcePath>
+
+                <!-- DATA ACCESS LAYER PROPERTIES -->
                 <deployment.dbPlatform>MySQL</deployment.dbPlatform>
                 <deployment.jdbcDriverName>com.mysql.jdbc.Driver</deployment.jdbcDriverName>
-                <deployment.jdbcUrl>jdbc:mysql://bankanalyzerdb:3307/bankanalyzer</deployment.jdbcUrl>
+                <deployment.jdbcUrl>jdbc:mysql://localhost:3306/bankanalyzer</deployment.jdbcUrl>
                 <deployment.jdbcUserName>baAdmin</deployment.jdbcUserName>
                 <deployment.jdbcPassword>baAdmin2015</deployment.jdbcPassword>
                 <deployment.jdbcEncoding>UTF8</deployment.jdbcEncoding>
