@@ -584,6 +584,19 @@
                 <artifactId>versions-maven-plugin</artifactId>
             </plugin>
 
+
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.1.9</version>
+                <configuration>
+                    <targetClasses>
+                        <param>name.marmac.bankanalyzer.*</param>
+                    </targetClasses>
+                    <failWhenNoMutations>false</failWhenNoMutations>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -775,6 +788,19 @@
                     <effort>Max</effort>
                     <threshold>Low</threshold>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.1.9</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
 
 
