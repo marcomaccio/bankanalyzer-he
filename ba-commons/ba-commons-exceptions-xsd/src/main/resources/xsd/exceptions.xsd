@@ -1,0 +1,18 @@
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:baexns="http://marmac.name/bankanalyzer/model/to/bankaccounts/"
+        targetNamespace="http://marmac.name/bankanalyzer/model/to/bankaccounts/"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified">
+
+    <xsd:complexType name="ExceptionTOType">
+        <xsd:sequence>
+            <xsd:element name="message"      type="xsd:string"   />
+            <xsd:element name="cause"        type="xsd:string"   />
+
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="exception"  type="baexns:ExceptionTOType"/>
+
+</xsd:schema>
