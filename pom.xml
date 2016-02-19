@@ -171,7 +171,7 @@
         <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
 
         <javax-persistence.version>2.1.0</javax-persistence.version>
-        <eclipselink.version>2.5.0</eclipselink.version>
+        <eclipselink.version>2.6.2</eclipselink.version>
         <dbunit.version>2.5.1</dbunit.version>
 
         <geronimo-j2ee-connector_1.5_spec.version>2.0.0</geronimo-j2ee-connector_1.5_spec.version>
@@ -850,6 +850,7 @@
                 <deployment.resourcePath>/bankaccounts</deployment.resourcePath>
 
                 <!-- DATA ACCESS LAYER PROPERTIES -->
+                <!-- DATA ACCESS LAYER JPA SQL PROPERTIES -->
                 <deployment.jdbcDriverName>org.h2.Driver</deployment.jdbcDriverName>
                 <deployment.jdbcUrl>jdbc:h2:file:~/.bankanalyzer/bankanalyzerDB;AUTO_SERVER=TRUE</deployment.jdbcUrl>
                 <deployment.dbPlatform>org.eclipse.persistence.platform.database.H2Platform</deployment.dbPlatform>
@@ -864,6 +865,11 @@
                 <deployment.dataTypeFactory>org.dbunit.ext.h2.H2DataTypeFactory</deployment.dataTypeFactory>
                 <deployment.metadataHandler/>
                 <deployment.createBankAccounts>src/integration-test/data/create-bankaccounts.xml</deployment.createBankAccounts>
+
+                <!-- DATA ACCESS LAYER JPA NOSQL PROPERTIES -->
+                <deployment.nosqlHost>localhost</deployment.nosqlHost>
+                <deployment.nosqlPort>27017</deployment.nosqlPort>
+                <deployment.nosqlDatabaseName>ba-nosql-test</deployment.nosqlDatabaseName>
 
                 <liquibase.contexts>integration-test</liquibase.contexts>
             </properties>
