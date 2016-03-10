@@ -16,7 +16,7 @@ import java.util.Objects;
  * Created by marcomaccio on 18/02/2016.
  */
 @Entity
-@NoSql(dataFormat = DataFormatType.MAPPED)
+@NoSql(dataType = "bankAccount",dataFormat = DataFormatType.MAPPED)
 @NamedQueries({
         @NamedQuery(name = "BankAccounts.findAll", query = "SELECT ba from BankAccountPONoSql ba "),
         @NamedQuery(name = "BankAccounts.Count", query = "SELECT COUNT(ba) FROM BankAccountPONoSql ba")
@@ -91,7 +91,7 @@ public class BankAccountPONoSql {
      */
     @Basic
     @Field(name = "openingDate")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     public Date getOpeningDate() {
             return openingDate;
     }
@@ -100,7 +100,7 @@ public class BankAccountPONoSql {
      *
      * @return
      */
-    public List<TransactionPONoSql> getTransactions() { return this.transactions;}
+    //public List<TransactionPONoSql> getTransactions() { return this.transactions;}
 
     /** Setters Methods - START **/
 
@@ -157,9 +157,9 @@ public class BankAccountPONoSql {
      *
      * @param transactions
      */
-    public void setTransactions(List<TransactionPONoSql> transactions) {
-        this.transactions = transactions;
-    }
+    //public void setTransactions(List<TransactionPONoSql> transactions) {
+    //    this.transactions = transactions;
+    //}
 
     /**
      *

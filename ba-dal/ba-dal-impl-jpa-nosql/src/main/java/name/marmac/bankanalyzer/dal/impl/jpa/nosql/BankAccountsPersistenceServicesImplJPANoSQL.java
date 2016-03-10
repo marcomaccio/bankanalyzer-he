@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -39,6 +40,41 @@ public class BankAccountsPersistenceServicesImplJPANoSQL {
         return this.entityManager;
     }
 
+    /**
+     *
+     * @param bankAccount
+     * @return
+     */
+    public BankAccountPONoSql save(BankAccountPONoSql bankAccount){
+        if (bankAccount.getId() != null) {
+            entityManager.merge(bankAccount);
+            entityManager.flush();
+        } else {
+            entityManager.persist(bankAccount);
+        }
+        return bankAccount;
+    }
+
+    public BankAccountPONoSql getBankAccountByNativeId(String nativeId) {
+            LOGGER.debug("Method getBankAccountByNativeId has been called with iban=" + nativeId);
+
+        BankAccountPONoSql bankAccount = null;
+
+            Query query = entityManager.createNamedQuery("BankAccounts.findByIBAN", BankAccountPONoSql.class);
+            query.setParameter("iban", nativeId);
+
+            List<BankAccountPONoSql> resultList = query.getResultList();
+            LOGGER.debug( resultList.size() + " bankaccounts");
+            if (!resultList.isEmpty())
+            {
+                bankAccount = resultList.get(0);
+            }
+            return bankAccount;
+        }
+    /**
+     *
+     * @return
+     */
     public List<BankAccountPONoSql> getAllBankAccounts() {
         LOGGER.debug("Method getAllBankAccounts has been called ");
         List<BankAccountPONoSql> bankAccountList = entityManager.createNamedQuery("BankAccounts.findAll").getResultList();
