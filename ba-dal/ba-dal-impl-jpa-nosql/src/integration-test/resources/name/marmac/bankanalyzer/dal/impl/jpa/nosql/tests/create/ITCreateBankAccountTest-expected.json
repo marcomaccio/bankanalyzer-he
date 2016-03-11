@@ -1,0 +1,19 @@
+{
+    "bankAccount":
+        [
+          { "bankName":"MyBANK",
+            "holderName":"Wallace & Gromit",
+            "iban":"CH53077",
+            "VERSION":1,
+            "TRANSACTIONS":null,
+            "openingDate": "2016-03-18"
+          },
+          { "bankName":"MyBANK",
+            "holderName":"Shaun the Sheep",
+            "iban":"CH53078",
+            "VERSION":1,
+            "TRANSACTIONS":null,
+            "openingDate": { "$date": "2016-02-18T09:50:00Z" }
+          }
+        ]
+}

@@ -12,13 +12,13 @@ public interface BasicPO extends Serializable {
      *
      * @return
      */
-    public Long getId();
+    public String getId();
 
     /**
      *
      * @param id
      */
-    public void setId(Long id);
+    public void setId(String id);
 
     /**
      *
