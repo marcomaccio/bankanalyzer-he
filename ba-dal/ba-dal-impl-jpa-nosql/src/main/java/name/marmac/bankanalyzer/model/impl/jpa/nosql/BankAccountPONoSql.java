@@ -1,5 +1,7 @@
 package name.marmac.bankanalyzer.model.impl.jpa.nosql;
 
+import name.marmac.bankanalyzer.model.api.BankAccountPO;
+import name.marmac.bankanalyzer.model.api.TransactionPO;
 import org.eclipse.persistence.nosql.annotations.DataFormatType;
 import org.eclipse.persistence.nosql.annotations.Field;
 import org.eclipse.persistence.nosql.annotations.NoSql;
@@ -7,10 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Created by marcomaccio on 18/02/2016.
@@ -21,7 +20,7 @@ import java.util.Objects;
         @NamedQuery(name = "BankAccounts.findAll", query = "SELECT ba from BankAccountPONoSql ba "),
         @NamedQuery(name = "BankAccounts.Count", query = "SELECT COUNT(ba) FROM BankAccountPONoSql ba")
 })
-public class BankAccountPONoSql {
+public class BankAccountPONoSql extends BaseNoSqlObject implements BankAccountPO {
 
     private static final    long    serialVersionUID = 1L;
     private static final    Logger  LOGGER = LoggerFactory.getLogger(BankAccountPONoSql.class);
@@ -96,6 +95,11 @@ public class BankAccountPONoSql {
             return openingDate;
     }
 
+    @Override
+    public Set<TransactionPO> getTransactions() {
+        return null;
+    }
+
     /**
      *
      * @return
@@ -151,6 +155,11 @@ public class BankAccountPONoSql {
      */
     public void setOpeningDate(Date openingDate) {
         this.openingDate = openingDate;
+    }
+
+    @Override
+    public void setTransactions(Set<TransactionPO> transactions) {
+
     }
 
     /**

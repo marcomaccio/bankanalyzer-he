@@ -13,7 +13,7 @@ public class BaseJPAObject implements BasicPO {
 
     private static final long serialVersionUID = 1L;
 
-    private Long    id;
+    private String    id;
     private Long    version;
     private Date    createdDate;
     private Date    lastUpdate;
@@ -27,7 +27,7 @@ public class BaseJPAObject implements BasicPO {
     @Id
     @Column(name = "pkId", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -36,7 +36,7 @@ public class BaseJPAObject implements BasicPO {
      * @param id
      */
     @Override
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

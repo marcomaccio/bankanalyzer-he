@@ -69,7 +69,7 @@ public class ITCreateBankAccountTest {
 
         bankAccount = bankAccountsPersistenceServices.save(bankAccount);
         if (bankAccount.getId() != null){
-            LOGGER.info(bankAccount.getId());
+            LOGGER.info("" + bankAccount.getId());
         }
     }
 
