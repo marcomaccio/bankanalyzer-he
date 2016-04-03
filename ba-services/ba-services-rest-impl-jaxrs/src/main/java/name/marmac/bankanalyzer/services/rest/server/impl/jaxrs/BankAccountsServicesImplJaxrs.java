@@ -14,8 +14,6 @@ import name.marmac.bankanalyzer.model.to.transactions.TransactionsTOType;
 import name.marmac.bankanalyzer.services.rest.properties.BankAnalyzerProperties;
 import name.marmac.bankanalyzer.services.web.rest.api.bankaccountservices.BankAccountsServices;
 import org.apache.cxf.jaxrs.ext.MessageContext;
-import org.apache.cxf.jaxrs.ext.search.SearchBean;
-import org.apache.cxf.jaxrs.ext.search.SearchCondition;
 import org.apache.cxf.jaxrs.ext.search.SearchContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
