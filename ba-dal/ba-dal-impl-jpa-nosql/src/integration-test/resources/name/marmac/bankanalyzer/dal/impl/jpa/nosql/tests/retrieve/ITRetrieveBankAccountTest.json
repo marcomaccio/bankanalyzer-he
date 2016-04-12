@@ -1,0 +1,11 @@
+{
+    "BANKACCOUNTPONOSQL":
+        [
+          { "bankName":"MyBANK",
+            "holderName":"Wallace & Gromit",
+            "iban":"CH53077",
+            "VERSION":1,
+            "openingDate" : "2016-02-18T10:50+02:00"
+          }
+        ]
+}
