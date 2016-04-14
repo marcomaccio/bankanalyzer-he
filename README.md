@@ -49,6 +49,17 @@ mvn -U -amd -pl ba-services/ba-services-rest-impl-jaxrs/ -Pall-tests,local-depl-
 # HOW TO LAUNCH A H2 CONSOLE
 java -jar ~/.m2/repository/com/h2database/
 
+# HOW TO DEPLOY IN JETTY
+## LINUX:
+
+export BANKANALYZER_SRC_HOME=/path_to/bankanalyzer-he
+export JETTY_HOME=/path_to_jetty/
+
+cp $BANKANALYZER_SRC_HOME/ba-services/ba-services-rest-impl-jaxrs/target/ba-services-rest-impl-jaxrs-${version}.war $JETTY_HOME/webapps/ && \\
+mv $JETTY_HOME/webapps/ba-services-rest-impl-jaxrs-${version}.war $JETTY_HOME/webapps/bankanalyzer.war
+
+
+
 
 # OAUTH2 & CXF
 OAUTH2 flow is called authorization Code and it involves 3 parties:

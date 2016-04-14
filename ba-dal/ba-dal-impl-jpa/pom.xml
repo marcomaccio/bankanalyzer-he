@@ -147,7 +147,6 @@
                 </executions>
             </plugin>
 
-            <!--
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
@@ -166,8 +165,8 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
 
+            <!--
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
@@ -190,6 +189,8 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
+            -->
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
