@@ -1,0 +1,11 @@
+{
+    "bankAccount":
+        [
+          { "bankName":"MyBANK",
+            "holderName":"Wallace & Gromit",
+            "iban":"CH53077",
+            "VERSION":1,
+            "openingDate": "2016-03-18"
+          }
+        ]
+}

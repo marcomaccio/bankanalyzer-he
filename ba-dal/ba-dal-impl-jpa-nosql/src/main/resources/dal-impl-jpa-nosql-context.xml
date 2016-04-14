@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	                    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	                    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	                    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+    <!-- Enable Spring Annotation Configuration -->
+    <context:annotation-config />
+    <!-- Scan for all of Spring components such as Spring Service -->
+    <context:component-scan base-package="name.marmac.bankanalyzer.dal.impl.jpa.nosql" />
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:dal-impl-jpa-nosql.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+    </bean>
+
+    <!-- Necessary to get the entity manager injected into the factory bean -->
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+    <!-- Entity Manager Factory -->
+    <bean id="entityManagerFactory"
+        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="bankanalyzer-punit-nosql" />
+    </bean>
+
+    <!-- Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <!-- Detect @Transactional -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--
+    <bean id="dataStoreProperties"
+          class="name.marmac.bankanalyzer.dal.impl.jpa.nosql.properties.DataStoreProperties" >
+        <property name="noSqlHost"                  value="${deployment.nosqlHost}" />
+        <property name="noSqlPort"                  value="${deployment.nosqlPort}" />
+        <property name="noSqlDatabaseName"          value="${deployment.nosqlDatabaseName}" />
+    </bean>
+    -->
+
+    <!-- Persistence Services
+    <bean id="bankAccountsPersistenceServicesNoSql"
+              class="name.marmac.bankanalyzer.dal.impl.jpa.nosql.BankAccountsPersistenceServicesImplJPANoSQL"/>
+    -->
+</beans>

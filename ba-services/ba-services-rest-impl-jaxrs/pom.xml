@@ -117,9 +117,11 @@
                     <stopKey>STOP</stopKey>
                     <stopPort>9999</stopPort>
 
+                    <!--
                     <webApp>
                         <contextPath>${deployment.servletContext}</contextPath>
                     </webApp>
+                    -->
                     <httpConnector>
                         <port>${deployment.port}</port>
                         <idleTimeout>60000</idleTimeout>

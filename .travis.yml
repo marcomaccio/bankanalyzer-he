@@ -8,6 +8,11 @@ jdk:
 
 services:
 - docker
+- mongodb
+
+before_script:
+    - sleep 15
+#  - mongo mydb_test --eval 'db.addUser("travis", "test");'
 
 script:
 - mvn -B -e -Plocal-depl-j2se-h2 clean install --settings settings-travis.xml -Dsettings.security=settings-security.xml -Djavadoc-additionalparam=-Xdoclint:none -Djavadoc-report-additionalparam=-Xdoclint:none

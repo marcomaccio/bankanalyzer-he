@@ -24,6 +24,7 @@
         
         <!-- DAL IMPL JPA MODULE: -->
         <module>ba-dal-impl-jpa</module>
+        <module>ba-dal-impl-jpa-nosql</module>
     </modules>
 
 
