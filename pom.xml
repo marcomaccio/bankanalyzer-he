@@ -170,7 +170,7 @@
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <cobertura-maven-plugin.version>2.6</cobertura-maven-plugin.version>
 
-        <javax-persistence.version>2.1.0</javax-persistence.version>
+        <javax-persistence.version>2.1.1</javax-persistence.version>
         <eclipselink.version>2.6.2</eclipselink.version>
         <dbunit.version>2.5.1</dbunit.version>
 
