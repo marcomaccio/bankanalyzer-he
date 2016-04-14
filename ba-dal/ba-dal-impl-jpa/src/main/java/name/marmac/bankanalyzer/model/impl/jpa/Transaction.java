@@ -113,7 +113,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
      * @return  the transaction amount (positive for a credit, negative for a debit)
      */
     @Override
-    @Column(name = "amount", nullable = false)
+    @Column(name = "amount", nullable = false, scale = 3, precision = 10)
     public BigDecimal getAmount() {
         return amount;
     }
@@ -133,7 +133,7 @@ public class Transaction extends BaseJPAObject implements  TransactionPO {
      * @return  the bankAccount balance after the transaction has been done
      */
     @Override
-    @Column(name = "balance", nullable = false)
+    @Column(name = "balance", nullable = false, scale = 3, precision = 10)
     public BigDecimal getBalance() {
         return balance;
     }

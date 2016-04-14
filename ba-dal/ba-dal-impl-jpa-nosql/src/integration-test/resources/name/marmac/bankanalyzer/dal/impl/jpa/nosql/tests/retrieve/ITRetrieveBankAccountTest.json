@@ -1,11 +1,11 @@
 {
     "bankAccount":
         [
-          { "bankName":"MyBANK",
-            "holderName":"Wallace & Gromit",
-            "iban":"CH53077",
-            "VERSION":1,
-            "openingDate" : { "$date": "2016-02-18T09:50:00Z" }
+          { "bankName" : "MyBANK",
+            "holderName" : "Wallace & Gromit",
+            "iban" : "CH53077",
+            "VERSION" : 1,
+            "openingDate" : { "$date" : "2016-02-18T10:50+02:00" }
           }
         ]
 }

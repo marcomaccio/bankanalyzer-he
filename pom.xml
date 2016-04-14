@@ -785,6 +785,8 @@
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <version>${findbugs-maven-plugin.version}</version>
                 <configuration>
+                    <findbugsXmlOutput>true</findbugsXmlOutput>
+                    <xmlOutput>true</xmlOutput>
                     <effort>Max</effort>
                     <threshold>Low</threshold>
                 </configuration>
@@ -851,6 +853,7 @@
 
                 <!-- DATA ACCESS LAYER PROPERTIES -->
                 <!-- DATA ACCESS LAYER JPA SQL PROPERTIES -->
+                <deployment.dbPlatform>H2</deployment.dbPlatform>
                 <deployment.jdbcDriverName>org.h2.Driver</deployment.jdbcDriverName>
                 <deployment.jdbcUrl>jdbc:h2:file:~/.bankanalyzer/bankanalyzerDB;AUTO_SERVER=TRUE</deployment.jdbcUrl>
                 <deployment.dbPlatform>org.eclipse.persistence.platform.database.H2Platform</deployment.dbPlatform>
