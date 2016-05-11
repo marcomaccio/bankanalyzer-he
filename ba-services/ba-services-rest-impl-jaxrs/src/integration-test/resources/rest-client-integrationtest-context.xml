@@ -7,12 +7,12 @@
        xmlns:jaxrsclient="http://cxf.apache.org/jaxrs-client"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-	http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
-    http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
-    http://cxf.apache.org/jaxrs-client http://cxf.apache.org/schemas/jaxrs-client.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+              	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+                http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+                http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+                http://cxf.apache.org/jaxrs-client http://cxf.apache.org/schemas/jaxrs-client.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<!-- Load CXF modules from cxf.jar -->
 	<import resource="classpath:META-INF/cxf/cxf.xml" />

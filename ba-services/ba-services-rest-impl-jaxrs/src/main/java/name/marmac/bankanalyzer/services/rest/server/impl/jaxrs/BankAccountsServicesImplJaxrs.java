@@ -18,6 +18,7 @@ import org.apache.cxf.jaxrs.ext.search.SearchContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Resource;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -58,9 +59,13 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     @Context
     private SearchContext  searchContext;
 
+    @Resource
     private name.marmac.bankanalyzer.model.to.bankaccounts.ObjectFactory bankAccountsObjectFactory;
+    @Resource
     private name.marmac.bankanalyzer.model.to.transactions.ObjectFactory transactionsObjectFactory;
+    @Resource
     private BankAnalyzerProperties              bankAnalyzerProperties;
+    @Resource
     private BankAccountsPersistenceServices     bankAccountsPersistenceServices;
 
     /**
