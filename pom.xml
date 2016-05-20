@@ -109,7 +109,8 @@
 
         <!-- SERVICE LAYER MODULES: -->
         <module>ba-services</module>
-        
+        <module>ba-importers</module>
+
         <!-- ADAPTER LAYER MODULES: 
         <module>ba-adapters</module> -->
     </modules>
@@ -180,6 +181,7 @@
 
         <cxf.version>3.1.4</cxf.version>
         <cxf-xjc-dv.version>2.7.0</cxf-xjc-dv.version>
+        <camel.version>2.15.1</camel.version>
         <spring.version>4.2.2.RELEASE</spring.version>
 
         <guava.version>14.0.1</guava.version>
@@ -259,6 +261,7 @@
         <changelog.revision.fileUri>${changelog.revision.github.fileUri}</changelog.revision.fileUri>
 
         <BA_VERSION>${project.version}</BA_VERSION>
+        <documentation.host>rms.maccio-ch.homelinux.net/nexus/content/repositories/mm-html-sites</documentation.host>
     </properties>
 
     <build>

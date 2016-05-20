@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>ba-importers-statements</module>
+    </modules>
+
+    <parent>
+        <artifactId>bankanalyzer-he</artifactId>
+        <groupId>name.marmac.bankanalizer</groupId>
+        <version>1.0.0.BUILD-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ba-importers</artifactId>
+    <packaging>pom</packaging>
+
+    <name>BA :: BANK ANALYZER HE :: IMPORTERS</name>
+    <description>This Maven submodule will hold the code of various importers:
+        - bankaccount statements importer - generic
+        - bankaccount statements importer - ch - bcv
+        - bankaccount statements importer - ch - raiffessen
+    </description>
+    <url>http://${documentation.host}/bankanalyzer-he/ba-commons</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+    </dependencies>
+</project>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+       http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd">
+
+    <!-- Load CXF modules from cxf.jar -->
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+    <!-- Declaration of a property resource configurer
+    		that resolves placeholders in bean property values of context definitions -->
+    <bean id="propertyPlaceholder"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+
+        <property name="location">
+            <value>classpath:ba-importers-statements-ch-bcv-context.properties</value>
+        </property>
+
+    </bean>
+
+    <!-- camel context -->
+    <camel:camelContext id="BindyContext"
+                        trace="true"
+                        xmlns="http://camel.apache.org/schema/spring">
+
+        <camel:propertyPlaceholder id="properties" location="classpath:ba-importers-statements-ch-bcv-context.properties" />
+
+        <routeBuilder ref="bcvImporterRoute" />
+
+    </camel:camelContext>
+
+    <bean id="bcvImporterRoute" class="name.marmac.bankanalyzer.importers.statements.ch.bcv.routes.BCVImportRoute"/>
+
+    <bean id="transactionProcessor" class="name.marmac.bankanalyzer.importers.statements.ch.bcv.processors.TransactionProcessors"/>
+
+    <!-- XML Provider with JAXB2 -->
+    <bean id="jaxbProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider">
+        <property name="marshallAsJaxbElement" value="true"/>
+    </bean>
+
+    <!-- JSON Provider -->
+    <bean id="jsonjaxbProvider"
+            class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"/>
+
+    <cxf:rsClient id="rsAccountManagerClient"
+                  address="http://localhost:9191/api/v1/bankaccountsservices/bankaccounts/"
+                  serviceClass="name.marmac.bankanalyzer.services.web.rest.api.bankaccountservices.BankAccountsServices"
+                  loggingFeatureEnabled="true" >
+
+        <cxf:providers>
+            <ref bean="jaxbProvider" />
+            <ref bean="jsonjaxbProvider" />
+        </cxf:providers>
+    </cxf:rsClient>
+</beans>
