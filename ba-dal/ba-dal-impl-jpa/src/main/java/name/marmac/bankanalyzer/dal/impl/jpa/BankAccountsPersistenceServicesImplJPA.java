@@ -53,7 +53,9 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
      */
     @Override
     public BankAccountPO createNewBankAccount() {
+
         LOGGER.debug("Method createNewBankAccount has been called ");
+
         BankAccountPO newBankAccount = new BankAccount();
         newBankAccount.setCreatedDate(new Date());
         newBankAccount.setLastUpdate(new Date());
@@ -129,7 +131,15 @@ public class BankAccountsPersistenceServicesImplJPA implements BankAccountsPersi
      */
     @Override
     public TransactionPO createNewTransaction() {
-        return null;
+
+        LOGGER.debug("Method createNewBankAccount has been called ");
+
+        TransactionPO newTransaction = new Transaction();
+        newTransaction.setCreatedDate(new Date());
+        newTransaction.setLastUpdate(new Date());
+
+        LOGGER.debug("The new empty Transaction has been created " + newTransaction.toString());
+        return newTransaction;
     }
 
     /**
