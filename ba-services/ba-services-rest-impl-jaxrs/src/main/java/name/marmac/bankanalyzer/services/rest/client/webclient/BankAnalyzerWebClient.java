@@ -2,6 +2,7 @@ package name.marmac.bankanalyzer.services.rest.client.webclient;
 
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountTOType;
 import name.marmac.bankanalyzer.model.to.bankaccounts.BankAccountsTOType;
+import name.marmac.bankanalyzer.model.to.transactions.TransactionTOType;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,11 +67,11 @@ public class BankAnalyzerWebClient {
      * @param responseType  the responseType MediaType
      * @return              the Response object
      */
-    public Response createCustomer(String holderName,
-                                   String iban,
-                                   String openingDate,
-                                   MediaType requestType,
-                                   MediaType responseType) {
+    public Response createBankAccount(String holderName,
+                                      String iban,
+                                      String openingDate,
+                                      MediaType requestType,
+                                      MediaType responseType) {
 
         //Create the CustomerTOType (Transfer Object) to be serialized and passed to the server
         BankAccountTOType bankAccountTOType = mBankAccountsObjectFactory.createBankAccountTOType();
@@ -134,6 +135,18 @@ public class BankAnalyzerWebClient {
         Response response = mWebClient.type(requestType).accept(responseType).path("/bankaccounts").path(iban).get();
         LOGGER.info("media-type: " + response.getMediaType().getType());
         LOGGER.info("Entity " + response.readEntity(BankAccountTOType.class));
+        return response;
+    }
+
+    public Response createTransaction(String iban,
+                                      MediaType requestType,
+                                      MediaType responseType){
+        //Setting up the TransactionTOType (the transferedObject)
+        TransactionTOType transactionTOType = mTransactionsObjectFactory.createTransactionTOType();
+        //Setting up the REST Client
+        WebClient.getConfig(mWebClient).getHttpConduit().getClient().setReceiveTimeout(10000000);
+        mWebClient.reset();
+        Response response = mWebClient.type(requestType).accept(responseType).path("/bankaccounts").path(iban).path("/transactions").post(transactionTOType);
         return response;
     }
 
