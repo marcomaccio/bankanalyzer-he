@@ -31,12 +31,21 @@
         <camel:propertyPlaceholder id="properties" location="classpath:ba-importers-statements-ch-bcv-context.properties" />
 
         <routeBuilder ref="bcvImporterRoute" />
+        <routeBuilder ref="bcvTransformCSVToJSONRoute" />
 
     </camel:camelContext>
 
-    <bean id="bcvImporterRoute" class="name.marmac.bankanalyzer.importers.statements.ch.bcv.routes.BCVImportRoute"/>
+    <bean id="bcvImporterRoute"
+          class="name.marmac.bankanalyzer.importers.statements.ch.bcv.routes.BCVImportRoute"/>
 
-    <bean id="transactionProcessor" class="name.marmac.bankanalyzer.importers.statements.ch.bcv.processors.TransactionProcessors"/>
+    <bean id="bcvTransformCSVToJSONRoute"
+          class="name.marmac.bankanalyzer.importers.statements.ch.bcv.routes.BCVConvertCSVToJSONRoute"/>
+
+    <bean id="transactionProcessor"
+          class="name.marmac.bankanalyzer.importers.statements.ch.bcv.processors.TransactionProcessors"/>
+
+    <bean id="transactionToJSONProcessor"
+          class="name.marmac.bankanalyzer.importers.statements.ch.bcv.processors.TransactionToJSONProcessor"/>
 
     <!-- XML Provider with JAXB2 -->
     <bean id="jaxbProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider">
