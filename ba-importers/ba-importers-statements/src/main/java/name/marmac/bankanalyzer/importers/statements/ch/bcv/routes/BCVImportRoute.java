@@ -34,7 +34,7 @@ public class BCVImportRoute extends RouteBuilder
                 .convertBodyTo(TransactionTOType.class)
                 .processRef("transactionProcessor")
 //                .bean(BCVTransactionHandler.class, "handleTransaction(com.camelatwork.components.bindy.model.bo.Transaction)")
-                .to("cxfrs:bean:rsAccountManagerClient")
+//                .to("cxfrs:bean:rsAccountManagerClient")
             .end();
 
     }
