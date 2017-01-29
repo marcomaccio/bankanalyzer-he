@@ -15,8 +15,11 @@
             <xsd:element name="debit"           type="xsd:decimal"   />
             <xsd:element name="credit"          type="xsd:decimal"   />
             <xsd:element name="currency"        type="xsd:string"   />
+            <xsd:element name="balance"          type="xsd:decimal"   />
+
             <xsd:element name="category"        type="xsd:string"   />
             <xsd:element name="subCategory"     type="xsd:string"   />
+            <xsd:element name="note"            type="xsd:string"   />
 
             <xsd:element name="createDate"      type="xsd:dateTime" />
             <xsd:element name="lastUpdate"      type="xsd:dateTime" />

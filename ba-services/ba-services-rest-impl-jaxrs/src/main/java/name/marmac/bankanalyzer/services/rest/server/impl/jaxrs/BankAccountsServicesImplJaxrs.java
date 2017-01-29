@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -56,6 +57,7 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     //JAX-RS and JAX-WS context
     @Context
     private MessageContext context = null;
+
     @Context
     private SearchContext  searchContext;
 
@@ -143,9 +145,29 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
     /** Getters & Setters - END **/
 
     @Override
-    public BankAccountTOType createBankAccount(BankAccountTOType bankaccounttotype) {
+    public BankAccountTOType createBankAccount(BankAccountTOType bankaccountToType) {
+        LOGGER.debug("The createBankAccount has been invoked ");
 
-        return null;
+        //Create a new empty bankAccountPO (the interface) via the PersistenceService
+        BankAccountPO bankAccountPO = getBankAccountsPersistenceServices().createNewBankAccount();
+
+        //Convert the BankAccountToType into the BankAccountPO object
+        //bankAccount.setBankName(bankaccountToType.getBankName());
+        bankAccountPO.setHolderName(bankaccountToType.getHoldername());
+        bankAccountPO.setIban(bankaccountToType.getIBAN());
+        bankAccountPO.setOpeningDate(bankaccountToType.getOpeningDate().getTime());
+
+        LOGGER.debug("Calling the persistence layer to save the bankAccountPO " + bankAccountPO.toString());
+
+        //Call the PersistenceService to save the BankAccountPO object
+        getBankAccountsPersistenceServices().save(bankAccountPO);
+
+        context.getHttpServletResponse().setHeader("Location", "/bankaccounts/" + bankaccountToType.getIBAN());
+        context.getHttpServletResponse().setHeader("Access-Control-Allow-Origin", ACCESS_CONTROL_ALLOW_ORIGIN_ALL);
+        //Set the HTTP Status Code to 201
+        context.getHttpServletResponse().setStatus(HttpServletResponse.SC_CREATED);
+
+        return bankaccountToType;
     }
 
     /**
@@ -251,6 +273,50 @@ public class BankAccountsServicesImplJaxrs implements BankAccountsServices {
         TransactionsTOType transactionsTO = convertToTransactionsTOType(transactionsPO);
         LOGGER.debug("returning " + transactionsTO.getTransactions().size() + " transactions");
         return transactionsTO;
+    }
+
+    @Override
+    @POST
+    @Consumes({"application/xml", "application/json" })
+    @Produces({"application/xml", "application/json" })
+    @Path("/bankaccounts/{iban}/transactions")
+    public TransactionTOType createTransaction(@PathParam("iban") String iban, TransactionTOType transactionToType) {
+
+        BankAccountPO bankAccountPO = null;
+        //Retrieve the BankAccountPO based its iban number
+        bankAccountPO = getBankAccountsPersistenceServices().getBankAccountByNativeId(iban);
+        //it it's NOT found --> throws an exception
+        if (bankAccountPO == null) {
+            return null;
+
+        } else if (bankAccountPO.getIban().equals(iban)) {
+            //Create a new empty bankAccountPO (the interface) via the PersistenceService
+            TransactionPO transactionPO = getBankAccountsPersistenceServices().createNewTransaction();
+
+            //Convert the TransactionToType into the TransactionPO object
+            //bankAccount.setBankName(bankaccountToType.getBankName());
+            transactionPO.setExecutionDate(transactionToType.getExecutionDate().getTime());
+            transactionPO.setDescription(transactionToType.getDescription());
+            //transactionPO.setAmount(transactionToType.);
+            transactionPO.setCurrency(transactionToType.getCurrency());
+            transactionPO.setValueDate(transactionToType.getValueDate().getTime());
+            transactionPO.setCategory(transactionToType.getCategory());
+            transactionPO.setSubCategory(transactionToType.getSubCategory());
+
+
+            LOGGER.debug("Calling the persistence layer to save the transactionPO " + transactionPO.toString());
+
+            //Call the PersistenceService to save the BankAccountPO object
+            getBankAccountsPersistenceServices().save(transactionPO);
+
+            context.getHttpServletResponse().setHeader("Location", "/bankaccounts/" + iban + "/"+ transactionToType.getIBAN());
+            context.getHttpServletResponse().setHeader("Access-Control-Allow-Origin", ACCESS_CONTROL_ALLOW_ORIGIN_ALL);
+            //Set the HTTP Status Code to 201
+            context.getHttpServletResponse().setStatus(HttpServletResponse.SC_CREATED);
+
+            return transactionToType;
+        }
+        return null;
     }
 
 

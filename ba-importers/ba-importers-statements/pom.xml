@@ -1,0 +1,182 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ba-importers</artifactId>
+        <groupId>name.marmac.bankanalizer</groupId>
+        <version>1.0.0.BUILD-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ba-importers-statements</artifactId>
+    <packaging>jar</packaging>
+
+    <name>BA :: BANK ANALYZER HE :: IMPORTERS :: STATEMENTS</name>
+    <description>This Maven submodule will hold the code of various statements importers:
+        - bankaccount statements importer - generic
+        - bankaccount statements importer - ch - bcv
+        - bankaccount statements importer - ch - raiffessen
+    </description>
+    <url>http://${documentation.host}/bankanalyzer-he/ba-commons</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+
+        <filters>
+            <filter>profiles/${build.profile.id}/config.properties</filter>
+        </filters>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                  <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                  <include>**/*</include>
+                </includes>
+            </testResource>
+            <testResource>
+                <directory>${project.basedir}/src/integration-test/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                  <include>**/*</include>
+                </includes>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <!-- allows the routes to be ran via 'mvn camel:run' -->
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-maven-plugin</artifactId>
+                <version>${camel.version}</version>
+                <configuration>
+                    <applicationContextUri>META-INF/camel/ba-importers-statements-ch-bcv-context.xml</applicationContextUri>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>name.marmac.bankanalizer</groupId>
+            <artifactId>ba-commons-resources-xsd</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!--
+        <dependency>
+            <groupId>name.marmac.bankanalizer</groupId>
+            <artifactId>ba-services-rest-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>camel-bindy</artifactId>
+          <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-cxf</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-cxf-transport</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-providers</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <!-- FASTERXML JACKSON Dependencies  - START -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>${fasterxml-jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${fasterxml-jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${fasterxml-jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-jaxb-annotations</artifactId>
+            <version>${fasterxml-jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${fasterxml-jackson.version}</version>
+        </dependency>
+        <!-- FASTERXML JACKSON Dependencies  - END -->
+
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>poi</artifactId>
+            <groupId>org.apache.poi</groupId>
+            <version>3.15</version>
+        </dependency>
+
+    </dependencies>
+</project>
