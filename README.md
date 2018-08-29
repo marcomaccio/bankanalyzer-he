@@ -1,6 +1,7 @@
 #BANKANALIZER HE     
 ![Travis-ci.org](https://travis-ci.org/marcomaccio/bankanalyzer-he.svg?branch=master)
 ![CodeShip](https://codeship.com/projects/319f4a40-6f58-0133-4513-7ae947dfb2ee/status?branch=master)
+[![DepShield Badge](https://depshield.sonatype.org/badges/marcomaccio/bankanalyzer-he/depshield.svg)](https://depshield.github.io)
 
 
 	An Head End Application that allows to store Bank Account transactions and allows to make analysis
